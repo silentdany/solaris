@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Saira&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  em {
+    @apply relative z-10 after:absolute after:bottom-0 after:left-0 after:w-full after:h-2 after:bg-blue-500/30 after:-rotate-3 after:-skew-x-12 after:origin-bottom-left after:z-0;
+  }
+}
