@@ -35,7 +35,7 @@ export const position = [
   },
 ];
 
-export const stats = [
+export const attributs = [
   {
     title: 'Actifs',
     value: '> 1M $',

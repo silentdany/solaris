@@ -13,31 +13,31 @@ const SocialLinks = ({ mobile }) => (
     }
   >
     {AppConfig.discord && (
-      <div className="btn btn-circle btn-ghost hover:text-primary-300">
-        <Link href={AppConfig.discord}>
-          <a className="font-title text-2xl md:text-xl " target="_blank">
+      <Link href={AppConfig.discord}>
+        <a title="Discord QTT" target="_blank">
+          <div className="btn btn-circle btn-ghost hover:text-primary-300 font-title text-2xl md:text-xl ">
             <FaDiscord />
-          </a>
-        </Link>
-      </div>
+          </div>
+        </a>
+      </Link>
     )}
     {AppConfig.instagram && (
-      <div className="btn btn-circle btn-ghost hover:text-primary-300">
-        <Link href={AppConfig.instagram}>
-          <a className="font-title text-2xl md:text-xl" target="_blank">
+      <Link href={AppConfig.instagram}>
+        <a title="Instagram Solaris" target="_blank">
+          <div className="btn btn-circle btn-ghost hover:text-primary-300 font-title text-2xl md:text-xl ">
             <FaInstagram />
-          </a>
-        </Link>
-      </div>
+          </div>
+        </a>
+      </Link>
     )}
     {AppConfig.twitter && (
-      <div className="btn btn-circle btn-ghost hover:text-primary-300">
-        <Link href={AppConfig.twitter}>
-          <a className="font-title text-2xl md:text-xl" target="_blank">
+      <Link href={AppConfig.twitter}>
+        <a title="Twitter Solaris" target="_blank">
+          <div className="btn btn-circle btn-ghost hover:text-primary-300 font-title text-2xl md:text-xl ">
             <FaTwitter />
-          </a>
-        </Link>
-      </div>
+          </div>
+        </a>
+      </Link>
     )}
   </ul>
 );
@@ -71,9 +71,9 @@ const Navbar = () => (
             </Link>
             <ul className="menu menu-compact p-2 shadow bg-base-100 rounded-box">
               <li>
-                <Link href="#stats">
+                <Link href="#attributs">
                   <a className="font-title text-lg hover:text-primary-300">
-                    Stats
+                    Attributs
                   </a>
                 </Link>
               </li>
@@ -123,7 +123,7 @@ const Navbar = () => (
     </div>
     <div className="navbar-center">
       <Link href="/" passHref={true}>
-        <a className="relative flex flex-col items-center">
+        <a title="Accueil" className="relative flex flex-col items-center">
           <Image
             src="/assets/images/solaris_title_logo_color_black.webp"
             alt="Solaris Logo"

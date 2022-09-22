@@ -28,8 +28,11 @@ const Hero = () => {
       >
         <div className="absolute bg-black/10 w-full h-full animate-pulse-slow" />
         <div className="hero min-h-screen bg-base-200">
+          <h1 className="absolute bottom-8 left-8 text-5xl md:text-7xl lg:text-9xl font-hero font-extrabold mix-blend-overlay text-gray-50/10">
+            Solaris
+          </h1>
           <div className="hero-content text-center flex flex-col">
-            <div className="max-w-4xl">
+            <div className="max-w-4xl relative">
               <div className="text-6xl md:text-8xl font-black font-hero text-stone-100 mix-blend-screen tracking-wide relative mt-16">
                 <Image
                   src="/assets/images/solaris_title_logo_color_white.webp"

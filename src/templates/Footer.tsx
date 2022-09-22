@@ -7,37 +7,40 @@ import { AppConfig } from '../utils/AppConfig';
 const Footer = () => (
   <section className="flex flex-col justify-center items-center bg-gray-50 mx-auto px-6 py-16 text-center space-y-12">
     <Link href="/" passHref>
-      <a className="hover:-translate-y-1 ease-in-out duration-300">
+      <a
+        title="Retour en haut"
+        className="hover:-translate-y-1 ease-in-out duration-300"
+      >
         <Logo width="50" />
       </a>
     </Link>
     <ul className="space-x-5">
       {AppConfig.discord && (
-        <li className="btn btn-circle btn-ghost hover:text-primary-300">
-          <Link href={AppConfig.discord}>
-            <a className="font-title text-2xl md:text-xl" target="_blank">
+        <Link href={AppConfig.discord}>
+          <a title="Discord QTT" target="_blank">
+            <li className="btn btn-circle btn-ghost hover:text-primary-300 font-title text-2xl md:text-xl ">
               <FaDiscord />
-            </a>
-          </Link>
-        </li>
+            </li>
+          </a>
+        </Link>
       )}
       {AppConfig.instagram && (
-        <li className="btn btn-circle btn-ghost hover:text-primary-300">
-          <Link href={AppConfig.instagram}>
-            <a className="font-title text-2xl md:text-xl" target="_blank">
+        <Link href={AppConfig.instagram}>
+          <a title="Instagram Solaris" target="_blank">
+            <li className="btn btn-circle btn-ghost hover:text-primary-300 font-title text-2xl md:text-xl ">
               <FaInstagram />
-            </a>
-          </Link>
-        </li>
+            </li>
+          </a>
+        </Link>
       )}
       {AppConfig.twitter && (
-        <li className="btn btn-circle btn-ghost hover:text-primary-300">
-          <Link href={AppConfig.twitter}>
-            <a className="font-title text-2xl md:text-xl" target="_blank">
+        <Link href={AppConfig.twitter}>
+          <a title="Twitter Solaris" target="_blank">
+            <li className="btn btn-circle btn-ghost hover:text-primary-300 font-title text-2xl md:text-xl ">
               <FaTwitter />
-            </a>
-          </Link>
-        </li>
+            </li>
+          </a>
+        </Link>
       )}
     </ul>
     <p>

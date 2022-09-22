@@ -9,7 +9,7 @@ import Section from '../layout/Section';
 import {
   values,
   position,
-  stats,
+  attributs,
   ambitions,
   profils,
 } from '../utils/AppConfig';
@@ -23,7 +23,7 @@ const Guild = () => {
   const isMobile = useMediaQuery('(max-width: 767px)');
   return (
     <div id="start">
-      <Section title="stats" number="01" bgColor="bg-gray-50" uppercase>
+      <Section title="attributs" number="01" bgColor="bg-gray-50" uppercase>
         <div className="flex flex-col items-center justify-center">
           <InnerSectionBlock bgColor={'from-primary-500/40'}>
             <div className="flex flex-col w-full">
@@ -51,7 +51,7 @@ const Guild = () => {
                         <h5 className="text-4xl lg:text-5xl text-primary-700/50 uppercase z-20 tracking-tight font-extrabold">
                           {item.title}
                         </h5>
-                        <p className="text-2xl lg:text-3xl text-stone-600 z-30 absolute -bottom-2 group-hover:translate-y-2 ease-in-out duration-300 whitespace-nowrap">
+                        <p className="text-2xl lg:text-3xl text-stone-600 z-30 absolute -bottom-4 group-hover:translate-y-2 ease-in-out duration-300 whitespace-nowrap">
                           {item.value}
                         </p>
                       </div>
@@ -69,7 +69,7 @@ const Guild = () => {
                   </>
                 ))}
               </motion.div>
-              <div className="flex justify-around w-full text-3xl my-12 lg:m-16">
+              <div className="flex justify-around text-3xl my-12 lg:m-16">
                 <BiDownArrow className="text-primary-900/25" />
                 <BiDownArrow className="text-primary-700/25" />
                 <BiDownArrow className="text-primary-300/25" />
@@ -80,7 +80,7 @@ const Guild = () => {
                 whileInView={{ opacity: 1 }}
                 viewport={{ amount: 0.7, once: true }}
               >
-                {stats.map((item, index) => (
+                {attributs.map((item, index) => (
                   <>
                     <motion.div
                       className="flex flex-col justify-center items-center relative group"
@@ -98,12 +98,12 @@ const Guild = () => {
                         <h5 className="text-4xl lg:text-5xl text-primary-700/50 uppercase z-20 tracking-tight font-extrabold">
                           {item.title}
                         </h5>
-                        <p className="text-2xl lg:text-3xl text-stone-600 z-30 absolute -bottom-2 group-hover:translate-y-2 ease-in-out duration-300 whitespace-nowrap">
+                        <p className="text-2xl lg:text-3xl text-stone-600 z-30 absolute -bottom-4 group-hover:translate-y-2 ease-in-out duration-300 whitespace-nowrap">
                           {item.value}
                         </p>
                       </div>
                     </motion.div>
-                    {stats.length - 1 === index ? null : (
+                    {attributs.length - 1 === index ? null : (
                       <div className="h-full flex items-center justify-center">
                         <motion.div
                           initial={{ opacity: 0 }}
@@ -131,7 +131,7 @@ const Guild = () => {
             ]}
             className="h-64 lg:h-96 relative z-10"
           >
-            <div className="bg-gradient-to-b from-gray-50 w-full h-32 lg:h-48 absolute top-0"></div>
+            <div className="bg-gradient-to-b from-gray-50 w-full h-64 lg:h-96 absolute top-0"></div>
           </ParallaxBanner>
         </div>
       </Section>
@@ -188,7 +188,7 @@ const Guild = () => {
                     </motion.div>
                   </div>
                   <div
-                    className={`flex justify-around w-full text-3xl my-12 lg:m-16 ${
+                    className={`flex justify-around text-3xl my-12 lg:m-16 ${
                       values.length - 1 === index && 'hidden'
                     }`}
                   >
@@ -225,7 +225,7 @@ const Guild = () => {
             ]}
             className="h-64 lg:h-96 relative z-10"
           >
-            <div className="bg-gradient-to-b from-gray-50 w-full h-32 lg:h-48 absolute top-0"></div>
+            <div className="bg-gradient-to-b from-gray-50 w-full h-64 lg:h-96 absolute top-0"></div>
           </ParallaxBanner>
         </div>
       </Section>
@@ -294,7 +294,7 @@ const Guild = () => {
                     </motion.div>
                   </div>
                   <div
-                    className={`flex justify-around w-full text-3xl my-12 lg:m-16 ${
+                    className={`flex justify-around text-3xl my-12 lg:m-16 ${
                       ambitions.length - 1 === index && 'hidden'
                     }`}
                   >
@@ -331,7 +331,7 @@ const Guild = () => {
             ]}
             className="h-64 lg:h-96 relative z-10"
           >
-            <div className="bg-gradient-to-b from-gray-50 w-full h-32 lg:h-48 absolute top-0"></div>
+            <div className="bg-gradient-to-b from-gray-50 w-full h-64 lg:h-96 absolute top-0"></div>
           </ParallaxBanner>
         </div>
       </Section>
@@ -392,7 +392,7 @@ const Guild = () => {
                   </motion.div>
                   {isMobile && (
                     <div
-                      className={`flex justify-around w-full text-3xl my-12 lg:m-16 ${
+                      className={`flex justify-around text-3xl my-12 lg:m-16 ${
                         profils.length - 1 === index && 'hidden'
                       }`}
                     >
