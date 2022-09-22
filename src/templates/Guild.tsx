@@ -240,7 +240,7 @@ const Guild = () => {
                     key={index}
                   >
                     <div
-                      className={`w-full h-64 lg:h-auto border-primary-700 lg:w-3/5 overflow-hidden ${
+                      className={`w-full h-64 lg:h-auto border-primary-700 lg:w-3/5 overflow-hidden z-10 ${
                         index % 2 !== 0
                           ? 'lg:order-2 lg:border-l-8 lg:ml-12 '
                           : 'lg:border-r-8 lg:mr-12 '
@@ -272,7 +272,7 @@ const Guild = () => {
                       }}
                       whileInView={{ translateX: 0, opacity: 1 }}
                       viewport={{ amount: 0.1, once: true }}
-                      className="lg:w-2/5 flex justify-center items-center"
+                      className="lg:w-2/5 flex justify-center items-center z-20"
                     >
                       <div
                         className={`flex glass shadow-sm group-hover:shadow-xl w-full justify-center items-center p-4 lg:p-8 ${
