@@ -45,7 +45,7 @@ const Hero = () => {
             rotate: [0, 40],
             style: {
               backgroundSize: isDesktop ? '100px' : 0,
-              backgroundPosition: 'bottom 5% left 45%',
+              backgroundPosition: 'bottom 10% left 50%',
               backgroundRepeat: 'no-repeat',
             },
           },
