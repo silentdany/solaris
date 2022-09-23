@@ -16,11 +16,54 @@ const Hero = () => {
         layers={[
           {
             image: '/assets/images/hero_bg.webp',
-            speed: -25,
+            speed: -50,
             style: {
-              backgroundSize: isDesktop ? 'contain' : 'cover',
-              backgroundPosition: isDesktop ? 'center' : 'right 15% top',
+              backgroundSize: isDesktop ? 'contain' : 'auto',
+              backgroundPosition: isDesktop ? 'center' : 'right',
             },
+          },
+          {
+            image: '/assets/images/hero_bg_plan_3.webp',
+            speed: -40,
+            style: {
+              backgroundSize: isDesktop ? 'contain' : 'auto',
+              backgroundPosition: isDesktop ? 'center' : 'right',
+            },
+          },
+          {
+            image: '/assets/images/hero_bg_plan_2.webp',
+            speed: -30,
+            style: {
+              backgroundSize: isDesktop ? 'contain' : 'auto',
+              backgroundPosition: isDesktop ? 'center' : 'right',
+            },
+          },
+          {
+            image: '/assets/images/commander.webp',
+            disabled: !isDesktop,
+            scale: [0, 1.5],
+            rotate: [0, 40],
+            style: {
+              backgroundSize: isDesktop ? '100px' : 0,
+              backgroundPosition: 'bottom 5% left 45%',
+              backgroundRepeat: 'no-repeat',
+            },
+          },
+          {
+            image: '/assets/images/hero_bg_plan_1.webp',
+            speed: -20,
+            style: {
+              backgroundSize: isDesktop ? 'contain' : 'auto',
+              backgroundPosition: isDesktop ? 'center' : 'right',
+            },
+          },
+          {
+            opacity: [0, 1],
+            expanded: false,
+            shouldAlwaysCompleteAnimation: true,
+            children: (
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-50" />
+            ),
           },
         ]}
         style={{ aspectRatio: '2 / 1' }}
@@ -50,7 +93,6 @@ const Hero = () => {
                   </span>
                 </span>
               </div>
-
               <p className="py-6 text-stone-50 text-sm md:text-base">
                 {AppConfig.description}
               </p>
