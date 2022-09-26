@@ -6,7 +6,7 @@ import { Hero } from './Hero';
 import { Navbar } from './Navbar';
 
 const Base = () => (
-  <div className="antialiased text-stone-600">
+  <div className="text-stone-600 antialiased">
     <div id="page-wrap">
       <Meta title={AppConfig.site_name} description={AppConfig.description} />
       <Navbar />

@@ -9,6 +9,6 @@
     @apply scroll-smooth;
   }
   em {
-    @apply relative z-10 after:absolute after:bottom-0 after:left-0 after:w-full after:h-2 after:bg-blue-500/30 after:-rotate-3 after:-skew-x-12 after:origin-bottom-left after:z-0;
+    @apply relative z-10 after:absolute after:bottom-0 after:left-0 after:z-0 after:h-2 after:w-full after:origin-bottom-left after:-rotate-3 after:-skew-x-12 after:bg-blue-500/30;
   }
 }

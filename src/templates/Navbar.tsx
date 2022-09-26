@@ -9,13 +9,13 @@ import { AppConfig } from '../utils/AppConfig';
 const SocialLinks = ({ mobile }) => (
   <ul
     className={
-      mobile ? 'flex justify-center md:hidden' : 'hidden md:flex justify-center'
+      mobile ? 'flex justify-center md:hidden' : 'hidden justify-center md:flex'
     }
   >
     {AppConfig.discord && (
       <Link href={AppConfig.discord}>
         <a title="Discord QTT" target="_blank">
-          <div className="btn btn-circle btn-ghost hover:text-primary-300 font-title text-2xl md:text-xl ">
+          <div className="btn btn-ghost btn-circle font-title text-2xl hover:text-primary-300 md:text-xl ">
             <FaDiscord />
           </div>
         </a>
@@ -24,7 +24,7 @@ const SocialLinks = ({ mobile }) => (
     {AppConfig.instagram && (
       <Link href={AppConfig.instagram}>
         <a title="Instagram Solaris" target="_blank">
-          <div className="btn btn-circle btn-ghost hover:text-primary-300 font-title text-2xl md:text-xl ">
+          <div className="btn btn-ghost btn-circle font-title text-2xl hover:text-primary-300 md:text-xl ">
             <FaInstagram />
           </div>
         </a>
@@ -33,7 +33,7 @@ const SocialLinks = ({ mobile }) => (
     {AppConfig.twitter && (
       <Link href={AppConfig.twitter}>
         <a title="Twitter Solaris" target="_blank">
-          <div className="btn btn-circle btn-ghost hover:text-primary-300 font-title text-2xl md:text-xl ">
+          <div className="btn btn-ghost btn-circle font-title text-2xl hover:text-primary-300 md:text-xl ">
             <FaTwitter />
           </div>
         </a>
@@ -42,7 +42,7 @@ const SocialLinks = ({ mobile }) => (
   </ul>
 );
 const Navbar = () => (
-  <div className="navbar bg-base-100 fixed z-50 shadow-xl">
+  <div className="navbar fixed z-50 bg-base-100 shadow-xl">
     <div className="navbar-start">
       <div className="dropdown">
         <label tabIndex={0} className="btn btn-ghost btn-circle">
@@ -61,15 +61,15 @@ const Navbar = () => (
             />
           </svg>
         </label>
-        <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box">
+        <ul className="dropdown-content menu rounded-box menu-compact mt-3 bg-base-100 p-2 shadow">
           <li>
             <Link href="#guilde">
-              <a className="font-title text-lg hover:text-primary-300 flex justify-between">
+              <a className="flex justify-between font-title text-lg hover:text-primary-300">
                 Guilde
                 <BiDownArrow className="-rotate-90 text-right" />
               </a>
             </Link>
-            <ul className="menu menu-compact p-2 shadow bg-base-100 rounded-box">
+            <ul className="menu rounded-box menu-compact bg-base-100 p-2 shadow">
               <li>
                 <Link href="#attributs">
                   <a className="font-title text-lg hover:text-primary-300">
@@ -102,15 +102,15 @@ const Navbar = () => (
           </li>
           <li className="disabled">
             <Link href="#guilde">
-              <a className="font-title text-lg hover:text-primary-300 flex justify-between">
+              <a className="flex justify-between font-title text-lg hover:text-primary-300">
                 News
-                <BiDownArrow className="-rotate-90 text-right ml-8" />
+                <BiDownArrow className="ml-8 -rotate-90 text-right" />
               </a>
             </Link>
           </li>
           <li className="disabled">
             <Link href="#tools">
-              <a className="font-title text-lg hover:text-primary-300 flex justify-between">
+              <a className="flex justify-between font-title text-lg hover:text-primary-300">
                 Outils
                 <BiDownArrow className="-rotate-90 text-right" />
               </a>
@@ -139,13 +139,13 @@ const Navbar = () => (
       <div className="dropdown dropdown-end">
         <label
           tabIndex={0}
-          className="btn btn-ghost btn-circle avatar btn-disabled"
+          className="avatar btn btn-disabled btn-ghost btn-circle"
         >
           <div className="font-title text-2xl md:text-xl">
             <CgProfile />
           </div>
         </label>
-        <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+        <ul className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow">
           <li>
             <a className="font-title text-lg hover:text-primary-300">Profil</a>
           </li>
