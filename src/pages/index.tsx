@@ -1,10 +1,20 @@
 import CookieConsent from 'react-cookie-consent';
 
-import { Base } from '../templates/Base';
+import { Footer } from '../sections/Footer';
+import { Meta } from '../sections/Meta';
+import { Navbar } from '../sections/Navbar';
+import { AppConfig } from '../utils/AppConfig';
 
-const Index = () => (
+const Index = ({ children }) => (
   <>
-    <Base />
+    <div className="text-stone-600 antialiased">
+      <div id="page-wrap">
+        <Meta title={AppConfig.site_name} description={AppConfig.description} />
+        <Navbar />
+        {children}
+        <Footer />
+      </div>
+    </div>
     <CookieConsent
       location="bottom"
       buttonText="J'accepte"

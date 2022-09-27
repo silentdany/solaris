@@ -15,7 +15,7 @@ const SocialLinks = ({ mobile }) => (
     {AppConfig.discord && (
       <Link href={AppConfig.discord}>
         <a title="Discord QTT" target="_blank">
-          <div className="btn btn-ghost btn-circle font-title text-2xl hover:text-primary-300 md:text-xl ">
+          <div className="btn btn-ghost btn-circle font-title text-2xl hover:text-primary-300 md:text-xl">
             <FaDiscord />
           </div>
         </a>
@@ -42,7 +42,7 @@ const SocialLinks = ({ mobile }) => (
   </ul>
 );
 const Navbar = () => (
-  <div className="navbar fixed z-50 bg-base-100 shadow-xl">
+  <div className="navbar fixed z-50 bg-base-100 shadow-xl" id="top">
     <div className="navbar-start">
       <div className="dropdown">
         <label tabIndex={0} className="btn btn-ghost btn-circle">
@@ -63,7 +63,7 @@ const Navbar = () => (
         </label>
         <ul className="dropdown-content menu rounded-box menu-compact mt-3 bg-base-100 p-2 shadow">
           <li>
-            <Link href="#guilde">
+            <Link href="/guild">
               <a className="flex justify-between font-title text-lg hover:text-primary-300">
                 Guilde
                 <BiDownArrow className="-rotate-90 text-right" />
@@ -71,28 +71,28 @@ const Navbar = () => (
             </Link>
             <ul className="menu rounded-box menu-compact bg-base-100 p-2 shadow">
               <li>
-                <Link href="#attributs">
+                <Link href="/guild/#attributs">
                   <a className="font-title text-lg hover:text-primary-300">
                     Attributs
                   </a>
                 </Link>
               </li>
               <li>
-                <Link href="#valeurs">
+                <Link href="/guild/#valeurs">
                   <a className="font-title text-lg hover:text-primary-300">
                     Valeurs
                   </a>
                 </Link>
               </li>
               <li>
-                <Link href="#ambitions">
+                <Link href="/guild/#ambitions">
                   <a className="font-title text-lg hover:text-primary-300">
                     Ambitions
                   </a>
                 </Link>
               </li>
               <li>
-                <Link href="/#profils">
+                <Link href="/guild/#profils">
                   <a className="font-title text-lg hover:text-primary-300">
                     Profils
                   </a>
@@ -101,15 +101,15 @@ const Navbar = () => (
             </ul>
           </li>
           <li className="disabled">
-            <Link href="#guilde">
+            <Link href="/news">
               <a className="flex justify-between font-title text-lg hover:text-primary-300">
                 News
                 <BiDownArrow className="ml-8 -rotate-90 text-right" />
               </a>
             </Link>
           </li>
-          <li className="disabled">
-            <Link href="#tools">
+          <li>
+            <Link href="/tools">
               <a className="flex justify-between font-title text-lg hover:text-primary-300">
                 Outils
                 <BiDownArrow className="-rotate-90 text-right" />
@@ -122,7 +122,7 @@ const Navbar = () => (
       </div>
     </div>
     <div className="navbar-center">
-      <Link href="/" passHref={true}>
+      <Link href="#top" passHref={true}>
         <a title="Accueil" className="relative flex flex-col items-center">
           <Image
             src="/assets/images/solaris_title_logo_color_black.webp"

@@ -5,8 +5,8 @@ import { HiChevronDoubleDown } from 'react-icons/hi';
 import { ParallaxBanner } from 'react-scroll-parallax';
 
 import { DividerTop } from '../components/DividerTop';
+import useMediaQuery from '../hooks/useMediaQuery';
 import { AppConfig } from '../utils/AppConfig';
-import useMediaQuery from '../utils/useMediaQuery';
 
 const Hero = () => {
   const isDesktop = useMediaQuery('(min-width: 1024px)');
@@ -116,7 +116,7 @@ const Hero = () => {
               </a>
             </div>
             <Link href="#start">
-              <a className="btn glass btn-circle animate-bounce-slow text-primary-500 transition">
+              <a className="btn btn-circle glass animate-bounce-slow text-primary-500 transition">
                 <HiChevronDoubleDown className="text-lg" />
               </a>
             </Link>
