@@ -2,45 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BiDownArrow } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
-import { FaDiscord, FaInstagram, FaTwitter } from 'react-icons/fa';
 
-import { AppConfig } from '../utils/AppConfig';
+import { SocialButtons } from '../components/SocialButtons';
 
-const SocialLinks = ({ mobile }) => (
-  <ul
-    className={
-      mobile ? 'flex justify-center md:hidden' : 'hidden justify-center md:flex'
-    }
-  >
-    {AppConfig.discord && (
-      <Link href={AppConfig.discord}>
-        <a title="Discord QTT" target="_blank">
-          <div className="btn btn-ghost btn-circle font-title text-2xl hover:text-primary-300 md:text-xl">
-            <FaDiscord />
-          </div>
-        </a>
-      </Link>
-    )}
-    {AppConfig.instagram && (
-      <Link href={AppConfig.instagram}>
-        <a title="Instagram Solaris" target="_blank">
-          <div className="btn btn-ghost btn-circle font-title text-2xl hover:text-primary-300 md:text-xl ">
-            <FaInstagram />
-          </div>
-        </a>
-      </Link>
-    )}
-    {AppConfig.twitter && (
-      <Link href={AppConfig.twitter}>
-        <a title="Twitter Solaris" target="_blank">
-          <div className="btn btn-ghost btn-circle font-title text-2xl hover:text-primary-300 md:text-xl ">
-            <FaTwitter />
-          </div>
-        </a>
-      </Link>
-    )}
-  </ul>
-);
 const Navbar = () => (
   <div className="navbar fixed z-50 bg-base-100 shadow-xl" id="top">
     <div className="navbar-start">
@@ -63,12 +27,10 @@ const Navbar = () => (
         </label>
         <ul className="dropdown-content menu rounded-box menu-compact mt-3 bg-base-100 p-2 shadow">
           <li>
-            <Link href="/guild">
-              <a className="flex justify-between font-title text-lg hover:text-primary-300">
-                Guilde
-                <BiDownArrow className="-rotate-90 text-right" />
-              </a>
-            </Link>
+            <span className="flex justify-between font-title text-lg hover:text-primary-300">
+              Guilde
+              <BiDownArrow className="-rotate-90 text-right" />
+            </span>
             <ul className="menu rounded-box menu-compact bg-base-100 p-2 shadow">
               <li>
                 <Link href="/guild/#attributs">
@@ -112,17 +74,19 @@ const Navbar = () => (
             <Link href="/tools">
               <a className="flex justify-between font-title text-lg hover:text-primary-300">
                 Outils
-                <BiDownArrow className="-rotate-90 text-right" />
+                {/* <BiDownArrow className="-rotate-90 text-right" /> */}
               </a>
             </Link>
           </li>
           <div className="divider mt-2 mb-0 md:hidden"></div>
-          <SocialLinks mobile />
+          <div className="flex justify-around md:hidden">
+            <SocialButtons mobile />
+          </div>
         </ul>
       </div>
     </div>
     <div className="navbar-center">
-      <Link href="#top" passHref={true}>
+      <Link href="/guild" passHref={true}>
         <a title="Accueil" className="relative flex flex-col items-center">
           <Image
             src="/assets/images/solaris_title_logo_color_black.webp"
@@ -134,7 +98,9 @@ const Navbar = () => (
       </Link>
     </div>
     <div className="navbar-end">
-      <SocialLinks mobile={false} />
+      <ul className="hidden justify-center md:flex">
+        <SocialButtons mobile={false} />
+      </ul>
       <div className="mx-4 hidden md:block">|</div>
       <div className="dropdown dropdown-end">
         <label

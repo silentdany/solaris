@@ -1,6 +1,6 @@
 import { AiOutlineUsergroupAdd } from 'react-icons/ai';
 import { BiNetworkChart } from 'react-icons/bi';
-import { FaDollarSign } from 'react-icons/fa';
+import { FaDiscord, FaDollarSign, FaTwitter } from 'react-icons/fa';
 import { ImEarth } from 'react-icons/im';
 import { IoIosPeople } from 'react-icons/io';
 
@@ -12,9 +12,23 @@ export const AppConfig = {
   description:
     'La branche spatiale de QTT, plus grosse communauté de P2E francophone !',
   locale: 'fr',
-  twitter: 'https://twitter.com/SOLARIS_byQtt',
-  discord: 'https://discord.com/invite/vECEHD6GdJ',
-  instagram: 'https://www.instagram.com/SOLARIS_byQtt/',
+  social: [
+    {
+      link: 'https://discord.com/invite/vECEHD6GdJ',
+      title: 'Discord QTT',
+      icon: <FaDiscord />,
+    },
+    {
+      link: 'https://twitter.com/SOLARIS_byQtt',
+      title: 'Twitter Solaris',
+      icon: <FaTwitter />,
+    },
+    // {
+    //   link: 'https://www.instagram.com/SOLARIS_byQtt/',
+    //   title: 'Instagram Solaris',
+    //   icon: FaInstagram,
+    // },
+  ],
 };
 
 export const position = [

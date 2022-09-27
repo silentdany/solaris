@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { FaDiscord, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 import { Logo } from '../components/Logo';
+import { SocialButtons } from '../components/SocialButtons';
 import { AppConfig } from '../utils/AppConfig';
 
 const Footer = () => (
@@ -14,34 +14,8 @@ const Footer = () => (
         <Logo width="50" />
       </a>
     </Link>
-    <ul className="space-x-5">
-      {AppConfig.discord && (
-        <Link href={AppConfig.discord}>
-          <a title="Discord QTT" target="_blank">
-            <li className="btn btn-ghost btn-circle font-title text-2xl hover:text-primary-300 md:text-xl ">
-              <FaDiscord />
-            </li>
-          </a>
-        </Link>
-      )}
-      {AppConfig.instagram && (
-        <Link href={AppConfig.instagram}>
-          <a title="Instagram Solaris" target="_blank">
-            <li className="btn btn-ghost btn-circle font-title text-2xl hover:text-primary-300 md:text-xl ">
-              <FaInstagram />
-            </li>
-          </a>
-        </Link>
-      )}
-      {AppConfig.twitter && (
-        <Link href={AppConfig.twitter}>
-          <a title="Twitter Solaris" target="_blank">
-            <li className="btn btn-ghost btn-circle font-title text-2xl hover:text-primary-300 md:text-xl ">
-              <FaTwitter />
-            </li>
-          </a>
-        </Link>
-      )}
+    <ul className="flex justify-center space-x-5">
+      <SocialButtons mobile={false} />
     </ul>
     <p>
       © Copyright 2022 <span className="text-primary-300">|</span>{' '}
