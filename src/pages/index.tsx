@@ -8,7 +8,7 @@ import { AppConfig } from '../utils/AppConfig';
 const Index = ({ children }) => (
   <>
     <div className="text-stone-600 antialiased">
-      <div id="page-wrap">
+      <div id="page-wrap" className="w-full">
         <Meta title={AppConfig.site_name} description={AppConfig.description} />
         <Navbar />
         {children}

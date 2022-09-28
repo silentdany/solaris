@@ -1,6 +1,6 @@
 import Index from '..';
 
-const Guild = () => {
+const Tools = () => {
   return (
     <Index>
       <div className="flex h-screen w-full items-center justify-center">
@@ -10,4 +10,4 @@ const Guild = () => {
   );
 };
 
-export default Guild;
+export default Tools;

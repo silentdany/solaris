@@ -71,12 +71,26 @@ const Navbar = () => (
             </Link>
           </li>
           <li>
-            <Link href="/tools">
-              <a className="flex justify-between font-title text-lg hover:text-primary-300">
-                Outils
-                {/* <BiDownArrow className="-rotate-90 text-right" /> */}
-              </a>
-            </Link>
+            <span className="flex justify-between font-title text-lg hover:text-primary-300">
+              Outils
+              <BiDownArrow className="-rotate-90 text-right" />
+            </span>
+            <ul className="menu rounded-box menu-compact bg-base-100 p-2 shadow">
+              <li>
+                <Link href="/tools">
+                  <a className="font-title text-lg hover:text-primary-300">
+                    Tous
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/tools/ships">
+                  <a className="font-title text-lg hover:text-primary-300">
+                    Liste vaisseaux
+                  </a>
+                </Link>
+              </li>
+            </ul>
           </li>
           <div className="divider mt-2 mb-0 md:hidden"></div>
           <div className="flex justify-around md:hidden">
