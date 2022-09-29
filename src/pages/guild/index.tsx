@@ -24,7 +24,7 @@ const Guild = () => {
       <Hero />
       <div id="start">
         <Section title="attributs" number="01" bgColor="bg-gray-50" uppercase>
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex w-full flex-col items-center justify-center">
             <InnerSectionBlock bgColor={'from-primary-500/40'}>
               <div className="flex w-full flex-col">
                 <AttributesBlock data={position} />
@@ -36,7 +36,7 @@ const Guild = () => {
           </div>
         </Section>
         <Section title="valeurs" number="02" bgColor="bg-gray-50" uppercase>
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex w-full flex-col items-center justify-center">
             <InnerSectionBlock bgColor={'from-primary-500/40'}>
               <div className="md:max-w-4xl">
                 <ValuesBlock data={values} />
@@ -46,7 +46,7 @@ const Guild = () => {
           </div>
         </Section>
         <Section title="ambitions" number="03" bgColor="bg-gray-50" uppercase>
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex w-full flex-col items-center justify-center">
             <InnerSectionBlock bgColor={'from-primary-500/40'}>
               <div className="md:max-w-md lg:max-w-6xl">
                 <AmbitionsBlock data={ambitions} />
@@ -56,7 +56,7 @@ const Guild = () => {
           </div>
         </Section>
         <Section title="profils" number="04" bgColor="bg-gray-50" uppercase>
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex w-full flex-col items-center justify-center">
             <InnerSectionBlock bgColor={'from-primary-500/40'}>
               <div className="flex max-w-4xl flex-col md:flex-row md:space-x-16">
                 <ProfilesBlock data={profils} isMobile={isMobile} />

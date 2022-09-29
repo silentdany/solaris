@@ -12,3 +12,8 @@
     @apply relative z-10 after:absolute after:bottom-0 after:left-0 after:z-0 after:h-2 after:w-full after:origin-bottom-left after:-rotate-3 after:-skew-x-12 after:bg-blue-500/30;
   }
 }
+@layer components {
+  .tr-cell {
+    @apply glass shadow-none before:absolute before:-left-2 before:top-0 before:z-10 before:h-full before:w-1/4 before:-skew-x-6 before:border-l-8 before:border-primary-300 before:bg-gradient-to-r before:from-primary-50/50 hover:shadow-none;
+  }
+}

@@ -1,24 +1,24 @@
 import { useMemo } from 'react';
 
-import Image from 'next/future/image';
-
 import Index from '../..';
+import { RarityBadge } from '../../../components/tools/ships/RarityBadge';
 import { Table } from '../../../components/tools/ships/Table';
 import useShips from '../../../hooks/useShips';
+import { useShipSize } from '../../../hooks/useShipSize';
+import InnerSectionBlock from '../../../layout/InnerSectionBlock';
 
 const ShipsList = () => {
   const { ships, isLoading, isError } = useShips();
 
-  console.log({ ships, isLoading, isError });
-
   const data = useMemo(
     () =>
       ships?.map((ship) => ({
-        image: ship.media.thumbnailUrl,
-        name: ship.name,
+        image: ship.image,
+        model: ship.attributes.model,
         class: ship.attributes.class,
         spec: ship.attributes.spec,
         rarity: ship.attributes.rarity,
+        attributes: ship.attributes,
       })),
     [ships]
   );
@@ -26,33 +26,39 @@ const ShipsList = () => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Image',
-        accessor: 'image',
+        Header: 'Modèle',
+        accessor: 'model',
         Cell: (tableProps) => (
-          <Image
-            src={tableProps.row.original.image}
-            width={60}
-            height={60}
-            alt={tableProps.row.original.name}
-            quality={50}
-          />
+          <div className="flex h-24 flex-col justify-center text-right">
+            <span className="-mb-3 align-bottom font-title text-lg">
+              {tableProps.row.original.attributes.make}
+            </span>
+            <span className="text-3xl font-bold">{tableProps.value}</span>
+          </div>
         ),
-      },
-      {
-        Header: 'Nom',
-        accessor: 'name',
       },
       {
         Header: 'Taille',
         accessor: 'class',
+        Cell: (tableProps) => (
+          <div className="flex items-center justify-center">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full border-4 border-stone-600 text-xl font-extrabold">
+              {useShipSize(tableProps.value)}
+            </div>
+          </div>
+        ),
       },
       {
         Header: 'Type',
         accessor: 'spec',
+        Cell: (tableProps) => (
+          <span className="text-xl capitalize">{tableProps.value}</span>
+        ),
       },
       {
         Header: 'Rareté',
         accessor: 'rarity',
+        Cell: (tableProps) => <RarityBadge rarity={tableProps.value} />,
       },
     ],
     []
@@ -60,8 +66,16 @@ const ShipsList = () => {
 
   return (
     <Index>
-      <div className="flex w-full justify-center pt-32">
-        {!isLoading && <Table columns={columns} data={data} />}
+      <div className="flex flex-col items-center">
+        <h1 className="m-12 mt-24 font-title text-5xl">
+          Liste des vaisseaux Star Atlas
+        </h1>
+        <InnerSectionBlock bgColor={'from-primary-500/40'}>
+          {isError && (
+            <div className="font-title text-2xl">Erreur de chargement</div>
+          )}
+          {!isLoading && <Table columns={columns} data={data} />}
+        </InnerSectionBlock>
       </div>
     </Index>
   );

@@ -1,5 +1,6 @@
 /* eslint-disable global-require */
 const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
 
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
@@ -88,6 +89,12 @@ module.exports = {
           800: '#203b64',
           900: '#16315a',
         },
+        common: colors.gray[50],
+        uncommon: colors.red[700],
+        rare: colors.sky[600],
+        epic: colors.violet[600],
+        legendary: colors.yellow[600],
+        anomaly: colors.green[300],
       },
       lineHeight: {
         hero: '4.5rem',
