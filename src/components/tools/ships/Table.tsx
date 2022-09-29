@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-key */
-import { useTable } from 'react-table';
+import { BiDownArrow } from 'react-icons/bi';
+import { useSortBy, useTable } from 'react-table';
 
 export const Table = ({ columns, data }) => {
-  const tableInstance = useTable({ columns, data });
+  const tableInstance = useTable({ columns, data }, useSortBy);
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     tableInstance;
@@ -13,14 +14,22 @@ export const Table = ({ columns, data }) => {
       className="w-full max-w-6xl table-fixed border-separate border-spacing-y-4"
     >
       <thead>
-        {headerGroups.map((headerGroup) => (
+        {headerGroups.map((headerGroup: any) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column, index) => (
               <th
-                {...column.getHeaderProps()}
-                className={`pb-4 text-xl ${index === 0 && 'w-2/5'}`}
+                {...column.getHeaderProps(column.getSortByToggleProps())}
+                className={`group pb-4 font-title text-xl ${
+                  index === 0 && 'w-2/5'
+                }`}
               >
                 {column.render('Header')}
+                <BiDownArrow
+                  className={`w-full -rotate-90 duration-100 ease-in-out group-hover:text-primary-500
+                  ${column.isSortedDesc && 'rotate-0'}
+                  ${column.isSorted && 'rotate-180'} 
+                  `}
+                />
               </th>
             ))}
           </tr>

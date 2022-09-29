@@ -3,8 +3,11 @@ import { useMemo } from 'react';
 import Index from '../..';
 import { RarityBadge } from '../../../components/tools/ships/RarityBadge';
 import { Table } from '../../../components/tools/ships/Table';
+import { useInsensitiveSort } from '../../../hooks/useInsensitiveSort';
+import { useRarityOrder } from '../../../hooks/useRarityOrder';
 import useShips from '../../../hooks/useShips';
 import { useShipSize } from '../../../hooks/useShipSize';
+import { useShipSizeOrder } from '../../../hooks/useShipSizeOrder';
 import InnerSectionBlock from '../../../layout/InnerSectionBlock';
 
 const ShipsList = () => {
@@ -15,7 +18,7 @@ const ShipsList = () => {
       ships?.map((ship) => ({
         image: ship.image,
         model: ship.attributes.model,
-        class: ship.attributes.class,
+        class: ship.attributes.class.toLowerCase(),
         spec: ship.attributes.spec,
         rarity: ship.attributes.rarity,
         attributes: ship.attributes,
@@ -28,6 +31,7 @@ const ShipsList = () => {
       {
         Header: 'Modèle',
         accessor: 'model',
+        sortType: useInsensitiveSort,
         Cell: (tableProps) => (
           <div className="flex h-24 flex-col justify-center text-right">
             <span className="-mb-3 align-bottom font-title text-lg">
@@ -40,6 +44,7 @@ const ShipsList = () => {
       {
         Header: 'Taille',
         accessor: 'class',
+        sortType: useShipSizeOrder,
         Cell: (tableProps) => (
           <div className="flex items-center justify-center">
             <div className="flex h-14 w-14 items-center justify-center rounded-full border-4 border-stone-600 text-xl font-extrabold">
@@ -58,6 +63,7 @@ const ShipsList = () => {
       {
         Header: 'Rareté',
         accessor: 'rarity',
+        sortType: useRarityOrder,
         Cell: (tableProps) => <RarityBadge rarity={tableProps.value} />,
       },
     ],
