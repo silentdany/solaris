@@ -8,6 +8,7 @@
 - Tailwind
 - Daisy UI
 - Framer Motion
+- React-Table
 
 ## Artwork
 
