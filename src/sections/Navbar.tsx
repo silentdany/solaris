@@ -76,13 +76,13 @@ const Navbar = () => (
               <BiDownArrow className="-rotate-90 text-right" />
             </span>
             <ul className="menu rounded-box menu-compact bg-base-100 p-2 shadow">
-              <li>
+              {/* <li>
                 <Link href="/tools">
                   <a className="font-title text-lg hover:text-primary-300">
                     Tous
                   </a>
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/tools/ships">
                   <a className="font-title text-lg hover:text-primary-300">
