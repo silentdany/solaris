@@ -37,7 +37,9 @@ const ShipsList = () => {
             <span className="-mb-3 align-bottom font-title text-lg">
               {tableProps.row.original.attributes.make}
             </span>
-            <span className="text-3xl font-bold">{tableProps.value}</span>
+            <span className="text-3xl font-bold text-secondary-300">
+              {tableProps.value}
+            </span>
           </div>
         ),
       },
