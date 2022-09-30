@@ -47,7 +47,7 @@ const ShipsList = () => {
         sortType: useShipSizeOrder,
         Cell: (tableProps) => (
           <div className="flex items-center justify-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full border-4 border-stone-600 text-xl font-extrabold">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-stone-600 text-lg font-extrabold uppercase">
               {useShipSize(tableProps.value)}
             </div>
           </div>
