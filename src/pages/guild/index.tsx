@@ -58,7 +58,7 @@ const Guild = () => {
         <Section title="profils" number="04" bgColor="bg-gray-50" uppercase>
           <div className="flex w-full flex-col items-center justify-center">
             <InnerSectionBlock bgColor={'from-primary-500/40'}>
-              <div className="flex max-w-4xl flex-col md:flex-row md:space-x-16">
+              <div className="flex max-w-6xl flex-col md:flex-row md:space-x-16">
                 <ProfilesBlock data={profils} isMobile={isMobile} />
               </div>
             </InnerSectionBlock>

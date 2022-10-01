@@ -26,8 +26,8 @@ export const ProfilesBlock = ({ data, isMobile }) =>
           <Image
             src={item.picture}
             alt=""
-            width={450}
-            height={300}
+            width={600}
+            height={600}
             className="scale-105 duration-300 ease-in-out group-hover:scale-110"
           />
         </figure>
@@ -53,7 +53,9 @@ export const ProfilesBlock = ({ data, isMobile }) =>
                 key={listIndex}
                 className="flex items-center text-left"
               >
-                <BiDownArrow className="mr-4 -rotate-90 text-primary-500" />
+                <span className="mr-4">
+                  <BiDownArrow className="-rotate-90 text-primary-500" />
+                </span>
                 <ReactMarkdown>{listItem}</ReactMarkdown>
               </motion.li>
             ))}
