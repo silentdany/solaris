@@ -62,7 +62,7 @@ const Hero = () => {
             expanded: false,
             shouldAlwaysCompleteAnimation: true,
             children: (
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-50" />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-50" />
             ),
           },
         ]}
@@ -71,7 +71,7 @@ const Hero = () => {
       >
         <div className="absolute h-full w-full animate-pulse-slow bg-black/10" />
         <div className="hero min-h-screen bg-base-200">
-          <h1 className="absolute bottom-8 left-8 font-hero text-5xl font-extrabold text-gray-50/10 mix-blend-overlay md:text-7xl lg:text-9xl">
+          <h1 className="absolute bottom-8 left-8 font-hero text-5xl font-extrabold text-stone-50/10 mix-blend-overlay md:text-7xl lg:text-9xl">
             Solaris
           </h1>
           <div className="hero-content flex flex-col text-center">
