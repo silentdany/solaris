@@ -114,26 +114,25 @@ export const ambitions = [
 
 export const profils = [
   {
-    type: 'Joueur',
+    type: 'Communauté',
     picture: '/assets/images/gamer.webp',
     list: [
-      'Jouer en solo ou en groupe',
-      'Explorer les secteurs',
-      'Participer aux événements',
-      'Participer aux votes',
-      'Participer aux missions',
-      'Participer aux raids',
+      'Accès en français aux informations du jeu',
+      'Une stratégie de guilde multi-faction au gameplay varié',
+      "Joueurs de tous âges/niveaux menés par des leaders d'expérience",
+      'Pionniers de Star Atlas en France et fondateurs de communautés (600 à 5000 membres)',
+      "Développement d'outils optimisés et performants",
     ],
   },
   {
-    type: 'Investisseur',
+    type: 'Investisseurs',
     picture: '/assets/images/investor.webp',
     list: [
-      'Investir dans la communauté',
-      'Investir dans les projets',
-      'Participer aux votes',
-      'Participer aux missions',
-      'Participer aux raids',
+      'Une organisation exclusiment dédiée à Star Atlas',
+      'Une association officielle sécurisant la gestion des actifs',
+      'Une équipe rassemblant de nombreuses compétences professionnelles (finance, programmation, networking...)',
+      'Des spécialistes crypto, NFT et metavers',
+      "Des profits optimisés grâce au développement de l'industrie, du commerce et de différents services",
     ],
   },
 ];
