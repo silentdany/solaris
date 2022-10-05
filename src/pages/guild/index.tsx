@@ -2,9 +2,9 @@ import Index from '..';
 import { DividerTriangle } from '../../components/DividerTriangle';
 import { AmbitionsBlock } from '../../components/guild/AmbitionsBlock';
 import { AttributesBlock } from '../../components/guild/AttributesBlock';
+import { DNABlock } from '../../components/guild/DNABlock';
 import { ParallaxBlock } from '../../components/guild/ParallaxBlock';
 import { ProfilesBlock } from '../../components/guild/ProfilesBlock';
-import { ValuesBlock } from '../../components/guild/ValuesBlock';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import InnerSectionBlock from '../../layout/InnerSectionBlock';
 import Section from '../../layout/Section';
@@ -14,7 +14,7 @@ import {
   attributs,
   ambitions,
   profils,
-  values,
+  dna,
 } from '../../utils/AppConfig';
 
 const Guild = () => {
@@ -35,11 +35,11 @@ const Guild = () => {
             <ParallaxBlock image="/assets/images/cloud_city.webp" speed={-15} />
           </div>
         </Section>
-        <Section title="valeurs" number="02" bgColor="bg-stone-50" uppercase>
+        <Section title="ADN" number="02" bgColor="bg-stone-50" uppercase>
           <div className="flex w-full flex-col items-center justify-center">
             <InnerSectionBlock bgColor={'from-primary-500/40'}>
               <div className="md:max-w-4xl">
-                <ValuesBlock data={values} />
+                <DNABlock data={dna} />
               </div>
             </InnerSectionBlock>
             <ParallaxBlock image="/assets/images/city_park.webp" speed={-20} />

@@ -52,12 +52,12 @@ export const position = [
 export const attributs = [
   {
     title: 'Actifs',
-    value: '> 1M $',
+    value: '> 100k $',
     icon: FaDollarSign,
   },
   {
     title: 'Membres',
-    value: '> 500',
+    value: '> 300',
     icon: AiOutlineUsergroupAdd,
   },
   // {
@@ -67,28 +67,31 @@ export const attributs = [
   // },
 ];
 
-export const values = [
+export const dna = [
   {
-    number: '01',
+    title: 'Mottos',
+    picture: '/assets/images/motto.webp',
     text: [
       'Dépasser les difficultés, rester fort et résolument tourné vers l’*avenir*.',
-      'Respecter nos règles, notre *communauté* et nos partenaires.',
-      'Nous travaillons à l’élaboration d’une *structure* sérieuse et pérenne ou chacun peut s’engager à la hauteur de ses ambitions.',
+      'Respecter nos règles, notre communauté et nos partenaires.',
+      'Communiquer avec *sincérité* envers les membres et agir conformément aux décisions prises.',
     ],
   },
   {
-    number: '02',
+    title: 'Solaris',
+    picture: '/assets/images/council.webp',
     text: [
+      'Notre équipe veut construire un projet ambitieux et souhaite vivre *collectivement* cette aventure humaine hors du commun.',
+      'Nous travaillons à l’élaboration d’une structure sérieuse et pérenne ou chacun peut s’engager à la hauteur de ses ambitions.',
       'Chez nous, comme chacun le sait, de grands pouvoirs impliquent de grandes *responsabilités*.',
+    ],
+  },
+  {
+    title: 'Vous',
+    picture: '/assets/images/onboard.webp',
+    text: [
       'Chacun peut être force de *proposition*, participer aux votes et évoluer dans l’organisation.',
       'Chaque décision est prise dans l’intérêt de la communauté.',
-    ],
-  },
-  {
-    number: '03',
-    text: [
-      'Communiquer avec *sincérité* envers les membres et agir conformément aux décisions prises.',
-      'Notre équipe veut construire un projet *ambitieux* et souhaite vivre collectivement cette aventure humaine hors du commun.',
     ],
   },
 ];
