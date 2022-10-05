@@ -35,7 +35,7 @@ const Guild = () => {
             <ParallaxBlock image="/assets/images/cloud_city.webp" speed={-15} />
           </div>
         </Section>
-        <Section title="ADN" number="02" bgColor="bg-stone-50" uppercase>
+        <Section title="adn" number="02" bgColor="bg-stone-50" uppercase>
           <div className="flex w-full flex-col items-center justify-center">
             <InnerSectionBlock bgColor={'from-primary-500/40'}>
               <div className="md:max-w-4xl">

@@ -40,9 +40,9 @@ const Navbar = () => (
                 </Link>
               </li>
               <li>
-                <Link href="/guild/#valeurs">
+                <Link href="/guild/#adn">
                   <a className="font-title text-lg hover:text-primary-300">
-                    Valeurs
+                    ADN
                   </a>
                 </Link>
               </li>
