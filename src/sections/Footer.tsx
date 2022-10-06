@@ -1,11 +1,13 @@
 import Link from 'next/link';
 
+import { JoinButton } from '../components/JoinButton';
 import { Logo } from '../components/Logo';
 import { SocialButtons } from '../components/SocialButtons';
 import { AppConfig } from '../utils/AppConfig';
 
 const Footer = () => (
   <section className="mx-auto flex flex-col items-center justify-center space-y-12 bg-stone-50 px-6 py-16 text-center">
+    <JoinButton />
     <Link href="#top" passHref>
       <a
         title="Retour en haut"
