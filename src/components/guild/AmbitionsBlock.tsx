@@ -2,14 +2,14 @@ import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import Image from 'next/future/image';
 
-import { ambitions } from '../../utils/AppConfig';
+import { project } from '../../utils/AppConfig';
 import { DividerTriangle } from '../DividerTriangle';
 
 const ReactMarkdown = dynamic(() => import('react-markdown'), {
   ssr: false,
 });
 
-export const AmbitionsBlock = ({ data }) =>
+export const ProjectBlock = ({ data }) =>
   data.map((item, index) => (
     <>
       <div
@@ -65,6 +65,6 @@ export const AmbitionsBlock = ({ data }) =>
           </div>
         </motion.div>
       </div>
-      <DividerTriangle data={ambitions} index={index} />
+      <DividerTriangle data={project} index={index} />
     </>
   ));

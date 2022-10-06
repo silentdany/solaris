@@ -33,9 +33,9 @@ const Navbar = () => (
             </span>
             <ul className="menu rounded-box menu-compact bg-base-100 p-2 shadow">
               <li>
-                <Link href="/guild/#attributs">
+                <Link href="/guild/#données">
                   <a className="font-title text-lg hover:text-primary-300">
-                    Attributs
+                    Données
                   </a>
                 </Link>
               </li>
@@ -47,9 +47,9 @@ const Navbar = () => (
                 </Link>
               </li>
               <li>
-                <Link href="/guild/#ambitions">
+                <Link href="/guild/#projet">
                   <a className="font-title text-lg hover:text-primary-300">
-                    Ambitions
+                    Projet
                   </a>
                 </Link>
               </li>

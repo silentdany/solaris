@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-export const AttributesBlock = ({ data }) => (
+export const DataBlock = ({ data }) => (
   <motion.div
     className="flex flex-col justify-center md:flex-row"
     initial={{ opacity: 0 }}

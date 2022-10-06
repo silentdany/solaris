@@ -26,7 +26,7 @@ export const DNABlock = ({ data }) =>
           <Image
             src={item.picture}
             alt={item.title}
-            className="object-cover duration-300 ease-in-out group-hover:scale-105"
+            className="object-cover opacity-60 duration-300 ease-in-out group-hover:scale-105"
             fill
           />
           <h4

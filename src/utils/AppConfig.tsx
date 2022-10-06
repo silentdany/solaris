@@ -49,7 +49,7 @@ export const position = [
   },
 ];
 
-export const attributs = [
+export const datas = [
   {
     title: 'Actifs',
     value: '> 100k $',
@@ -82,7 +82,7 @@ export const dna = [
     picture: '/assets/images/council.webp',
     text: [
       'Notre équipe veut construire un projet ambitieux et souhaite vivre *collectivement* cette aventure humaine hors du commun.',
-      'Nous travaillons à l’élaboration d’une structure sérieuse et pérenne ou chacun peut s’engager à la hauteur de ses ambitions.',
+      'Nous travaillons à l’élaboration d’une structure sérieuse et pérenne ou chacun peut s’engager à la hauteur de ses projet.',
       'Chez nous, comme chacun le sait, de grands pouvoirs impliquent de grandes *responsabilités*.',
     ],
   },
@@ -96,7 +96,7 @@ export const dna = [
   },
 ];
 
-export const ambitions = [
+export const project = [
   {
     picture: '/assets/images/structure.webp',
     text: 'Nous offrons un cadre adapté et *flexible* aux différents profils de joueurs et d’investisseurs avec l’opportunité d’intégrer une structure officielle.',
@@ -115,7 +115,7 @@ export const ambitions = [
   },
 ];
 
-export const profils = [
+export const profiles = [
   {
     type: 'Communauté',
     picture: '/assets/images/gamer.webp',
