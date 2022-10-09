@@ -9,8 +9,7 @@ export const AppConfig = {
   title: 'Solaris',
   destructuredTitle: ['Solaris', 'QTT'],
   url: 'solaris.qtt.com/',
-  description:
-    'La branche spatiale de QTT, plus grosse communauté de P2E francophone !',
+  description: 'La branche spatiale de QTT, communauté P2E francophone !',
   locale: 'fr',
   social: [
     {
@@ -136,6 +135,37 @@ export const profiles = [
       'Une équipe rassemblant de nombreuses compétences professionnelles (finance, programmation, networking...)',
       'Des spécialistes crypto, NFT et metavers',
       "Des profits optimisés grâce au développement de l'industrie, du commerce et de différents services",
+    ],
+  },
+];
+
+export const resources = [
+  {
+    type: 'skills',
+    text: 'De *réelles* compétences professionnelles au service de la guilde',
+    list: [
+      'Développement technologique',
+      'Ressources humaines',
+      'Juridique',
+      'Investissement',
+      'Entreprenariat',
+      'Trading',
+      'Journalisme web',
+      'Gestion de projet',
+      'Montage vidéo',
+    ],
+  },
+  {
+    type: 'Team',
+    text: 'Une équipe *soudée* de 12 personnes, forte d’une première expérience collective d’*un an*, avec un nouveau projet',
+    list: [
+      'Elaboration de la structure de guilde',
+      'Recrutement de 700+ membres',
+      'Rédaction du litepaper',
+      'Développement d’outils techniques Web3',
+      'Création de sites internet',
+      'Réalisation d’animations et de Lives',
+      'Réalisation de trailers',
     ],
   },
 ];
