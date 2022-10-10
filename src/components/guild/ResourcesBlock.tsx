@@ -6,7 +6,7 @@ const ReactMarkdown = dynamic(() => import('react-markdown'), {
 });
 
 export const ResourcesBlock = ({ data }) => (
-  <div className="space-y-12">
+  <div className="relative space-y-12">
     {data.map((mainItem) => (
       <motion.div
         initial={{
@@ -15,20 +15,16 @@ export const ResourcesBlock = ({ data }) => (
         }}
         whileInView={{ translateX: 0, opacity: 1 }}
         viewport={{ amount: 0.1, once: true }}
-        className="group"
+        className={'group'}
         key={mainItem.text}
       >
         <div className="relative overflow-hidden">
-          <div className="absolute h-full w-2">
-            <span className="-z-1 absolute -top-[10%] h-[109%] w-2 -skew-y-[40deg] bg-secondary-300 transition-all duration-200 ease-out"></span>
-            <span className="-z-1 absolute -top-10 h-0 w-2 -skew-y-[40deg] bg-primary-300 transition-all duration-300 ease-out group-hover:h-[75%]"></span>
-          </div>
-          <div className="relative px-8">
-            <h3 className="flex pb-8 text-left font-title text-3xl font-bold">
+          <div className="flex flex-col justify-end space-y-8 p-8">
+            <h3 className="flex font-title text-3xl font-bold">
               <ReactMarkdown>{mainItem.text}</ReactMarkdown>
             </h3>
             <ul className="space-y-2 md:space-y-4">
-              {mainItem.list.map((item, index) => (
+              {mainItem.list.map((listItem, index) => (
                 <motion.div
                   initial={{
                     translateX:
@@ -37,11 +33,18 @@ export const ResourcesBlock = ({ data }) => (
                   }}
                   whileInView={{ translateX: 0, opacity: 1 }}
                   viewport={{ amount: 0.1, once: true }}
-                  className="flex flex-col items-start"
+                  className="relative flex overflow-x-hidden"
                   key={index}
                 >
-                  <li>
-                    <ReactMarkdown>{item}</ReactMarkdown>
+                  <li className="w-full animate-marquee items-center space-x-2 whitespace-nowrap">
+                    {listItem.map((item) => (
+                      <span key={item}>{item}</span>
+                    ))}
+                  </li>
+                  <li className="w-full animate-marquee items-center space-x-2 whitespace-nowrap">
+                    {listItem.map((item) => (
+                      <span key={item}>{item}</span>
+                    ))}
                   </li>
                 </motion.div>
               ))}

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 import Index from '../..';
 import { RarityBadge } from '../../../components/tools/ships/RarityBadge';
@@ -22,9 +22,36 @@ const ShipsList = () => {
         spec: ship.attributes.spec,
         rarity: ship.attributes.rarity,
         attributes: ship.attributes,
+        crewSlots: ship.slots.crewSlots,
       })),
     [ships]
   );
+
+  // const getCrewSlotType = (shipsData) => {
+  //   const crewSlotsArray: Array<string> = shipsData
+  //     .map((ship: { crewSlots: any[] }) =>
+  //       ship.crewSlots.map((slot) => slot.type)
+  //     )
+  //     .flat();
+  //   const crewSlotsFilteredArray = [...new Set(crewSlotsArray)];
+  //   return crewSlotsFilteredArray;
+  // };
+
+  // const buildCrewSlotsColumns = () => {
+  //   const crewSlots = getCrewSlotType(data);
+  //   return crewSlots.map((slot) => ({
+  //     Header: slot,
+  //     accessor: slot.toLowerCase(),
+  //     Cell: ({ row }) => {
+  //       const crewSlot = row.original.crewSlots.find(
+  //         (crew: { type: string }) => crew.type === slot
+  //       );
+  //       return crewSlot && `${crewSlot.quantity} ${crewSlot.type}`;
+  //     },
+  //   }));
+  // };
+
+  // console.log(getCrewSlotType(data));
 
   const columns = useMemo(
     () => [
@@ -68,7 +95,47 @@ const ShipsList = () => {
         sortType: useRarityOrder,
         Cell: (tableProps) => <RarityBadge rarity={tableProps.value} />,
       },
+      {
+        Header: 'Actions',
+        id: 'expander',
+        Cell: ({ row }) => (
+          // Use Cell to render an expander for each row.
+          // We can use the getToggleRowExpandedProps prop-getter
+          // to build the expander.
+          <span {...row.getToggleRowExpandedProps()}>
+            {row.isExpanded ? '👇' : '👉'}
+          </span>
+        ),
+      },
+      // {
+      //   Header: 'Equipage',
+      //   accessor: 'crewSlots',
+      //   title: "Nombre de places d'équipage",
+      //   Cell: (tableProps) => (
+      //     <div className="flex w-full flex-col">
+      //       {tableProps.value.map((slot) => (
+      //         <span className="capitalize" key={slot.type}>
+      //           {slot.quantity} {slot.type}
+      //         </span>
+      //       ))}
+      //     </div>
+      //   ),
+      // },
+      // ...buildCrewSlotsColumns(),
     ],
+    []
+  );
+
+  const renderRowSubComponent = React.useCallback(
+    ({ row }) => (
+      <pre
+        style={{
+          fontSize: '10px',
+        }}
+      >
+        <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
+      </pre>
+    ),
     []
   );
 
@@ -82,7 +149,13 @@ const ShipsList = () => {
           {isError && (
             <div className="font-title text-2xl">Erreur de chargement</div>
           )}
-          {!isLoading && <Table columns={columns} data={data} />}
+          {!isLoading && (
+            <Table
+              columns={columns}
+              data={data}
+              renderRowSubComponent={renderRowSubComponent}
+            />
+          )}
         </InnerSectionBlock>
       </div>
     </Index>

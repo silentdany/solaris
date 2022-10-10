@@ -102,6 +102,18 @@ module.exports = {
       animation: {
         'pulse-slow': 'pulse 12s linear infinite',
         'bounce-slow': 'bounce 3s linear infinite',
+        marquee: 'marquee 6s linear infinite',
+        marqueee: 'marqueee 6s linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+        marqueee: {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(0%)' },
+        },
       },
     },
   },
