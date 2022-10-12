@@ -69,13 +69,13 @@ const Guild = () => {
                 </div>
               </div>
             </InnerSectionBlock>
-            <ParallaxBlock image="/assets/images/spaceship.webp" speed={-25} />
+            <ParallaxBlock image="/assets/images/nightcity.webp" speed={-25} />
           </div>
         </Section>
         <Section title="ressources" number="03" bgColor="bg-stone-50" uppercase>
           <div className="flex w-full flex-col items-center justify-center">
             <InnerSectionBlock bgColor={'from-primary-500/40'}>
-              <div className="md:max-w-6xl">
+              <div className="w-full md:max-w-6xl">
                 <ResourcesBlock data={resources} />
               </div>
             </InnerSectionBlock>

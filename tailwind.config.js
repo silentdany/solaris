@@ -99,11 +99,14 @@ module.exports = {
       lineHeight: {
         hero: '4.5rem',
       },
+      objectPosition: {
+        halfbottom: 'center 75%',
+      },
       animation: {
         'pulse-slow': 'pulse 12s linear infinite',
         'bounce-slow': 'bounce 3s linear infinite',
-        marquee: 'marquee 6s linear infinite',
-        marqueee: 'marqueee 6s linear infinite',
+        marquee: 'marquee 10s linear infinite',
+        marqueee: 'marqueee 10s linear infinite',
       },
       keyframes: {
         marquee: {

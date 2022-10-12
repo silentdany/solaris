@@ -54,6 +54,13 @@ const Navbar = () => (
                 </Link>
               </li>
               <li>
+                <Link href="/guild/#ressources">
+                  <a className="font-title text-lg hover:text-primary-300">
+                    Ressources
+                  </a>
+                </Link>
+              </li>
+              <li>
                 <Link href="/guild/#profils">
                   <a className="font-title text-lg hover:text-primary-300">
                     Profils
