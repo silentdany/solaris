@@ -22,7 +22,7 @@ export const ResourcesBlock = ({ data }) => (
           }`}
           key={mainItem.text}
         >
-          <div className="relative flex w-full flex-col items-center justify-end text-center lg:min-h-16">
+          <div className="relative flex w-full flex-col items-center justify-start text-center lg:min-h-16">
             <ReactMarkdown className="font-title text-lg font-bold lg:text-xl">
               {mainItem.text}
             </ReactMarkdown>
@@ -31,7 +31,7 @@ export const ResourcesBlock = ({ data }) => (
                 <ReactMarkdown className="text-sm">
                   {mainItem.subText[0]}
                 </ReactMarkdown>
-                <ReactMarkdown className="absolute -bottom-5 right-0 z-20 -rotate-3 font-bold">
+                <ReactMarkdown className="absolute -bottom-4 right-0 z-20 -rotate-3 font-bold lg:-bottom-1">
                   {mainItem.subText[1]}
                 </ReactMarkdown>
               </>
