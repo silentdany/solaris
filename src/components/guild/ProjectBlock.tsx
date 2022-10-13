@@ -13,7 +13,7 @@ export const ProjectBlock = ({ data }) =>
   data.map((item, index) => (
     <>
       <div
-        className="group card flex flex-col justify-start shadow-sm hover:shadow-xl lg:h-80 lg:flex-row lg:shadow-none lg:hover:shadow-none"
+        className="group card flex flex-col justify-start shadow-sm hover:shadow-xl lg:h-64 lg:flex-row lg:shadow-none lg:hover:shadow-none"
         key={index}
       >
         <div
@@ -33,9 +33,8 @@ export const ProjectBlock = ({ data }) =>
             <Image
               src={item.picture}
               alt=""
-              width={800}
-              height={300}
-              className="absolute duration-300 ease-in-out group-hover:scale-105 lg:-top-1/3"
+              className="absolute object-cover duration-300 ease-in-out group-hover:scale-105 lg:-top-1/3"
+              fill
             />
           </div>
         </div>
@@ -57,7 +56,9 @@ export const ProjectBlock = ({ data }) =>
           >
             <div
               className={
-                index % 2 !== 0 ? 'text-left lg:text-right' : 'text-left'
+                index % 2 !== 0
+                  ? 'text-left text-stone-900 lg:text-right'
+                  : 'text-left'
               }
             >
               <ReactMarkdown>{item.text}</ReactMarkdown>

@@ -81,7 +81,7 @@ export const dna = [
     picture: '/assets/images/council.webp',
     text: [
       'Notre équipe veut construire un projet ambitieux et souhaite vivre *collectivement* cette aventure humaine hors du commun.',
-      'Nous travaillons à l’élaboration d’une structure sérieuse et pérenne ou chacun peut s’engager à la hauteur de ses projet.',
+      'Nous travaillons à l’élaboration d’une structure sérieuse et pérenne ou chacun peut s’engager à la hauteur de ses ambitions.',
       'Chez nous, comme chacun le sait, de grands pouvoirs impliquent de grandes *responsabilités*.',
     ],
   },
@@ -96,6 +96,14 @@ export const dna = [
 ];
 
 export const project = [
+  {
+    picture: '/assets/images/map.webp',
+    text: 'Nous voulons créer un espace bienveillant et sécurisé afin de *rassembler* la plus grande communauté francophone, active (24/7) et présente sur tous les continents.',
+  },
+  {
+    picture: '/assets/images/crowd.webp',
+    text: 'Nous continuerons d’organiser de *rencontres* et de participer aux évènements réels (IRL), tout en conservant un espace vivant, créatif et dynamique sur les réseaux.',
+  },
   {
     picture: '/assets/images/structure.webp',
     text: 'Nous offrons un cadre adapté et *flexible* aux différents profils de joueurs et d’investisseurs avec l’opportunité d’intégrer une structure officielle.',

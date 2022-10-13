@@ -1,10 +1,10 @@
 import Index from '..';
 import { DividerTriangle } from '../../components/DividerTriangle';
-import { ProjectBlock } from '../../components/guild/AmbitionsBlock';
 import { DataBlock } from '../../components/guild/AttributesBlock';
 import { DNABlock } from '../../components/guild/DNABlock';
 import { ParallaxBlock } from '../../components/guild/ParallaxBlock';
 import { ProfilesBlock } from '../../components/guild/ProfilesBlock';
+import { ProjectBlock } from '../../components/guild/ProjectBlock';
 import { ResourcesBlock } from '../../components/guild/ResourcesBlock';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import InnerSectionBlock from '../../layout/InnerSectionBlock';
