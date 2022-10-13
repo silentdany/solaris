@@ -68,7 +68,7 @@ export const datas = [
 
 export const dna = [
   {
-    title: 'Mottos',
+    title: 'Esprit',
     picture: '/assets/images/motto.webp',
     text: [
       'Dépasser les difficultés, rester fort et résolument tourné vers l’*avenir*.',
@@ -159,9 +159,13 @@ export const resources = [
   {
     type: 'Team',
     picture: '/assets/images/meeting.webp',
-    text: '### Une équipe *soudée* de 12 personnes, forte d’une première expérience collective d’*un an*, avec un nouveau projet',
+    text: '### Une équipe *soudée* de 12 personnes',
+    subText: [
+      'forte d’une première expérience collective d’un an',
+      '*avec un nouveau projet*',
+    ],
     list: [
-      'Développement d’outils techniques Web3',
+      'Développement d’outils Web3',
       'Création de sites internet',
       'Réalisation de trailers',
       'Réalisation d’animations et de Lives',

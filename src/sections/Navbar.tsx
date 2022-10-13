@@ -70,7 +70,10 @@ const Navbar = () => (
             </ul>
           </li>
           <li className="disabled">
-            <Link href="/news">
+            <Link
+              href="#"
+              // "/news"
+            >
               <a className="flex justify-between font-title text-lg hover:text-primary-300">
                 News
                 <BiDownArrow className="ml-8 -rotate-90 text-right" />
@@ -90,8 +93,11 @@ const Navbar = () => (
                   </a>
                 </Link>
               </li> */}
-              <li>
-                <Link href="/tools/ships">
+              <li className="disabled">
+                <Link
+                  href="#"
+                  // "/tools/ships"
+                >
                   <a className="font-title text-lg hover:text-primary-300">
                     Liste vaisseaux
                   </a>

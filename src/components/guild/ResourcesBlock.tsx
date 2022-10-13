@@ -8,24 +8,35 @@ const ReactMarkdown = dynamic(() => import('react-markdown'), {
 });
 
 export const ResourcesBlock = ({ data }) => (
-  <div className="relative flex h-full space-x-8">
+  <div className="relative flex h-full flex-col space-y-8 lg:flex-row lg:space-x-8 lg:space-y-0">
     {data.map((mainItem, index) => (
       <>
         <motion.div
           initial={{
-            translateX: -100,
             opacity: 0,
           }}
-          whileInView={{ translateX: 0, opacity: 1 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ amount: 0.1, once: true }}
-          className={`group relative flex w-1/2 flex-col justify-start ${
+          className={`group relative flex flex-col justify-start lg:w-1/2 ${
             index !== 0 ? 'text-left' : 'text-right'
           }`}
           key={mainItem.text}
         >
-          <ReactMarkdown className="min-h-16 flex w-full items-end justify-center text-center font-title text-xl font-bold">
-            {mainItem.text}
-          </ReactMarkdown>
+          <div className="relative flex w-full flex-col items-center justify-end text-center lg:min-h-16">
+            <ReactMarkdown className="font-title text-lg font-bold lg:text-xl">
+              {mainItem.text}
+            </ReactMarkdown>
+            {mainItem.subText && (
+              <>
+                <ReactMarkdown className="text-sm">
+                  {mainItem.subText[0]}
+                </ReactMarkdown>
+                <ReactMarkdown className="absolute -bottom-5 right-0 z-20 -rotate-3 font-bold">
+                  {mainItem.subText[1]}
+                </ReactMarkdown>
+              </>
+            )}
+          </div>
           <div className="relative mt-4 mb-10 h-44 w-full overflow-hidden group-hover:shadow-xl">
             <Image
               src={mainItem.picture}
@@ -34,33 +45,35 @@ export const ResourcesBlock = ({ data }) => (
               fill
             />
           </div>
-          <motion.ul
-            initial={{
-              translateX:
-                index % 2 === 0 ? -100 + index * 10 : 100 + index * 10,
-              opacity: 0,
-            }}
-            whileInView={{ translateX: 0, opacity: 1 }}
-            viewport={{ amount: 0.1, once: true }}
-            className="flex flex-col space-y-4"
-          >
+          <ul className="grid grid-cols-1 gap-y-4 md:grid-cols-2 lg:flex lg:flex-col lg:space-y-4">
             {mainItem.list.map((listItem) => (
-              <li
+              <motion.li
+                initial={{
+                  translateX:
+                    index % 2 === 0 ? -100 + index * 10 : 100 + index * 10,
+                  opacity: 0,
+                }}
+                whileInView={{ translateX: 0, opacity: 1 }}
+                viewport={{ amount: 0.1, once: true }}
                 key={listItem}
-                className={`flex items-center ${
-                  index % 2 === 0 ? 'justify-end' : 'justify-start'
+                className={`flex items-center duration-200 ease-in-out ${
+                  index % 2 === 0 ? 'lg:justify-end' : 'justify-start'
                 }`}
               >
-                {index % 2 !== 0 && (
-                  <BiDownArrow className="mr-4 -rotate-90 text-primary-500" />
-                )}
+                <BiDownArrow
+                  className={`mr-4 -rotate-90 text-primary-500 ${
+                    index % 2 === 0 && 'lg:hidden'
+                  }`}
+                />
                 {listItem}
-                {index % 2 === 0 && (
-                  <BiDownArrow className="ml-4 rotate-90 text-primary-500" />
-                )}
-              </li>
+                <BiDownArrow
+                  className={`ml-4 rotate-90 text-primary-500 ${
+                    index % 2 !== 0 ? 'hidden' : 'hidden lg:block'
+                  }`}
+                />
+              </motion.li>
             ))}
-          </motion.ul>
+          </ul>
         </motion.div>
         {index < data.length - 1 && (
           <div className="h-full w-[1px] bg-primary-300"></div>
