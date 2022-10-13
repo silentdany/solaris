@@ -10,7 +10,7 @@
 - Framer Motion
 - React-Table
 
-## Artwork
+## Artworks
 
 - Midjourney
 - Dall-E 2
