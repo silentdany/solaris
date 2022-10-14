@@ -13,6 +13,7 @@ import InnerSectionBlock from '../../../layout/InnerSectionBlock';
 const ShipsList = () => {
   const { ships, isLoading, isError } = useShips();
 
+  console.log(ships, isLoading, isError);
   const data = useMemo(
     () =>
       ships?.map((ship) => ({
@@ -27,29 +28,29 @@ const ShipsList = () => {
     [ships]
   );
 
-  // const getCrewSlotType = (shipsData) => {
-  //   const crewSlotsArray: Array<string> = shipsData
-  //     .map((ship: { crewSlots: any[] }) =>
-  //       ship.crewSlots.map((slot) => slot.type)
-  //     )
-  //     .flat();
-  //   const crewSlotsFilteredArray = [...new Set(crewSlotsArray)];
-  //   return crewSlotsFilteredArray;
-  // };
+  const getCrewSlotType = (shipsData) => {
+    const crewSlotsArray: Array<string> = shipsData
+      ?.map((ship: { crewSlots: any[] }) =>
+        ship.crewSlots.map((slot) => slot.type)
+      )
+      .flat();
+    const crewSlotsFilteredArray = [...new Set(crewSlotsArray)];
+    return crewSlotsFilteredArray;
+  };
 
-  // const buildCrewSlotsColumns = () => {
-  //   const crewSlots = getCrewSlotType(data);
-  //   return crewSlots.map((slot) => ({
-  //     Header: slot,
-  //     accessor: slot.toLowerCase(),
-  //     Cell: ({ row }) => {
-  //       const crewSlot = row.original.crewSlots.find(
-  //         (crew: { type: string }) => crew.type === slot
-  //       );
-  //       return crewSlot && `${crewSlot.quantity} ${crewSlot.type}`;
-  //     },
-  //   }));
-  // };
+  const buildCrewSlotsColumns = () => {
+    const crewSlots = getCrewSlotType(data);
+    return crewSlots.map((slot) => ({
+      Header: slot,
+      accessor: slot.toLowerCase(),
+      Cell: ({ row }) => {
+        const crewSlot = row.original.crewSlots.find(
+          (crew: { type: string }) => crew.type === slot
+        );
+        return crewSlot && `${crewSlot.quantity} ${crewSlot.type}`;
+      },
+    }));
+  };
 
   // console.log(getCrewSlotType(data));
 
@@ -121,21 +122,8 @@ const ShipsList = () => {
       //     </div>
       //   ),
       // },
-      // ...buildCrewSlotsColumns(),
+      ...buildCrewSlotsColumns(),
     ],
-    []
-  );
-
-  const renderRowSubComponent = React.useCallback(
-    ({ row }) => (
-      <pre
-        style={{
-          fontSize: '10px',
-        }}
-      >
-        <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
-      </pre>
-    ),
     []
   );
 
@@ -149,13 +137,7 @@ const ShipsList = () => {
           {isError && (
             <div className="font-title text-2xl">Erreur de chargement</div>
           )}
-          {!isLoading && (
-            <Table
-              columns={columns}
-              data={data}
-              renderRowSubComponent={renderRowSubComponent}
-            />
-          )}
+          {!isLoading && <Table columns={columns} data={data} />}
         </InnerSectionBlock>
       </div>
     </Index>
