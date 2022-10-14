@@ -26,7 +26,7 @@ const Navbar = () => (
           </svg>
         </label>
         <ul className="dropdown-content menu rounded-box menu-compact mt-3 bg-base-100 p-2 shadow">
-          <li>
+          <li tabIndex={0}>
             <span className="flex justify-between font-title text-lg hover:text-primary-300">
               Guilde
               <BiDownArrow className="-rotate-90 text-right" />
@@ -69,7 +69,7 @@ const Navbar = () => (
               </li>
             </ul>
           </li>
-          <li className="disabled">
+          {/* <li className="disabled" tabIndex={1}>
             <Link
               href="#"
               // "/news"
@@ -79,8 +79,8 @@ const Navbar = () => (
                 <BiDownArrow className="ml-8 -rotate-90 text-right" />
               </a>
             </Link>
-          </li>
-          <li>
+          </li> */}
+          <li tabIndex={2}>
             <span className="flex justify-between font-title text-lg hover:text-primary-300">
               Outils
               <BiDownArrow className="-rotate-90 text-right" />
@@ -93,11 +93,8 @@ const Navbar = () => (
                   </a>
                 </Link>
               </li> */}
-              <li className="disabled">
-                <Link
-                  href="#"
-                  // "/tools/ships"
-                >
+              <li>
+                <Link href="/tools/ships">
                   <a className="font-title text-lg hover:text-primary-300">
                     Liste vaisseaux
                   </a>
