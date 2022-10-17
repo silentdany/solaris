@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { BiDownArrow } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
 
 import { SocialButtons } from '../components/SocialButtons';
@@ -25,13 +24,15 @@ const Navbar = () => (
             />
           </svg>
         </label>
-        <ul className="dropdown-content menu rounded-box menu-compact mt-3 bg-base-100 p-2 shadow">
-          <li tabIndex={0}>
-            <span className="flex justify-between font-title text-lg hover:text-primary-300">
-              Guilde
-              <BiDownArrow className="-rotate-90 text-right" />
-            </span>
-            <ul className="menu rounded-box menu-compact bg-base-100 p-2 shadow">
+        <ul className="dropdown-content menu rounded-box menu-compact mt-3 w-32 bg-base-100 p-2 shadow md:w-48">
+          <li tabIndex={1}>
+            <Link href="/guild">
+              <a className="flex justify-between font-title text-lg hover:text-primary-300">
+                Guilde
+                {/* <BiDownArrow className="-rotate-90 text-right" /> */}
+              </a>
+            </Link>
+            {/* <ul className="menu rounded-box menu-compact bg-base-100 p-2 shadow">
               <li>
                 <Link href="/guild/#données">
                   <a className="font-title text-lg hover:text-primary-300">
@@ -67,7 +68,7 @@ const Navbar = () => (
                   </a>
                 </Link>
               </li>
-            </ul>
+            </ul> */}
           </li>
           {/* <li className="disabled" tabIndex={1}>
             <Link
@@ -81,18 +82,20 @@ const Navbar = () => (
             </Link>
           </li> */}
           <li tabIndex={2}>
-            <span className="flex justify-between font-title text-lg hover:text-primary-300">
-              Outils
-              <BiDownArrow className="-rotate-90 text-right" />
-            </span>
-            <ul className="menu rounded-box menu-compact bg-base-100 p-2 shadow">
-              {/* <li>
+            <Link href="/tools">
+              <a className="flex justify-between font-title text-lg hover:text-primary-300">
+                Outils
+                {/* <BiDownArrow className="-rotate-90 text-right" /> */}
+              </a>
+            </Link>
+            {/* <ul className="menu rounded-box menu-compact bg-base-100 p-2 shadow">
+              <li>
                 <Link href="/tools">
                   <a className="font-title text-lg hover:text-primary-300">
                     Tous
                   </a>
                 </Link>
-              </li> */}
+              </li>
               <li>
                 <Link href="/tools/ships">
                   <a className="font-title text-lg hover:text-primary-300">
@@ -100,7 +103,7 @@ const Navbar = () => (
                   </a>
                 </Link>
               </li>
-            </ul>
+            </ul> */}
           </li>
           <div className="divider mt-2 mb-0 md:hidden"></div>
           <div className="flex justify-around md:hidden">
