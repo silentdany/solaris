@@ -1,12 +1,15 @@
+import React from 'react';
+
 import Image from 'next/future/image';
 import { BiDownArrow, BiDownload } from 'react-icons/bi';
+import { PortalWithState } from 'react-portal';
 
 import Index from '../..';
+import { NavbarSpacer } from '../../../components/NavbarSpacer';
 import InnerSectionBlock from '../../../layout/InnerSectionBlock';
+import { Modal } from '../../../layout/Modal';
 import Page from '../../../layout/Page';
 import { Infographics } from '../../../utils/data/Infographics';
-
-const Spacer = () => <div className="h-20 w-full"></div>;
 
 const DownloadLink = ({ url, ext }) => (
   <div className="flex items-center duration-200 ease-in-out hover:translate-x-1">
@@ -22,8 +25,8 @@ const DownloadLink = ({ url, ext }) => (
 const Tools = () => {
   return (
     <Index>
-      <Spacer />
-      <Page title="Infographies" bgColor="bg-stone-50" uppercase>
+      <NavbarSpacer />
+      <Page title="Infographies" image="/assets/images/information.webp">
         <div className="flex w-full flex-col items-center justify-center">
           <InnerSectionBlock bgColor={'from-primary-500/40'}>
             <div className="flex w-full flex-col items-start space-y-24">
@@ -42,22 +45,52 @@ const Tools = () => {
                       </h2>
                     </div>
                   </div>
-                  <div className="mt-4 flex flex-col space-x-0 space-y-16 lg:flex-row lg:space-x-8 lg:space-y-0">
+                  <div className="mt-12 flex flex-col space-x-0 space-y-16 lg:flex-row lg:space-x-8 lg:space-y-0">
                     {info.webp.map((item, itemIndex) => (
                       <div
-                        className="group flex flex-col space-y-4"
+                        className="group card glass flex flex-col space-y-4 hover:shadow-xl"
                         key={`${info.title}-${itemIndex}`}
                       >
-                        <div className="flex justify-start overflow-hidden rounded-xl shadow group-hover:shadow-xl">
-                          <Image
-                            src={item}
-                            alt={info.title}
-                            className="rounded-xl object-cover object-top shadow duration-300 ease-in-out group-hover:scale-110 group-hover:shadow-xl"
-                            width={400}
-                            height={300}
-                          />
-                        </div>
-                        <div className="flex flex-col space-y-2 text-sm">
+                        <PortalWithState closeOnOutsideClick closeOnEsc>
+                          {({ openPortal, closePortal, portal }) => (
+                            <React.Fragment>
+                              <figure
+                                className="overflow-hidden hover:cursor-pointer"
+                                onClick={openPortal}
+                              >
+                                <Image
+                                  src={item}
+                                  alt={info.title}
+                                  className="object-cover object-top duration-300 ease-in-out group-hover:scale-105"
+                                  width={400}
+                                  height={300}
+                                />
+                              </figure>
+                              {portal(
+                                <Modal
+                                  item={
+                                    <Image
+                                      src={item}
+                                      alt={info.title}
+                                      width={1170}
+                                      height={600}
+                                      className="flex justify-center rounded-xl object-cover shadow-xl"
+                                      placeholder="blur"
+                                      blurDataURL={item}
+                                    />
+                                  }
+                                  closePortal={closePortal}
+                                />
+                              )}
+                            </React.Fragment>
+                          )}
+                        </PortalWithState>
+                        <div className="card-body flex flex-col space-y-2 text-sm">
+                          {info.cardTitle && (
+                            <h4 className="card-title text-lg">
+                              {info.cardTitle[itemIndex]}
+                            </h4>
+                          )}
                           <DownloadLink url={info.webp[itemIndex]} ext="webp" />
                           <DownloadLink url={info.png[itemIndex]} ext="png" />
                           <DownloadLink url={info.xls[itemIndex]} ext="xls" />

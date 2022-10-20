@@ -5,7 +5,7 @@ import { CgProfile } from 'react-icons/cg';
 import { SocialButtons } from '../components/SocialButtons';
 
 const Navbar = () => (
-  <div className="navbar fixed z-50 bg-base-100 shadow-xl" id="top">
+  <div className="navbar fixed z-30 bg-base-100 shadow-xl" id="top">
     <div className="navbar-start">
       <div className="dropdown">
         <label tabIndex={0} className="btn btn-ghost btn-circle">

@@ -3,34 +3,30 @@ import { motion } from 'framer-motion';
 type Props = {
   children: React.ReactNode;
   title: string;
-  bgColor: string;
-  uppercase?: Boolean;
+  image: string;
 };
 
 const Page = (props: Props) => {
-  const { children, title, bgColor, uppercase } = props;
+  const { children, title, image } = props;
 
   return (
     <section
       id={title}
-      className={`flex flex-col items-center justify-center ${bgColor} relative  mx-auto overflow-hidden text-center`}
+      className="relative mx-auto flex flex-col items-center justify-center  overflow-hidden bg-stone-50 text-center"
     >
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ amount: 0.7 }}
-        className="flex w-full justify-start "
+        className="flex w-full justify-start"
+        style={{
+          background: `linear-gradient(to right, transparent, #fafaf9 33%), no-repeat left/33% url(${image})`,
+        }}
       >
-        <div className="flex p-4 md:p-8">
-          <div className="flex flex-col justify-center">
-            <h1
-              className={`ml-4 border-l-4 border-primary-700 pl-4 text-left font-title text-3xl md:ml-6 md:border-l-8 md:pl-6 md:text-4xl lg:ml-8 lg:pl-8 lg:text-5xl ${
-                uppercase ? 'uppercase' : 'capitalize'
-              }`}
-            >
-              {title}
-            </h1>
-          </div>
+        <div className="flex w-full justify-center p-4 md:p-8">
+          <h1 className="text-left font-title text-2xl md:text-3xl lg:text-5xl">
+            {title}
+          </h1>
         </div>
       </motion.div>
       {children}

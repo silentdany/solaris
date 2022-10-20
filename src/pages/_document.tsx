@@ -8,7 +8,7 @@ class MyDocument extends Document {
     return (
       <Html lang={AppConfig.locale} className="scroll-smooth">
         <Head />
-        <body>
+        <body id="root">
           <Main />
           <NextScript />
         </body>

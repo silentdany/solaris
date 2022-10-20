@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 
 import Index from '../..';
+import { NavbarSpacer } from '../../../components/NavbarSpacer';
 import { RarityBadge } from '../../../components/tools/ships/RarityBadge';
 import { Table } from '../../../components/tools/ships/Table';
 import { useInsensitiveSort } from '../../../hooks/useInsensitiveSort';
@@ -9,6 +10,7 @@ import useShips from '../../../hooks/useShips';
 import { useShipSize } from '../../../hooks/useShipSize';
 import { useShipSizeOrder } from '../../../hooks/useShipSizeOrder';
 import InnerSectionBlock from '../../../layout/InnerSectionBlock';
+import Page from '../../../layout/Page';
 
 const ShipsList = () => {
   const { ships, isLoading, isError } = useShips();
@@ -141,10 +143,8 @@ const ShipsList = () => {
 
   return (
     <Index>
-      <div className="flex flex-col items-center">
-        <h1 className="m-12 mt-24 font-title text-5xl">
-          Liste des vaisseaux Star Atlas
-        </h1>
+      <NavbarSpacer />
+      <Page title="Listing vaisseaux" image="/assets/images/spaceship.webp">
         <InnerSectionBlock bgColor={'from-primary-500/40'}>
           {isError && (
             <div className="font-title text-2xl">Erreur de chargement</div>
@@ -157,7 +157,7 @@ const ShipsList = () => {
             />
           )}
         </InnerSectionBlock>
-      </div>
+      </Page>
     </Index>
   );
 };

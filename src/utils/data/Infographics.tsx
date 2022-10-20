@@ -1,6 +1,7 @@
 export const Infographics = [
   {
     title: 'Rôle vaisseaux',
+    cardTitle: ['Partie 1', 'Partie 2'],
     webp: [
       '/assets/infos/ships_roles.webp',
       '/assets/infos/ships_roles_2.webp',
