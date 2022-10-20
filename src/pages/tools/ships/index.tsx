@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 
 import Index from '../..';
-import { NavbarSpacer } from '../../../components/NavbarSpacer';
 import { RarityBadge } from '../../../components/tools/ships/RarityBadge';
 import { Table } from '../../../components/tools/ships/Table';
 import { useInsensitiveSort } from '../../../hooks/useInsensitiveSort';
@@ -143,7 +142,6 @@ const ShipsList = () => {
 
   return (
     <Index>
-      <NavbarSpacer />
       <Page title="Listing vaisseaux" image="/assets/images/spaceship.webp">
         <InnerSectionBlock bgColor={'from-primary-500/40'}>
           {isError && (

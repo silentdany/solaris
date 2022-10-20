@@ -5,7 +5,6 @@ import { BiDownArrow, BiDownload } from 'react-icons/bi';
 import { PortalWithState } from 'react-portal';
 
 import Index from '../..';
-import { NavbarSpacer } from '../../../components/NavbarSpacer';
 import InnerSectionBlock from '../../../layout/InnerSectionBlock';
 import { Modal } from '../../../layout/Modal';
 import Page from '../../../layout/Page';
@@ -25,7 +24,6 @@ const DownloadLink = ({ url, ext }) => (
 const Tools = () => {
   return (
     <Index>
-      <NavbarSpacer />
       <Page title="Infographies" image="/assets/images/information.webp">
         <div className="flex w-full flex-col items-center justify-center">
           <InnerSectionBlock bgColor={'from-primary-500/40'}>
