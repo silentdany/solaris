@@ -12,6 +12,9 @@ module.exports = {
         default: '#f8fafc',
       },
     }),
+    require('tailwindcss-scoped-groups')({
+      groups: ['solar-btn'],
+    }),
   ],
   daisyui: {
     styled: true,
