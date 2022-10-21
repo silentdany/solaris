@@ -96,18 +96,18 @@ const ShipsList = () => {
         sortType: useRarityOrder,
         Cell: (tableProps) => <RarityBadge rarity={tableProps.value} />,
       },
-      {
-        Header: 'Actions',
-        id: 'expander',
-        Cell: ({ row }) => (
-          // Use Cell to render an expander for each row.
-          // We can use the getToggleRowExpandedProps prop-getter
-          // to build the expander.
-          <span {...row.getToggleRowExpandedProps()}>
-            {row.isExpanded ? '👇' : '👉'}
-          </span>
-        ),
-      },
+      // {
+      //   Header: 'Actions',
+      //   id: 'expander',
+      //   Cell: ({ row }) => (
+      //     // Use Cell to render an expander for each row.
+      //     // We can use the getToggleRowExpandedProps prop-getter
+      //     // to build the expander.
+      //     <span {...row.getToggleRowExpandedProps()}>
+      //       {row.isExpanded ? '👇' : '👉'}
+      //     </span>
+      //   ),
+      // },
       // {
       //   Header: 'Equipage',
       //   accessor: 'crewSlots',
