@@ -9,23 +9,23 @@ import Page from '../../layout/Page';
 
 const data = [
   {
-    title: 'Infographies',
+    title: 'Kiosque',
     text: 'Découvrez les infographies de la guilde préparées spécialement pour vous dans différents formats téléchargeables.',
-    url: '/tools/infographics',
-    color: 'border-primary-300',
+    url: '/tools/kiosque',
+    color: 'border-stone-600',
     image: '/assets/images/nightcity.webp',
   },
   {
-    title: 'Listing vaisseaux',
+    title: 'Dock',
     text: 'Découvrez toutes les données des vaisseaux du jeu condensées en une application simple et intuitive.',
-    url: '/tools/ships',
-    color: 'border-secondary-300',
+    url: '/tools/dock',
+    color: 'border-stone-700',
     image: '/assets/images/spaceship.webp',
   },
 ];
 
 const Tools = () => {
-  const [slideIndex, setSlideIndex] = useState<number | null>(null);
+  const [slideIndex, setSlideIndex] = useState<number>(0);
 
   const expandSlide = (index: number) => {
     setSlideIndex(index);
@@ -46,9 +46,9 @@ const Tools = () => {
             >
               {slideIndex === index ? (
                 <div className="flex h-full flex-col items-center justify-around">
-                  <h4 className="flex items-center font-title text-5xl font-semibold text-stone-50">
+                  <h2 className="flex items-center font-title text-5xl font-semibold text-stone-50">
                     {title}
-                  </h4>
+                  </h2>
                   <div className="glass flex w-2/3 items-center justify-center space-x-8 rounded-xl p-8 shadow hover:shadow-xl">
                     <p className="text-sm">{text}</p>
                     <Link href={url} className="group">
@@ -69,12 +69,15 @@ const Tools = () => {
                 </div>
               ) : (
                 <div className="absolute top-0 left-0 h-full w-full cursor-pointer bg-stone-900 opacity-75">
-                  <h4
-                    className="flex h-full w-full items-center justify-center font-title text-3xl font-semibold text-stone-50"
-                    style={{ writingMode: 'vertical-rl' }}
+                  <h2
+                    className="flex h-full w-full items-center justify-center font-title text-3xl font-semibold uppercase tracking-[-0.35em] text-stone-50"
+                    style={{
+                      writingMode: 'vertical-rl',
+                      textOrientation: 'upright',
+                    }}
                   >
                     {title}
-                  </h4>
+                  </h2>
                 </div>
               )}
             </div>

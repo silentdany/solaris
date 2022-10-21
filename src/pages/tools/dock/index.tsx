@@ -142,7 +142,7 @@ const ShipsList = () => {
 
   return (
     <Index>
-      <Page title="Listing vaisseaux" image="/assets/images/spaceship.webp">
+      <Page title="Dock" image="/assets/images/spaceship.webp">
         <InnerSectionBlock bgColor={'from-primary-500/40'}>
           {isError && (
             <div className="font-title text-2xl">Erreur de chargement</div>
