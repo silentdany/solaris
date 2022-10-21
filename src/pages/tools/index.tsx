@@ -39,7 +39,7 @@ const Tools = () => {
           {data.map(({ title, text, url, color, image }, index) => (
             <div
               className={`group relative flex h-full items-center justify-center border-2 duration-300 ease-in-out ${color} ${
-                slideIndex === index ? 'w-full' : 'w-32'
+                slideIndex === index ? 'w-full' : 'w-12 md:w-16 lg:w-32'
               }`}
               style={{ background: `url(${image}) no-repeat center/cover` }}
               key={title}
@@ -54,7 +54,7 @@ const Tools = () => {
                   transition={{ duration: 0.75 }}
                   className="flex h-full flex-col items-center justify-around"
                 >
-                  <h2 className="flex items-center font-title text-5xl font-semibold text-stone-50">
+                  <h2 className="flex items-center font-title text-4xl font-semibold text-stone-50 md:text-5xl">
                     {title}
                   </h2>
                   <motion.div
@@ -63,20 +63,21 @@ const Tools = () => {
                     }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.75 }}
-                    className="glass flex w-2/3 items-center justify-center space-x-8 rounded-xl p-8 shadow hover:shadow-xl"
+                    className="glass flex w-2/3 flex-col items-center justify-center space-y-4 rounded-xl p-4 shadow hover:shadow-xl md:flex-row md:space-y-0 md:space-x-8 md:p-8"
                   >
-                    <p className="text-sm">{text}</p>
+                    <p className="text-xs md:text-sm">{text}</p>
                     <Link href={url} className="group">
                       <SolarButton
+                        small
                         url={url}
                         title={title}
                         item={
-                          <>
-                            Accéder
-                            <span className="ml-2 text-xl md:text-2xl lg:text-3xl">
+                          <div className="flex items-center text-xs md:text-sm">
+                            Acceder
+                            <span className="ml-2 md:text-lg lg:text-xl">
                               <BiChevronRight />
                             </span>
-                          </>
+                          </div>
                         }
                       />
                     </Link>
@@ -85,7 +86,7 @@ const Tools = () => {
               ) : (
                 <div className="absolute top-0 left-0 h-full w-full cursor-pointer bg-stone-900 opacity-75">
                   <h2
-                    className="flex h-full w-full items-center justify-center font-title text-3xl font-semibold uppercase tracking-[-0.35em] text-stone-50"
+                    className="flex h-full w-full items-center justify-center font-title text-2xl font-semibold uppercase tracking-[-0.35em] text-stone-50 md:text-3xl"
                     style={{
                       writingMode: 'vertical-rl',
                       textOrientation: 'upright',
