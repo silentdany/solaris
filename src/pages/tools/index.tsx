@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { BiChevronRight } from 'react-icons/bi';
 
@@ -45,11 +46,25 @@ const Tools = () => {
               onClick={() => expandSlide(index)}
             >
               {slideIndex === index ? (
-                <div className="flex h-full flex-col items-center justify-around">
+                <motion.div
+                  initial={{
+                    opacity: 0,
+                  }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.75 }}
+                  className="flex h-full flex-col items-center justify-around"
+                >
                   <h2 className="flex items-center font-title text-5xl font-semibold text-stone-50">
                     {title}
                   </h2>
-                  <div className="glass flex w-2/3 items-center justify-center space-x-8 rounded-xl p-8 shadow hover:shadow-xl">
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                    }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.75 }}
+                    className="glass flex w-2/3 items-center justify-center space-x-8 rounded-xl p-8 shadow hover:shadow-xl"
+                  >
                     <p className="text-sm">{text}</p>
                     <Link href={url} className="group">
                       <SolarButton
@@ -65,8 +80,8 @@ const Tools = () => {
                         }
                       />
                     </Link>
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
               ) : (
                 <div className="absolute top-0 left-0 h-full w-full cursor-pointer bg-stone-900 opacity-75">
                   <h2

@@ -24,20 +24,18 @@ export const Breadcrumbs = () => {
   });
 
   return (
-    <div className="w-full bg-primary-700 px-4">
-      <nav
-        aria-label="breadcrumb"
-        className="breadcrumbs text-xs text-stone-50"
-      >
-        <ul>
-          <li>
-            <Link href="/guild">
-              <a>Accueil</a>
-            </Link>
-          </li>
-          {breadcrumbs}
-        </ul>
-      </nav>
-    </div>
+    <nav
+      aria-label="breadcrumb"
+      className="breadcrumbs w-full bg-primary-700 px-4 text-xs text-stone-50"
+    >
+      <ul>
+        <li>
+          <Link href="/guild">
+            <a>Accueil</a>
+          </Link>
+        </li>
+        {breadcrumbs}
+      </ul>
+    </nav>
   );
 };

@@ -1,5 +1,3 @@
-import { motion } from 'framer-motion';
-
 import { Breadcrumbs } from '../components/Breadcrumbs';
 
 type Props = {
@@ -24,10 +22,7 @@ const Page = (props: Props) => {
       {screenHeight && (
         <div className="absolute top-0 left-0 z-0 h-full w-full bg-hero-diagonal-lines"></div>
       )}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ amount: 0.7 }}
+      <div
         className="z-10 flex w-full flex-col justify-start "
         style={{
           background: `linear-gradient(to right, transparent, #fafaf9 33%), no-repeat left/33% url(${image})`,
@@ -39,7 +34,7 @@ const Page = (props: Props) => {
           </h1>
         </div>
         <Breadcrumbs />
-      </motion.div>
+      </div>
       {children}
     </section>
   );
