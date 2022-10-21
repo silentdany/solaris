@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 
+import { Breadcrumbs } from '../components/Breadcrumbs';
+
 type Props = {
   children: React.ReactNode;
   title: string;
@@ -26,9 +28,7 @@ const Page = (props: Props) => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ amount: 0.7 }}
-        className={`z-10 flex w-full justify-start ${
-          screenHeight && 'border-b-8 border-primary-700'
-        }`}
+        className="z-10 flex w-full flex-col justify-start "
         style={{
           background: `linear-gradient(to right, transparent, #fafaf9 33%), no-repeat left/33% url(${image})`,
         }}
@@ -38,6 +38,7 @@ const Page = (props: Props) => {
             {title}
           </h1>
         </div>
+        <Breadcrumbs />
       </motion.div>
       {children}
     </section>

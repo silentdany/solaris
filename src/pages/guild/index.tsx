@@ -27,7 +27,7 @@ const Guild = () => {
       <div id="start">
         <Section title="données" number="01" bgColor="bg-stone-50" uppercase>
           <div className="flex w-full flex-col items-center justify-center">
-            <InnerSectionBlock bgColor={'from-primary-500/40'}>
+            <InnerSectionBlock bgColor={'from-primary-500/40'} topBorder>
               <div className="flex w-full flex-col">
                 <DataBlock data={position} />
                 <DividerTriangle data={null} index={1} />
@@ -39,7 +39,7 @@ const Guild = () => {
         </Section>
         <Section title="adn" number="02" bgColor="bg-stone-50" uppercase>
           <div className="flex w-full flex-col items-center justify-center">
-            <InnerSectionBlock bgColor={'from-primary-500/40'}>
+            <InnerSectionBlock bgColor={'from-primary-500/40'} topBorder>
               <div className="md:max-w-4xl">
                 <DNABlock data={dna} />
               </div>
@@ -49,7 +49,7 @@ const Guild = () => {
         </Section>
         <Section title="projet" number="03" bgColor="bg-stone-50" uppercase>
           <div className="flex w-full flex-col items-center justify-center">
-            <InnerSectionBlock bgColor={'from-primary-500/40'}>
+            <InnerSectionBlock bgColor={'from-primary-500/40'} topBorder>
               <div className="md:max-w-md lg:max-w-6xl">
                 <ProjectBlock data={project} />
                 <DividerTriangle data={null} index={1} />
@@ -74,7 +74,7 @@ const Guild = () => {
         </Section>
         <Section title="ressources" number="03" bgColor="bg-stone-50" uppercase>
           <div className="flex w-full flex-col items-center justify-center">
-            <InnerSectionBlock bgColor={'from-primary-500/40'}>
+            <InnerSectionBlock bgColor={'from-primary-500/40'} topBorder>
               <div className="w-full md:max-w-6xl">
                 <ResourcesBlock data={resources} />
               </div>
@@ -84,7 +84,7 @@ const Guild = () => {
         </Section>
         <Section title="profils" number="04" bgColor="bg-stone-50" uppercase>
           <div className="flex w-full flex-col items-center justify-center">
-            <InnerSectionBlock bgColor={'from-primary-500/40'}>
+            <InnerSectionBlock bgColor={'from-primary-500/40'} topBorder>
               <div className="flex max-w-6xl flex-col md:flex-row md:space-x-16">
                 <ProfilesBlock data={profiles} isMobile={isMobile} />
               </div>
