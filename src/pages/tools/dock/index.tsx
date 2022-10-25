@@ -9,6 +9,7 @@ import useShips from '../../../hooks/useShips';
 import { useShipSize } from '../../../hooks/useShipSize';
 import { useShipSizeOrder } from '../../../hooks/useShipSizeOrder';
 import InnerSectionBlock from '../../../layout/InnerSectionBlock';
+import Page from '../../../layout/Page';
 
 const ShipsList = () => {
   const { ships, isLoading, isError } = useShips();
@@ -96,18 +97,18 @@ const ShipsList = () => {
         sortType: useRarityOrder,
         Cell: (tableProps) => <RarityBadge rarity={tableProps.value} />,
       },
-      {
-        Header: 'Actions',
-        id: 'expander',
-        Cell: ({ row }) => (
-          // Use Cell to render an expander for each row.
-          // We can use the getToggleRowExpandedProps prop-getter
-          // to build the expander.
-          <span {...row.getToggleRowExpandedProps()}>
-            {row.isExpanded ? '👇' : '👉'}
-          </span>
-        ),
-      },
+      // {
+      //   Header: 'Actions',
+      //   id: 'expander',
+      //   Cell: ({ row }) => (
+      //     // Use Cell to render an expander for each row.
+      //     // We can use the getToggleRowExpandedProps prop-getter
+      //     // to build the expander.
+      //     <span {...row.getToggleRowExpandedProps()}>
+      //       {row.isExpanded ? '👇' : '👉'}
+      //     </span>
+      //   ),
+      // },
       // {
       //   Header: 'Equipage',
       //   accessor: 'crewSlots',
@@ -129,17 +130,14 @@ const ShipsList = () => {
 
   return (
     <Index>
-      <div className="flex flex-col items-center">
-        <h1 className="m-12 mt-24 font-title text-5xl">
-          Liste des vaisseaux Star Atlas
-        </h1>
+      <Page title="Dock" image="/assets/images/spaceship.webp">
         <InnerSectionBlock bgColor={'from-primary-500/40'}>
           {isError && (
             <div className="font-title text-2xl">Erreur de chargement</div>
           )}
           {!isLoading && <Table columns={columns} data={data} />}
         </InnerSectionBlock>
-      </div>
+      </Page>
     </Index>
   );
 };

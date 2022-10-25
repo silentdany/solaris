@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { FaDiscord } from 'react-icons/fa';
 import { HiChevronDoubleDown } from 'react-icons/hi';
 import { ParallaxBanner } from 'react-scroll-parallax';
 
 import { DividerTop } from '../components/DividerTop';
-import { JoinButton } from '../components/JoinButton';
+import { SolarButton } from '../components/SolarButton';
 import useMediaQuery from '../hooks/useMediaQuery';
 import { AppConfig } from '../utils/AppConfig';
 
@@ -97,7 +98,21 @@ const Hero = () => {
                 {AppConfig.description}
               </p>
             </div>
-            <JoinButton />
+            <div className="my-16">
+              <SolarButton
+                url="https://discord.gg/vECEHD6GdJ"
+                ext
+                title="Discord QTT"
+                item={
+                  <>
+                    <span className="mr-4 text-xl md:text-2xl lg:text-3xl">
+                      <FaDiscord />
+                    </span>
+                    Rejoignez-nous !
+                  </>
+                }
+              />
+            </div>
             <Link href="#start">
               <a className="btn glass btn-circle animate-bounce-slow text-primary-500 transition">
                 <HiChevronDoubleDown className="text-lg" />

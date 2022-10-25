@@ -3,7 +3,7 @@ import { BiDownArrow, BiDownload, BiLinkExternal } from 'react-icons/bi';
 import Index from '..';
 import { LogoCollapse } from '../../components/design/LogoCollapse';
 import { DividerTriangle } from '../../components/DividerTriangle';
-import InnerSectionBlock from '../../layout/InnerSectionBlock';
+import Page from '../../layout/Page';
 
 const colors = [
   {
@@ -136,95 +136,89 @@ const logos = {
 const DesignPage = () => {
   return (
     <Index>
-      {/* <motion.div className="alert alert-success fixed bottom-2 left-2 z-50 w-64 shadow-lg">
-        Ola
-      </motion.div> */}
-      <div className="flex flex-col items-center">
-        <h1 className="m-12 mt-24 font-title text-5xl">Charte Graphique</h1>
-        <InnerSectionBlock bgColor={'from-primary-500/40'}>
-          <div className="flex w-full max-w-4xl flex-col items-center justify-center space-y-8">
-            <div className="flex items-center self-start">
-              <BiDownArrow className="mr-6 -rotate-90 text-right text-3xl text-primary-500" />
-              <h2 className="font-title text-5xl font-bold">Couleurs</h2>
-            </div>
-            <div className="flex w-full flex-col space-y-8 md:flex-row md:space-x-8 md:space-y-0">
-              {colors.map((color) => (
-                <div className="w-full flex-col" key={color.title}>
-                  <h3 className="text-center text-3xl">{color.title}</h3>
-                  {color.colorData.map((data) => (
-                    <div
-                      key={data.hex}
-                      className={`flex h-16 w-full items-center justify-start p-4 text-2xl font-bold ${color.textColor} ${data.class} hover:cursor-copy`}
-                      onClick={() => {
-                        navigator.clipboard.writeText(data.hex);
-                      }}
-                    >
-                      {data.hex}
-                      {data.base && (
-                        <span className="ml-4 text-red-500">Base</span>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-            <div className="m-8 w-full">
-              <DividerTriangle data={null} index={null} />
-            </div>
-            <div className="flex items-center self-start">
-              <BiDownArrow className="mr-6 -rotate-90 text-right text-3xl text-primary-500" />
-              <h2 className="font-title text-5xl font-bold">Polices</h2>
-            </div>
-            <div className="flex w-full max-w-lg flex-col justify-center space-y-12">
-              {fonts.map((font) => (
-                <div
-                  className="flex flex-col items-center justify-around md:flex-row"
-                  key={font.title}
-                >
-                  <h3
-                    className={`${font.fontClass} w-48 text-center text-4xl md:text-right`}
-                  >
-                    {font.title}
-                  </h3>
-                  <div className="m-2 h-1 w-full bg-primary-500 md:h-full md:w-1"></div>
-                  <h4 className="flex w-48 justify-center text-2xl md:justify-start">
-                    <a
-                      href={font.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center hover:text-primary-500 "
-                    >
-                      {font.fontText}
-                      <BiLinkExternal className="ml-2 text-lg" />
-                    </a>
-                  </h4>
-                </div>
-              ))}
-            </div>
-            <div className="m-8 w-full">
-              <DividerTriangle data={null} index={null} />
-            </div>
-            <div className="flex items-center self-start">
-              <BiDownArrow className="mr-6 -rotate-90 text-right text-3xl text-primary-500" />
-              <h2 className="font-title text-5xl font-bold">Logos</h2>
-            </div>
-            <a
-              href="/assets/logos/solaris_logo_pack.zip"
-              download
-              className="sol-btn"
-            >
-              Pack
-              <BiDownload className="ml-4" />
-            </a>
-            <div className="divider"></div>
-            <div className="flex w-full flex-col space-y-8">
-              <LogoCollapse logos={logos} variant="title" />
-              <div className="divider"></div>
-              <LogoCollapse logos={logos} variant="simple" />
-            </div>
+      <Page title="Design" image="/assets/images/network.webp">
+        <div className="flex w-full max-w-4xl flex-col items-center justify-center space-y-8">
+          <div className="flex items-center self-start">
+            <BiDownArrow className="mr-6 -rotate-90 text-right text-3xl text-primary-500" />
+            <h2 className="font-title text-5xl font-bold">Couleurs</h2>
           </div>
-        </InnerSectionBlock>
-      </div>
+          <div className="flex w-full flex-col space-y-8 md:flex-row md:space-x-8 md:space-y-0">
+            {colors.map((color) => (
+              <div className="w-full flex-col" key={color.title}>
+                <h3 className="text-center text-3xl">{color.title}</h3>
+                {color.colorData.map((data) => (
+                  <div
+                    key={data.hex}
+                    className={`flex h-16 w-full items-center justify-start p-4 text-2xl font-bold ${color.textColor} ${data.class} hover:cursor-copy`}
+                    onClick={() => {
+                      navigator.clipboard.writeText(data.hex);
+                    }}
+                  >
+                    {data.hex}
+                    {data.base && (
+                      <span className="ml-4 text-red-500">Base</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+          <div className="m-8 w-full">
+            <DividerTriangle data={null} index={null} />
+          </div>
+          <div className="flex items-center self-start">
+            <BiDownArrow className="mr-6 -rotate-90 text-right text-3xl text-primary-500" />
+            <h2 className="font-title text-5xl font-bold">Polices</h2>
+          </div>
+          <div className="flex w-full max-w-lg flex-col justify-center space-y-12">
+            {fonts.map((font) => (
+              <div
+                className="flex flex-col items-center justify-around md:flex-row"
+                key={font.title}
+              >
+                <h3
+                  className={`${font.fontClass} w-48 text-center text-4xl md:text-right`}
+                >
+                  {font.title}
+                </h3>
+                <div className="m-2 h-1 w-full bg-primary-500 md:h-full md:w-1"></div>
+                <h4 className="flex w-48 justify-center text-2xl md:justify-start">
+                  <a
+                    href={font.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center hover:text-primary-500 "
+                  >
+                    {font.fontText}
+                    <BiLinkExternal className="ml-2 text-lg" />
+                  </a>
+                </h4>
+              </div>
+            ))}
+          </div>
+          <div className="m-8 w-full">
+            <DividerTriangle data={null} index={null} />
+          </div>
+          <div className="flex items-center self-start">
+            <BiDownArrow className="mr-6 -rotate-90 text-right text-3xl text-primary-500" />
+            <h2 className="font-title text-5xl font-bold">Logos</h2>
+          </div>
+          <a
+            href="/assets/logos/solaris_logo_pack.zip"
+            download
+            className="sol-btn"
+          >
+            Pack
+            <BiDownload className="ml-4" />
+          </a>
+          <div className="divider"></div>
+          <div className="flex w-full flex-col space-y-8">
+            <LogoCollapse logos={logos} variant="title" />
+            <div className="divider"></div>
+            <LogoCollapse logos={logos} variant="simple" />
+          </div>
+        </div>
+      </Page>
     </Index>
   );
 };
