@@ -2,14 +2,23 @@
 import React from 'react';
 
 import { BiDownArrow } from 'react-icons/bi';
-import { Portal } from 'react-portal';
 import { useSortBy, useTable, useExpanded } from 'react-table';
 
-export const Table = ({ columns, data }) => {
-  const tableInstance = useTable({ columns, data }, useSortBy, useExpanded);
+export const Table = ({ columns: userColumns, data, subRow }) => {
+  const tableInstance = useTable(
+    { columns: userColumns, data },
+    useSortBy,
+    useExpanded
+  );
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    tableInstance;
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    visibleColumns,
+  } = tableInstance;
 
   const buildTableHeader = (column, index) => (
     <th
@@ -20,12 +29,14 @@ export const Table = ({ columns, data }) => {
                 `}
     >
       {column.render('Header')}
-      <BiDownArrow
-        className={`w-full -rotate-90 duration-100 ease-in-out group-hover:text-primary-500
-                  ${column.isSortedDesc && 'rotate-0'}
-                  ${column.isSorted && 'top-0 rotate-180'} 
-                  `}
-      />
+      {column.Header !== 'Infos' && (
+        <BiDownArrow
+          className={`w-full -rotate-90 duration-100 ease-in-out group-hover:text-primary-500
+        ${column.isSortedDesc && 'rotate-0'}
+        ${column.isSorted && 'top-0 rotate-180'} 
+        `}
+        />
+      )}
     </th>
   );
 
@@ -33,13 +44,51 @@ export const Table = ({ columns, data }) => {
     <td
       {...cell.getCellProps()}
       className={`h-32 p-8 text-center
-                  ${index !== 0 && index < 5 && 'tr-cell'} 
+                  ${index !== 0 && 'tr-cell'} 
                   ${index === 0 && 'rounded-l-xl'} 
                   ${index === row.cells.length - 1 && 'rounded-r-xl'}
                   `}
     >
       {cell.render('Cell')}
     </td>
+  );
+
+  const renderRowSubComponent = React.useCallback(
+    subRow === 'infos'
+      ? ({ row }) => (
+          <div className="flex p-4">
+            <div className="flex w-full flex-col">
+              <h4 className="mb-8 font-title text-2xl">Equipage</h4>
+              {row.original.crewSlots.map((crewSlot: any, index: number) => (
+                <span key={index}>
+                  {crewSlot.quantity} {crewSlot.type}
+                </span>
+              ))}
+            </div>
+            <div className="flex w-full flex-col">
+              <h4 className="mb-8 font-title text-2xl">Composants</h4>
+              {row.original.componentSlots.map(
+                (componentSlot: any, index: number) => (
+                  <span key={index}>
+                    {componentSlot.quantity} {componentSlot.type}
+                  </span>
+                )
+              )}
+            </div>
+            <div className="flex w-full flex-col">
+              <h4 className="mb-8 font-title text-2xl">Modules</h4>
+              {row.original.moduleSlots.map(
+                (moduleSlot: any, index: number) => (
+                  <span key={index}>
+                    {moduleSlot.quantity} {moduleSlot.type}
+                  </span>
+                )
+              )}
+            </div>
+          </div>
+        )
+      : () => <div className="flex p-4">ola</div>,
+    []
   );
 
   return (
@@ -49,30 +98,18 @@ export const Table = ({ columns, data }) => {
     >
       <thead>
         {headerGroups.map((headerGroup: any) => (
-          <>
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column, index) => {
-                if (index < 5) return buildTableHeader(column, index);
-                if (index >= 5)
-                  return (
-                    <Portal
-                      node={document && document.getElementById('tr-portal')}
-                    >
-                      {buildTableHeader(column, index)}
-                    </Portal>
-                  );
-                return null;
-              })}
-            </tr>
-            <div id="tr-portal"></div>
-          </>
+          <tr {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map((column, index) => {
+              return buildTableHeader(column, index);
+            })}
+          </tr>
         ))}
       </thead>
       <tbody {...getTableBodyProps()}>
         {rows.map((row: any = {}) => {
           prepareRow(row);
           return (
-            <React.Fragment {...row.getRowProps()}>
+            <React.Fragment key={row.getRowProps().key}>
               <tr
                 className="glass relative overflow-hidden rounded-xl transition-all duration-300 hover:shadow-lg"
                 style={{
@@ -80,32 +117,15 @@ export const Table = ({ columns, data }) => {
                 }}
               >
                 {row.cells.map((cell, index) => {
-                  if (index < 5) return buildTableData(row, cell, index);
-                  if (
-                    index >= 5 &&
-                    document &&
-                    document.getElementById(`td-portal-${row.id}`)
-                  )
-                    return (
-                      <Portal
-                        node={
-                          document &&
-                          document.getElementById(`td-portal-${row.id}`)
-                        }
-                      >
-                        {buildTableData(row, cell, index)}
-                      </Portal>
-                    );
-                  return null;
+                  return buildTableData(row, cell, index);
                 })}
               </tr>
               {row.isExpanded && (
-                <div
-                  id={`td-portal-${row.id}`}
-                  className="portal glass min-h-16 rounded-xl p-4"
-                >
-                  ola
-                </div>
+                <tr className="glass relative overflow-hidden rounded-xl transition-all duration-300 hover:shadow-lg">
+                  <td colSpan={visibleColumns.length}>
+                    {renderRowSubComponent({ row })}
+                  </td>
+                </tr>
               )}
             </React.Fragment>
           );
