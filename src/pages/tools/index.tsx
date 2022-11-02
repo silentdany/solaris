@@ -65,7 +65,7 @@ const Tools = () => {
                     transition={{ duration: 0.75 }}
                     className="glass flex w-2/3 flex-col items-center justify-center space-y-4 rounded-xl p-4 shadow hover:shadow-xl md:flex-row md:space-y-0 md:space-x-8 md:p-8"
                   >
-                    <p className="text-xs md:text-sm">{text}</p>
+                    <p className="text-xs text-stone-50 md:text-sm">{text}</p>
                     <Link href={url} className="group">
                       <SolarButton
                         small
