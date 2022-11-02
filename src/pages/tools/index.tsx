@@ -14,14 +14,14 @@ const data = [
     text: 'Découvrez les infographies de la guilde préparées spécialement pour vous dans différents formats téléchargeables.',
     url: '/tools/kiosque',
     color: 'border-stone-600',
-    image: '/assets/images/nightcity.webp',
+    image: '/assets/images/kiosk.webp',
   },
   {
     title: 'Dock',
     text: 'Découvrez toutes les données des vaisseaux du jeu condensées en une application simple et intuitive.',
     url: '/tools/dock',
     color: 'border-stone-700',
-    image: '/assets/images/spaceship.webp',
+    image: '/assets/images/dock.webp',
   },
 ];
 
@@ -34,7 +34,7 @@ const Tools = () => {
 
   return (
     <Index>
-      <Page title="Outils" image="/assets/images/workshop.webp" screenHeight>
+      <Page title="Outils" image="/assets/images/tools.webp" screenHeight>
         <div className="flex h-full w-full max-w-6xl justify-center">
           {data.map(({ title, text, url, color, image }, index) => (
             <div

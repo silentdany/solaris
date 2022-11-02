@@ -12,5 +12,4 @@
 
 ## Artworks
 
-- Midjourney
-- Dall-E 2
+- Stable Diffusion

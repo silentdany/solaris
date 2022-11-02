@@ -79,7 +79,7 @@ const Guild = () => {
                 <ResourcesBlock data={resources} />
               </div>
             </InnerSectionBlock>
-            <ParallaxBlock image="/assets/images/spaceship.webp" speed={-25} />
+            <ParallaxBlock image="/assets/images/spaceship.webp" speed={-30} />
           </div>
         </Section>
         <Section title="profils" number="04" bgColor="bg-stone-50" uppercase>

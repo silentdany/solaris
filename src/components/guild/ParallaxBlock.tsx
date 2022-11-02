@@ -8,7 +8,6 @@ export const ParallaxBlock = ({ image, speed }) => (
         speed,
         style: {
           backgroundSize: 'cover',
-          filter: 'contrast(0.8) hue-rotate(-5deg)',
         },
       },
     ]}

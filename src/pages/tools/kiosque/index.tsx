@@ -24,7 +24,7 @@ const DownloadLink = ({ url, ext }) => (
 const Tools = () => {
   return (
     <Index>
-      <Page title="Kiosque" image="/assets/images/information.webp">
+      <Page title="Kiosque" image="/assets/images/kiosk.webp">
         <div className="flex w-full flex-col items-center justify-center">
           <InnerSectionBlock bgColor={'from-primary-500/40'}>
             <div className="flex w-full flex-col items-start space-y-24">

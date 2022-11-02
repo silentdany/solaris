@@ -24,16 +24,8 @@ const Hero = () => {
             },
           },
           {
-            image: '/assets/images/hero_bg_plan_3.webp',
+            image: '/assets/images/hero_bg_plan_1.webp',
             speed: -40,
-            style: {
-              backgroundSize: isDesktop ? 'contain' : 'auto',
-              backgroundPosition: isDesktop ? 'center' : 'right',
-            },
-          },
-          {
-            image: '/assets/images/hero_bg_plan_2.webp',
-            speed: -30,
             style: {
               backgroundSize: isDesktop ? 'contain' : 'auto',
               backgroundPosition: isDesktop ? 'center' : 'right',
@@ -46,12 +38,20 @@ const Hero = () => {
             rotate: [0, 40],
             style: {
               backgroundSize: isDesktop ? '100px' : 0,
-              backgroundPosition: 'bottom 10% left 50%',
+              backgroundPosition: 'bottom 0 left 57%',
               backgroundRepeat: 'no-repeat',
             },
           },
           {
-            image: '/assets/images/hero_bg_plan_1.webp',
+            image: '/assets/images/hero_bg_plan_2.webp',
+            speed: -30,
+            style: {
+              backgroundSize: isDesktop ? 'contain' : 'auto',
+              backgroundPosition: isDesktop ? 'center' : 'right',
+            },
+          },
+          {
+            image: '/assets/images/hero_bg_plan_3.webp',
             speed: -20,
             style: {
               backgroundSize: isDesktop ? 'contain' : 'auto',
@@ -72,7 +72,7 @@ const Hero = () => {
       >
         <div className="absolute h-full w-full animate-pulse-slow bg-black/10" />
         <div className="hero min-h-screen bg-base-200">
-          <h1 className="absolute bottom-8 left-8 font-hero text-5xl font-extrabold text-stone-50/10 mix-blend-overlay md:text-7xl lg:text-9xl">
+          <h1 className="absolute bottom-0 left-8 font-hero text-5xl font-extrabold text-stone-50/10 mix-blend-overlay md:text-7xl lg:text-9xl">
             Solaris
           </h1>
           <div className="hero-content flex flex-col text-center">
@@ -114,7 +114,7 @@ const Hero = () => {
               />
             </div>
             <Link href="#start">
-              <a className="btn glass btn-circle animate-bounce-slow text-primary-500 transition">
+              <a className="btn btn-circle glass animate-bounce-slow text-primary-500 transition">
                 <HiChevronDoubleDown className="text-lg" />
               </a>
             </Link>
