@@ -16,7 +16,7 @@ import Page from '../../../layout/Page';
 const ShipsList = () => {
   const { ships, isLoading, isError } = useShips();
   const [subRow, setSubRow] = useState('');
-  console.log(subRow);
+
   const data = useMemo(
     () =>
       ships?.map((ship) => ({
@@ -84,13 +84,13 @@ const ShipsList = () => {
             onClick={() => setSubRow('infos')}
           >
             <a
-              className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-500 hover:bg-primary-600"
+              className="group btn btn-primary glass flex h-12 w-12 items-center justify-center rounded-full"
               {...row.getToggleRowExpandedProps()}
             >
               {row.isExpanded ? (
-                <BiDownArrow className="w-full duration-100 ease-in-out group-hover:text-primary-500" />
+                <BiDownArrow className="w-full text-primary-300 duration-100 ease-in-out group-hover:text-primary-500" />
               ) : (
-                <BiDownArrow className="w-full -rotate-90 duration-100 ease-in-out group-hover:text-primary-500" />
+                <BiDownArrow className="w-full -rotate-90 text-primary-300 duration-100 ease-in-out group-hover:text-primary-500" />
               )}
             </a>
           </div>

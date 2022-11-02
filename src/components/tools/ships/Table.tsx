@@ -60,26 +60,28 @@ export const Table = ({ columns: userColumns, data, subRow }) => {
             <div className="flex w-full flex-col">
               <h4 className="mb-8 font-title text-2xl">Equipage</h4>
               {row.original.crewSlots.map((crewSlot: any, index: number) => (
-                <span key={index}>
+                <span key={index} className="text-left">
                   {crewSlot.quantity} {crewSlot.type}
                 </span>
               ))}
             </div>
+            <div className="divider divider-horizontal" />
             <div className="flex w-full flex-col">
               <h4 className="mb-8 font-title text-2xl">Composants</h4>
               {row.original.componentSlots.map(
                 (componentSlot: any, index: number) => (
-                  <span key={index}>
+                  <span key={index} className="text-left">
                     {componentSlot.quantity} {componentSlot.type}
                   </span>
                 )
               )}
             </div>
+            <div className="divider divider-horizontal" />
             <div className="flex w-full flex-col">
               <h4 className="mb-8 font-title text-2xl">Modules</h4>
               {row.original.moduleSlots.map(
                 (moduleSlot: any, index: number) => (
-                  <span key={index}>
+                  <span key={index} className="text-left">
                     {moduleSlot.quantity} {moduleSlot.type}
                   </span>
                 )
@@ -87,7 +89,7 @@ export const Table = ({ columns: userColumns, data, subRow }) => {
             </div>
           </div>
         )
-      : () => <div className="flex p-4">ola</div>,
+      : () => <div className="flex p-4">En cours de construction ...</div>,
     []
   );
 
