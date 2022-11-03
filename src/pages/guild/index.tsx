@@ -34,7 +34,7 @@ const Guild = () => {
                 <DataBlock data={datas} />
               </div>
             </InnerSectionBlock>
-            <ParallaxBlock image="/assets/images/cloud_city.webp" speed={-10} />
+            <ParallaxBlock image="/assets/images/cloud_ship.webp" speed={-10} />
           </div>
         </Section>
         <Section title="adn" number="02" bgColor="bg-stone-50" uppercase>
@@ -44,7 +44,7 @@ const Guild = () => {
                 <DNABlock data={dna} />
               </div>
             </InnerSectionBlock>
-            <ParallaxBlock image="/assets/images/city_park.webp" speed={-10} />
+            <ParallaxBlock image="/assets/images/downtown.webp" speed={-10} />
           </div>
         </Section>
         <Section title="projet" number="03" bgColor="bg-stone-50" uppercase>
@@ -69,7 +69,10 @@ const Guild = () => {
                 </div>
               </div>
             </InnerSectionBlock>
-            <ParallaxBlock image="/assets/images/nightcity.webp" speed={-10} />
+            <ParallaxBlock
+              image="/assets/images/sunset_city.webp"
+              speed={-10}
+            />
           </div>
         </Section>
         <Section title="ressources" number="03" bgColor="bg-stone-50" uppercase>
@@ -79,7 +82,7 @@ const Guild = () => {
                 <ResourcesBlock data={resources} />
               </div>
             </InnerSectionBlock>
-            <ParallaxBlock image="/assets/images/spaceship.webp" speed={-10} />
+            <ParallaxBlock image="/assets/images/forest.webp" speed={-10} />
           </div>
         </Section>
         <Section title="profils" number="04" bgColor="bg-stone-50" uppercase>
