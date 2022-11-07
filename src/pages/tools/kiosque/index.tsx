@@ -43,7 +43,7 @@ const Tools = () => {
                       </h2>
                     </div>
                   </div>
-                  <div className="mt-12 flex flex-col space-x-0 space-y-16 lg:flex-row lg:space-x-8 lg:space-y-0">
+                  <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-3">
                     {info.webp.map((item, itemIndex) => (
                       <div
                         className="group card glass flex flex-col space-y-4 hover:shadow-xl"
@@ -53,7 +53,7 @@ const Tools = () => {
                           {({ openPortal, closePortal, portal }) => (
                             <React.Fragment>
                               <figure
-                                className="overflow-hidden hover:cursor-pointer"
+                                className="h-2/5 overflow-hidden hover:cursor-pointer"
                                 onClick={openPortal}
                               >
                                 <Image
