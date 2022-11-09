@@ -7,13 +7,11 @@ export const Infographics = [
       '/assets/infos/ships_roles_2.webp',
     ],
     png: ['/assets/infos/ships_roles.png', '/assets/infos/ships_roles_2.png'],
-    xls: ['/assets/infos/ships_roles.xls', '/assets/infos/ships_roles_2.xls'],
   },
   {
     title: 'Effectifs par rôle',
     webp: ['/assets/infos/ships_workforce.webp'],
     png: ['/assets/infos/ships_workforce.png'],
-    xls: ['/assets/infos/ships_workforce.xls'],
   },
   {
     title: 'Modules vaisseaux',
@@ -37,13 +35,6 @@ export const Infographics = [
       '/assets/infos/ships_mods_M.png',
       '/assets/infos/ships_mods_L.png',
       '/assets/infos/ships_mods_CAP_COM.png',
-    ],
-    xls: [
-      '/assets/infos/ships_mods_XXS_XS.xls',
-      '/assets/infos/ships_mods_S.xls',
-      '/assets/infos/ships_mods_M.xls',
-      '/assets/infos/ships_mods_L.xls',
-      '/assets/infos/ships_mods_CAP_COM.xls',
     ],
   },
 ];

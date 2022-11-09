@@ -2,6 +2,7 @@ import React from 'react';
 
 import Image from 'next/future/image';
 import { BiDownArrow, BiDownload } from 'react-icons/bi';
+import { SiMicrosoftexcel } from 'react-icons/si';
 import { PortalWithState } from 'react-portal';
 
 import Index from '../..';
@@ -27,7 +28,7 @@ const Tools = () => {
       <Page title="Kiosque" image="/assets/images/kiosk.webp">
         <div className="flex w-full flex-col items-center justify-center">
           <InnerSectionBlock bgColor={'from-primary-500/40'}>
-            <div className="flex w-full flex-col items-start space-y-24">
+            <div className="flex w-full flex-col items-center space-y-24">
               {Infographics.map((info, index) => (
                 <div
                   className="flex w-full flex-col items-start justify-center"
@@ -91,13 +92,23 @@ const Tools = () => {
                           )}
                           <DownloadLink url={info.webp[itemIndex]} ext="webp" />
                           <DownloadLink url={info.png[itemIndex]} ext="png" />
-                          <DownloadLink url={info.xls[itemIndex]} ext="xls" />
                         </div>
                       </div>
                     ))}
                   </div>
                 </div>
               ))}
+              <div className="flex items-center duration-200 ease-in-out">
+                <SiMicrosoftexcel className="mr-4 text-xl text-success" />
+                <a
+                  href="/assets/infos/ships.xlsx"
+                  download
+                  className="flex items-center hover:text-primary-500"
+                >
+                  Télécharger tableur général
+                  <BiDownload className="ml-2" />
+                </a>
+              </div>
             </div>
           </InnerSectionBlock>
         </div>
