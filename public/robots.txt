@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://solaris-qtt.com/
+
+# Sitemaps
+Sitemap: https://solaris-qtt.com/sitemap.xml
