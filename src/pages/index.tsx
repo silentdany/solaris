@@ -9,7 +9,11 @@ const Index = ({ children }) => (
   <>
     <div className="text-stone-600 antialiased">
       <div id="page-wrap" className="w-full">
-        <Meta title={AppConfig.site_name} description={AppConfig.description} />
+        <Meta
+          title={AppConfig.site_name}
+          description={AppConfig.description}
+          canonical={AppConfig.url}
+        />
         <Navbar />
         {children}
         <Footer />

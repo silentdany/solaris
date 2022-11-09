@@ -52,11 +52,17 @@ const Meta = (props: IMetaProps) => {
         description={props.description}
         canonical={props.canonical}
         openGraph={{
+          type: 'website',
+          locale: AppConfig.locale,
+          url: props.canonical,
           title: props.title,
           description: props.description,
-          url: props.canonical,
-          locale: AppConfig.locale,
           site_name: AppConfig.site_name,
+        }}
+        twitter={{
+          handle: '@SOLARIS_byQtt',
+          site: '@SOLARIS_byQtt',
+          cardType: 'summary_large_image',
         }}
       />
     </>

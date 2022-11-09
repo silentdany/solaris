@@ -8,10 +8,10 @@ export const AppConfig = {
   site_name: 'Solaris by QTT | Guilde française sur Star Atlas',
   title: 'Solaris',
   destructuredTitle: ['Solaris', 'QTT'],
-  url: 'solaris.qtt.com/',
+  url: 'solaris-qtt.com/',
   description:
     'Solaris, la branche spatiale de QTT, communauté P2E francophone !',
-  locale: 'fr',
+  locale: 'fr_FR',
   social: [
     {
       link: 'https://discord.com/invite/vECEHD6GdJ',
