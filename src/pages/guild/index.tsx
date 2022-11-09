@@ -25,7 +25,7 @@ const Guild = () => {
     <Index>
       <Hero />
       <div id="start">
-        <Section title="données" number="01" bgColor="bg-stone-50" uppercase>
+        <Section title="Données" number="01" bgColor="bg-stone-50" uppercase>
           <div className="flex w-full flex-col items-center justify-center">
             <InnerSectionBlock bgColor={'from-primary-500/40'} topBorder>
               <div className="flex w-full flex-col">
@@ -37,7 +37,7 @@ const Guild = () => {
             <ParallaxBlock image="/assets/images/cloud_ship.webp" speed={-10} />
           </div>
         </Section>
-        <Section title="adn" number="02" bgColor="bg-stone-50" uppercase>
+        <Section title="ADN" number="02" bgColor="bg-stone-50" uppercase>
           <div className="flex w-full flex-col items-center justify-center">
             <InnerSectionBlock bgColor={'from-primary-500/40'} topBorder>
               <div className="md:max-w-4xl">
@@ -47,7 +47,7 @@ const Guild = () => {
             <ParallaxBlock image="/assets/images/downtown.webp" speed={-10} />
           </div>
         </Section>
-        <Section title="projet" number="03" bgColor="bg-stone-50" uppercase>
+        <Section title="Projet" number="03" bgColor="bg-stone-50" uppercase>
           <div className="flex w-full flex-col items-center justify-center">
             <InnerSectionBlock bgColor={'from-primary-500/40'} topBorder>
               <div className="md:max-w-md lg:max-w-6xl">
@@ -75,7 +75,7 @@ const Guild = () => {
             />
           </div>
         </Section>
-        <Section title="ressources" number="03" bgColor="bg-stone-50" uppercase>
+        <Section title="Ressources" number="03" bgColor="bg-stone-50" uppercase>
           <div className="flex w-full flex-col items-center justify-center">
             <InnerSectionBlock bgColor={'from-primary-500/40'} topBorder>
               <div className="w-full md:max-w-6xl">
@@ -85,7 +85,7 @@ const Guild = () => {
             <ParallaxBlock image="/assets/images/forest.webp" speed={-10} />
           </div>
         </Section>
-        <Section title="profils" number="04" bgColor="bg-stone-50" uppercase>
+        <Section title="Profils" number="04" bgColor="bg-stone-50" uppercase>
           <div className="flex w-full flex-col items-center justify-center">
             <InnerSectionBlock bgColor={'from-primary-500/40'} topBorder>
               <div className="flex max-w-6xl flex-col md:flex-row md:space-x-16">

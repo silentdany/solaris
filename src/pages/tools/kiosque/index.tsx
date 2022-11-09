@@ -86,9 +86,9 @@ const Tools = () => {
                         </PortalWithState>
                         <div className="card-body flex flex-col space-y-2 text-sm">
                           {info.cardTitle && (
-                            <h4 className="card-title text-lg">
+                            <h3 className="card-title text-lg">
                               {info.cardTitle[itemIndex]}
-                            </h4>
+                            </h3>
                           )}
                           <DownloadLink url={info.webp[itemIndex]} ext="webp" />
                           <DownloadLink url={info.png[itemIndex]} ext="png" />

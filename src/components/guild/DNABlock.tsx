@@ -29,13 +29,13 @@ export const DNABlock = ({ data }) =>
             className="object-cover opacity-60 duration-300 ease-in-out group-hover:scale-105 group-hover:opacity-80"
             fill
           />
-          <h4
+          <h3
             className={`absolute bottom-0 text-4xl font-black uppercase text-primary-300 mix-blend-color-dodge duration-300 ease-in-out group-hover:mix-blend-normal ${
               index % 2 !== 0 ? 'left-4' : 'left-4 md:right-4 md:left-auto'
             }`}
           >
             {item.title}
-          </h4>
+          </h3>
         </div>
         <motion.div
           initial={{

@@ -22,9 +22,9 @@ export const DataBlock = ({ data }) => (
             <item.icon className="text-5xl text-accent lg:text-6xl" />
           </div>
           <div className="relative flex justify-center">
-            <h5 className="z-20 text-4xl font-extrabold uppercase tracking-tight text-primary-700/50 lg:text-5xl">
+            <h4 className="z-20 text-4xl font-extrabold uppercase tracking-tight text-primary-700/50 lg:text-5xl">
               {item.title}
-            </h5>
+            </h4>
             <p className="absolute -bottom-4 z-30 whitespace-nowrap text-2xl text-stone-600 duration-300 ease-in-out group-hover:translate-y-2 lg:text-3xl">
               {item.value}
             </p>

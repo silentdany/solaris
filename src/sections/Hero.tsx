@@ -72,9 +72,6 @@ const Hero = () => {
       >
         <div className="absolute h-full w-full animate-pulse-slow bg-black/10" />
         <div className="hero min-h-screen bg-base-200">
-          <h1 className="absolute bottom-0 left-8 font-hero text-5xl font-extrabold text-stone-50/10 mix-blend-overlay md:text-7xl lg:text-9xl">
-            Solaris
-          </h1>
           <div className="hero-content flex flex-col text-center">
             <div className="relative max-w-4xl">
               <div className="relative mt-16 font-hero text-6xl font-black tracking-wide text-stone-100 mix-blend-screen md:text-8xl">
@@ -114,7 +111,7 @@ const Hero = () => {
               />
             </div>
             <Link href="#start">
-              <a className="btn glass btn-circle animate-bounce-slow text-primary-500 transition">
+              <a className="btn btn-circle glass animate-bounce-slow text-primary-500 transition">
                 <HiChevronDoubleDown className="text-lg" />
               </a>
             </Link>

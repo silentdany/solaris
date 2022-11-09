@@ -9,7 +9,8 @@ export const AppConfig = {
   title: 'Solaris',
   destructuredTitle: ['Solaris', 'QTT'],
   url: 'solaris.qtt.com/',
-  description: 'La branche spatiale de QTT, communauté P2E francophone !',
+  description:
+    'Solaris, la branche spatiale de QTT, communauté P2E francophone !',
   locale: 'fr',
   social: [
     {
