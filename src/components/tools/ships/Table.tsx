@@ -2,11 +2,19 @@
 import React from 'react';
 
 import { BiDownArrow } from 'react-icons/bi';
-import { useSortBy, useTable, useExpanded } from 'react-table';
+import {
+  useSortBy,
+  useTable,
+  useExpanded,
+  useFilters,
+  useGlobalFilter,
+} from 'react-table';
 
-export const Table = ({ columns: userColumns, data, subRow }) => {
+export const Table = ({ columns: userColumns, data, subRow, header }) => {
   const tableInstance = useTable(
     { columns: userColumns, data },
+    useFilters,
+    useGlobalFilter,
     useSortBy,
     useExpanded
   );
@@ -31,10 +39,14 @@ export const Table = ({ columns: userColumns, data, subRow }) => {
       {column.render('Header')}
       {column.Header !== 'Infos' && (
         <BiDownArrow
-          className={`w-full -rotate-90 duration-100 ease-in-out group-hover:text-primary-500
-        ${column.isSortedDesc && 'rotate-0'}
-        ${column.isSorted && 'top-0 rotate-180'} 
-        `}
+          className={`w-full duration-100 ease-in-out group-hover:text-primary-500 
+            ${column.isSortedDesc ? 'rotate-0' : ''}
+            ${
+              column.isSorted && !column.isSortedDesc
+                ? 'top-0 rotate-180'
+                : '-rotate-90'
+            }
+            `}
         />
       )}
     </th>
@@ -94,45 +106,48 @@ export const Table = ({ columns: userColumns, data, subRow }) => {
   );
 
   return (
-    <table
-      {...getTableProps()}
-      className="w-full max-w-6xl table-fixed border-separate border-spacing-y-4"
-    >
-      <thead>
-        {headerGroups.map((headerGroup: any) => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column, index) => {
-              return buildTableHeader(column, index);
-            })}
-          </tr>
-        ))}
-      </thead>
-      <tbody {...getTableBodyProps()}>
-        {rows.map((row: any = {}) => {
-          prepareRow(row);
-          return (
-            <React.Fragment key={row.getRowProps().key}>
-              <tr
-                className="glass relative overflow-hidden rounded-xl transition-all duration-300 hover:shadow-lg"
-                style={{
-                  background: `linear-gradient(to right, transparent, #F2E9D3 35%, #F2E9D3 40%, transparent), no-repeat left/39% url(${row.original.image})`,
-                }}
-              >
-                {row.cells.map((cell, index) => {
-                  return buildTableData(row, cell, index);
-                })}
-              </tr>
-              {row.isExpanded && (
-                <tr className="glass relative overflow-hidden rounded-xl transition-all duration-300 hover:shadow-lg">
-                  <td colSpan={visibleColumns.length}>
-                    {renderRowSubComponent({ row })}
-                  </td>
+    <>
+      {header?.(tableInstance)}
+      <table
+        {...getTableProps()}
+        className="w-full max-w-6xl table-fixed border-separate border-spacing-y-4"
+      >
+        <thead>
+          {headerGroups.map((headerGroup: any) => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column, index) => {
+                return buildTableHeader(column, index);
+              })}
+            </tr>
+          ))}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {rows.map((row: any = {}) => {
+            prepareRow(row);
+            return (
+              <React.Fragment key={row.getRowProps().key}>
+                <tr
+                  className="glass relative overflow-hidden rounded-xl transition-all duration-300 hover:shadow-lg"
+                  style={{
+                    background: `linear-gradient(to right, transparent, #F2E9D3 35%, #F2E9D3 40%, transparent), no-repeat left/39% url(${row.original.image})`,
+                  }}
+                >
+                  {row.cells.map((cell, index) => {
+                    return buildTableData(row, cell, index);
+                  })}
                 </tr>
-              )}
-            </React.Fragment>
-          );
-        })}
-      </tbody>
-    </table>
+                {row.isExpanded && (
+                  <tr className="glass relative overflow-hidden rounded-xl transition-all duration-300 hover:shadow-lg">
+                    <td colSpan={visibleColumns.length}>
+                      {renderRowSubComponent({ row })}
+                    </td>
+                  </tr>
+                )}
+              </React.Fragment>
+            );
+          })}
+        </tbody>
+      </table>
+    </>
   );
 };

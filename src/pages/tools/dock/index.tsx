@@ -5,6 +5,7 @@ import { BiDownArrow } from 'react-icons/bi';
 import Index from '../..';
 import { RarityBadge } from '../../../components/tools/ships/RarityBadge';
 import { Table } from '../../../components/tools/ships/Table';
+import TableFilter from '../../../components/tools/ships/TableFilter';
 import { useInsensitiveSort } from '../../../hooks/useInsensitiveSort';
 import { useRarityOrder } from '../../../hooks/useRarityOrder';
 import useShips from '../../../hooks/useShips';
@@ -49,6 +50,7 @@ const ShipsList = () => {
             </span>
           </div>
         ),
+        filter: 'fuzzyText',
       },
       {
         Header: 'Taille',
@@ -108,7 +110,12 @@ const ShipsList = () => {
             <div className="font-title text-2xl">Erreur de chargement</div>
           )}
           {!isLoading && (
-            <Table columns={columns} data={data} subRow={subRow} />
+            <Table
+              columns={columns}
+              data={data}
+              subRow={subRow}
+              header={TableFilter}
+            />
           )}
         </InnerSectionBlock>
       </Page>
