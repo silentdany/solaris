@@ -41,13 +41,30 @@ const ShipsList = () => {
         accessor: 'model',
         sortType: useInsensitiveSort,
         Cell: (tableProps) => (
-          <div className="flex h-24 flex-col justify-center text-right">
-            <span className="-mb-3 align-bottom font-title text-lg">
-              {tableProps.row.original.attributes.make}
-            </span>
-            <span className="text-3xl font-bold text-secondary-300">
-              {tableProps.value}
-            </span>
+          <div
+            className="flex h-24 flex-col justify-center text-right"
+            onClick={() => setSubRow('infos')}
+          >
+            <div className="flex justify-between">
+              <a
+                className="group btn btn-primary glass flex h-12 w-12 items-center justify-center rounded-full"
+                {...tableProps.row.getToggleRowExpandedProps()}
+              >
+                {tableProps.row.isExpanded ? (
+                  <BiDownArrow className="w-full text-primary-300 duration-100 ease-in-out group-hover:text-primary-500" />
+                ) : (
+                  <BiDownArrow className="w-full -rotate-90 text-primary-300 duration-100 ease-in-out group-hover:text-primary-500" />
+                )}
+              </a>
+              <div className="flex flex-col">
+                <span className="-mb-3 align-bottom font-title text-lg">
+                  {tableProps.row.original.attributes.make}
+                </span>
+                <span className="text-3xl font-bold text-secondary-300">
+                  {tableProps.value}
+                </span>
+              </div>
+            </div>
           </div>
         ),
         filter: 'fuzzyText',
@@ -76,27 +93,6 @@ const ShipsList = () => {
         accessor: 'rarity',
         sortType: useRarityOrder,
         Cell: (tableProps) => <RarityBadge rarity={tableProps.value} />,
-      },
-      {
-        Header: 'Infos',
-        id: 'expander',
-        Cell: ({ row }) => (
-          <div
-            className="flex justify-center"
-            onClick={() => setSubRow('infos')}
-          >
-            <a
-              className="group btn btn-primary glass flex h-12 w-12 items-center justify-center rounded-full"
-              {...row.getToggleRowExpandedProps()}
-            >
-              {row.isExpanded ? (
-                <BiDownArrow className="w-full text-primary-300 duration-100 ease-in-out group-hover:text-primary-500" />
-              ) : (
-                <BiDownArrow className="w-full -rotate-90 text-primary-300 duration-100 ease-in-out group-hover:text-primary-500" />
-              )}
-            </a>
-          </div>
-        ),
       },
     ],
     []
