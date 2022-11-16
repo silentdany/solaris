@@ -110,12 +110,14 @@ const ShipsList = () => {
             <div className="font-title text-2xl">Erreur de chargement</div>
           )}
           {!isLoading && (
-            <Table
-              columns={columns}
-              data={data}
-              subRow={subRow}
-              header={TableFilter}
-            />
+            <div className="flex flex-col space-y-8">
+              <Table
+                columns={columns}
+                data={data}
+                subRow={subRow}
+                header={TableFilter}
+              />
+            </div>
           )}
         </InnerSectionBlock>
       </Page>
