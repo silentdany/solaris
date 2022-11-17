@@ -13,7 +13,7 @@ module.exports = {
       },
     }),
     require('tailwindcss-scoped-groups')({
-      groups: ['solar-btn'],
+      groups: ['solar-btn', 'search-box', 'search-box-input'],
     }),
   ],
   daisyui: {
