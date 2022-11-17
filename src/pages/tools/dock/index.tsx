@@ -6,7 +6,6 @@ import Index from '../..';
 import { RarityBadge } from '../../../components/tools/ships/RarityBadge';
 import { Table } from '../../../components/tools/ships/Table';
 import TableFilter from '../../../components/tools/ships/TableFilter';
-import { useInsensitiveSort } from '../../../hooks/useInsensitiveSort';
 import { useRarityOrder } from '../../../hooks/useRarityOrder';
 import useShips from '../../../hooks/useShips';
 import { useShipSize } from '../../../hooks/useShipSize';
@@ -22,7 +21,7 @@ const ShipsList = () => {
     () =>
       ships?.map((ship) => ({
         image: ship.image,
-        model: ship.attributes.model,
+        name: ship.name,
         class: ship.attributes.class.toLowerCase(),
         spec: ship.attributes.spec,
         rarity: ship.attributes.rarity,
@@ -38,8 +37,8 @@ const ShipsList = () => {
     () => [
       {
         Header: 'Modèle',
-        accessor: 'model',
-        sortType: useInsensitiveSort,
+        accessor: 'name',
+        // sortType: useInsensitiveSort,
         Cell: (tableProps) => (
           <div
             className="flex h-24 flex-col justify-center text-right"
@@ -61,7 +60,7 @@ const ShipsList = () => {
                   {tableProps.row.original.attributes.make}
                 </span>
                 <span className="text-3xl font-bold text-secondary-300">
-                  {tableProps.value}
+                  {tableProps.row.original.attributes.model}
                 </span>
               </div>
             </div>
