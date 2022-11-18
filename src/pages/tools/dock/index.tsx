@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 
 import { BiDownArrow } from 'react-icons/bi';
 
@@ -15,7 +15,6 @@ import Page from '../../../layout/Page';
 
 const ShipsList = () => {
   const { ships, isLoading, isError } = useShips();
-  const [subRow, setSubRow] = useState('');
 
   const data = useMemo(
     () =>
@@ -29,6 +28,7 @@ const ShipsList = () => {
         crewSlots: ship.slots.crewSlots,
         componentSlots: ship.slots.componentSlots,
         moduleSlots: ship.slots.moduleSlots,
+        media: ship.media.gallery,
       })),
     [ships]
   );
@@ -40,10 +40,7 @@ const ShipsList = () => {
         accessor: 'name',
         // sortType: useInsensitiveSort,
         Cell: (tableProps) => (
-          <div
-            className="flex h-24 flex-col justify-center text-right"
-            onClick={() => setSubRow('infos')}
-          >
+          <div className="flex h-24 flex-col justify-center text-right">
             <div className="flex justify-between">
               <a
                 className="group btn btn-primary glass flex h-12 w-12 items-center justify-center rounded-full"
@@ -106,12 +103,7 @@ const ShipsList = () => {
           )}
           {!isLoading && (
             <div className="flex flex-col space-y-8">
-              <Table
-                columns={columns}
-                data={data}
-                subRow={subRow}
-                header={TableFilter}
-              />
+              <Table columns={columns} data={data} header={TableFilter} />
             </div>
           )}
         </InnerSectionBlock>
