@@ -1,8 +1,19 @@
 import React, { useState } from 'react';
 
 import Image from 'next/future/image';
+import { BsConeStriped } from 'react-icons/bs';
+import { PortalWithState } from 'react-portal';
+import { Pagination, Lazy, FreeMode, Navigation, Thumbs } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/lazy';
+import 'swiper/css/pagination';
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
 
 import { useShipSize } from '../../../hooks/useShipSize';
+import { Modal } from '../../../layout/Modal';
 
 const SlotComponent = ({ slot, noSize = false }) => {
   const slotSize = useShipSize(slot.size);
@@ -51,25 +62,89 @@ const renderSpecs = (row) => {
   );
 };
 
-const renderVisuals = (row) => (
-  <div className="columns-3 gap-4 p-4">
-    {row.original.media.map((image: string, index: number) => (
-      <div key={`item${index + 1}`} className="mb-4 w-full">
-        <Image
-          src={image}
-          className="w-full"
-          width={500}
-          height={500}
-          alt={`${row.original.name} picture n°${index + 1}`}
-        />
-      </div>
-    ))}
+const renderVisuals = (row, thumbsSwiper, setThumbsSwiper) => {
+  return (
+    <div className="p-4">
+      <Swiper
+        loop={true}
+        navigation={true}
+        pagination={{
+          type: 'progressbar',
+        }}
+        lazy={true}
+        thumbs={{ swiper: thumbsSwiper }}
+        modules={[Lazy, Pagination, FreeMode, Navigation, Thumbs]}
+        className="swiperMain relative h-96 overflow-hidden rounded-t-lg border-b-4 border-primary-500"
+      >
+        {row.original.media.map((image: string, index: number) => (
+          <SwiperSlide key={`item${index + 1}`}>
+            <PortalWithState closeOnOutsideClick closeOnEsc>
+              {({ openPortal, closePortal, portal }) => (
+                <React.Fragment>
+                  <Image
+                    src={image}
+                    alt={`${row.original.name} picture n°${index + 1}`}
+                    className="swiper-lazy object-cover transition-all duration-500 hover:scale-105 hover:cursor-pointer"
+                    fill
+                    onClick={openPortal}
+                  />
+                  <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                  {portal(
+                    <Modal
+                      item={
+                        <Image
+                          src={image}
+                          alt={`${row.original.name} picture n°${index + 1}`}
+                          width={1170}
+                          height={600}
+                          className="flex justify-center rounded-xl object-cover shadow-xl"
+                        />
+                      }
+                      closePortal={closePortal}
+                    />
+                  )}
+                </React.Fragment>
+              )}
+            </PortalWithState>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+      <Swiper
+        onSwiper={setThumbsSwiper}
+        loop={true}
+        slidesPerView={5}
+        freeMode={true}
+        watchSlidesProgress={true}
+        modules={[FreeMode, Navigation, Thumbs]}
+        className="swiperGallery h-24 cursor-grab border-x-2 border-b-4 border-primary-500"
+      >
+        {row.original.media.map((image: string, index: number) => (
+          <SwiperSlide
+            key={`item${index + 1}`}
+            className="border-x-2 border-primary-500"
+          >
+            <Image
+              src={image}
+              alt={`${row.original.name} picture n°${index + 1}`}
+              className="object-cover"
+              fill
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+  );
+};
+
+const renderEconomy = () => (
+  <div className="relative flex h-80 items-center justify-center p-4 text-2xl font-extrabold tracking-widest">
+    Bientôt
+    <BsConeStriped className="absolute text-9xl opacity-25" />
   </div>
 );
 
-const renderEconomy = () => <div className="flex p-4">ECONOMIE</div>;
-
 export const SubComponent = ({ row }) => {
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [render, setRender] = useState(renderSpecs(row));
   const [activeRender, setActiveRender] = useState('specs');
 
@@ -100,7 +175,7 @@ export const SubComponent = ({ row }) => {
         <MenuBtn
           title="Visuels"
           label="visuals"
-          childRender={renderVisuals(row)}
+          childRender={renderVisuals(row, thumbsSwiper, setThumbsSwiper)}
         />
         <MenuBtn
           title="Economie"

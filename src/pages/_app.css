@@ -15,3 +15,8 @@
 body {
   font-family: 'Poppins', sans-serif;
 }
+
+.swiperMain {
+  --swiper-navigation-color: #d0a341;
+  --swiper-pagination-color: #526d96;
+}
