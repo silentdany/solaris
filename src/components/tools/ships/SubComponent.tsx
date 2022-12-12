@@ -2,36 +2,54 @@ import React, { useState } from 'react';
 
 import Image from 'next/future/image';
 
-const renderSpecs = (row) => (
-  <div className="flex p-4">
-    <div className="flex w-full flex-col">
-      <h4 className="mb-8 font-title text-2xl">Equipage</h4>
-      {row.original.crewSlots.map((crewSlot: any, index: number) => (
-        <span key={index} className="text-left">
-          {crewSlot.quantity} {crewSlot.type}
-        </span>
-      ))}
+import { useShipSize } from '../../../hooks/useShipSize';
+
+const SlotComponent = ({ slot, noSize = false }) => {
+  const slotSize = useShipSize(slot.size);
+  return (
+    <div className="grid grid-cols-10 justify-items-center gap-4">
+      <div className="col-span-1 justify-self-end text-secondary-500">
+        {slot.quantity}
+      </div>
+      {!noSize && (
+        <div className="col-span-2 inline-flex h-5 w-5 min-w-min items-center justify-center rounded-full border-2 border-stone-600 px-1 text-xs font-bold uppercase">
+          {slotSize}
+        </div>
+      )}
+      <div className="col-span-7 justify-self-start">{slot.type}</div>
     </div>
-    <div className="divider divider-horizontal" />
-    <div className="flex w-full flex-col">
-      <h4 className="mb-8 font-title text-2xl">Composants</h4>
-      {row.original.componentSlots.map((componentSlot: any, index: number) => (
-        <span key={index} className="text-left">
-          {componentSlot.quantity} {componentSlot.type}
-        </span>
-      ))}
+  );
+};
+const renderSpecs = (row) => {
+  return (
+    <div className="flex p-4">
+      <div className="flex w-full flex-col px-4">
+        <h4 className="mb-8 font-title text-2xl font-bold">Equipage</h4>
+        {row.original.crewSlots.map((crewSlot: any, index: number) => (
+          <SlotComponent slot={crewSlot} noSize key={index} />
+        ))}
+      </div>
+      <div className="divider divider-horizontal" />
+      <div className="flex w-full flex-col px-4">
+        <h4 className="mb-8 font-title text-2xl font-bold">Composants</h4>
+        {row.original.componentSlots.map(
+          (componentSlot: any, index: number) => (
+            <SlotComponent slot={componentSlot} key={index} />
+          )
+        )}
+      </div>
+      <div className="divider divider-horizontal" />
+      <div className="flex w-full flex-col px-4">
+        <h4 className="mb-8 font-title text-2xl font-bold">Modules</h4>
+        {row.original.moduleSlots.map((moduleSlot: any, index: number) => (
+          <span key={index} className="text-left">
+            <SlotComponent slot={moduleSlot} key={index} />
+          </span>
+        ))}
+      </div>
     </div>
-    <div className="divider divider-horizontal" />
-    <div className="flex w-full flex-col">
-      <h4 className="mb-8 font-title text-2xl">Modules</h4>
-      {row.original.moduleSlots.map((moduleSlot: any, index: number) => (
-        <span key={index} className="text-left">
-          {moduleSlot.quantity} {moduleSlot.type}
-        </span>
-      ))}
-    </div>
-  </div>
-);
+  );
+};
 
 const renderVisuals = (row) => (
   <div className="columns-3 gap-4 p-4">

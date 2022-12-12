@@ -30,6 +30,10 @@ const array = [
     order: 7,
     size: 'commander',
   },
+  {
+    order: 8,
+    size: 'titan',
+  },
 ];
 
 export const useShipSizeOrder = (rowA: Row, rowB: Row, columnId: string) => {

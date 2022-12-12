@@ -15,6 +15,8 @@ export const useShipSize = (size) => {
       return 'cap';
     case 'commander':
       return 'com';
+    case 'titan':
+      return 't';
     default:
       return '?';
   }
