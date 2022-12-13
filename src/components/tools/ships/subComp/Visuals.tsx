@@ -19,6 +19,25 @@ import 'swiper/css/thumbs';
 
 import { Modal } from '../../../../layout/Modal';
 
+const shimmer = (w: number, h: number) => `
+<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="g">
+      <stop stop-color="#3e5982" offset="20%" />
+      <stop stop-color="#526d96" offset="50%" />
+      <stop stop-color="#3e5982" offset="70%" />
+    </linearGradient>
+  </defs>
+  <rect width="${w}" height="${h}" fill="#ffd5733e" />
+  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
+  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
+</svg>`;
+
+const toBase64 = (str: string) =>
+  typeof window === 'undefined'
+    ? Buffer.from(str).toString('base64')
+    : window.btoa(str);
+
 export const Visuals = ({ row }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);
 
@@ -48,6 +67,10 @@ export const Visuals = ({ row }) => {
                     fill
                     sizes="(min-width: 1024px) 75vw, (min-width: 768px) 90vw, 100vw"
                     className="swiper-lazy object-cover transition-all duration-500 hover:scale-105 hover:cursor-pointer"
+                    placeholder="blur"
+                    blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                      shimmer(700, 475)
+                    )}`}
                     onClick={openPortal}
                   />
                   <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
@@ -61,6 +84,10 @@ export const Visuals = ({ row }) => {
                           height={600}
                           sizes="(min-width: 1024px) 75vw, (min-width: 768px) 90vw, 100vw"
                           className="flex justify-center rounded-xl object-cover shadow-xl"
+                          placeholder="blur"
+                          blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                            shimmer(700, 475)
+                          )}`}
                         />
                       }
                       closePortal={closePortal}
@@ -93,6 +120,10 @@ export const Visuals = ({ row }) => {
               className="object-cover"
               fill
               sizes="(min-width: 1024px) 75vw, (min-width: 768px) 90vw, 100vw"
+              placeholder="blur"
+              blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                shimmer(700, 475)
+              )}`}
             />
           </SwiperSlide>
         ))}
