@@ -176,6 +176,7 @@ export const resources = [
     list: [
       'Elaboration de la structure de guilde',
       'Réalisation d’animations et de Lives',
+      'Génération de contenu par IA',
       'Développement de projets UE5',
       'Développement d’outils Web3',
       'Recrutement de 700+ membres',
