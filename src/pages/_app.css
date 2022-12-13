@@ -20,3 +20,7 @@ body {
   --swiper-navigation-color: #d0a341;
   --swiper-pagination-color: #526d96;
 }
+
+.swiperGallery .swiper-slide-thumb-active {
+  opacity: 1;
+}
