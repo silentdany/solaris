@@ -18,7 +18,16 @@ const data = [
   },
   {
     title: 'Dock',
-    text: 'Découvrez toutes les données des vaisseaux du jeu condensées en une application simple et intuitive.',
+    text: (
+      <>
+        <p>
+          Découvrez toutes les données des vaisseaux du jeu condensées en une
+          application simple et intuitive.
+        </p>
+        <p className="text-stone-50/50">(Version bêta)</p>
+      </>
+    ),
+
     url: '/tools/dock',
     color: 'border-stone-700',
     image: '/assets/images/dock.webp',
