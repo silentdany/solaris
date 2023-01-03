@@ -2,7 +2,6 @@ import React from 'react';
 
 import Image from 'next/future/image';
 import { BiDownArrow, BiDownload } from 'react-icons/bi';
-import { SiMicrosoftexcel } from 'react-icons/si';
 import { PortalWithState } from 'react-portal';
 
 import Index from '../..';
@@ -98,7 +97,7 @@ const Tools = () => {
                   </div>
                 </div>
               ))}
-              <div className="flex items-center duration-200 ease-in-out">
+              {/* <div className="flex items-center duration-200 ease-in-out">
                 <SiMicrosoftexcel className="mr-4 text-xl text-success" />
                 <a
                   href="/assets/infos/ships.xlsx"
@@ -108,7 +107,7 @@ const Tools = () => {
                   Télécharger tableur général
                   <BiDownload className="ml-2" />
                 </a>
-              </div>
+              </div> */}
             </div>
           </InnerSectionBlock>
         </div>
