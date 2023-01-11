@@ -22,7 +22,7 @@ export const SubComponent = ({ row }) => {
 
   const MenuBtn = ({ title, label, childRender }) => (
     <div
-      className={`w-1/3 cursor-pointer border-b-4 p-4 text-center font-bold ${
+      className={`w-1/3 cursor-pointer border-b-4 p-3 text-center text-xs font-bold lg:p-4 lg:text-base ${
         activeRender === label ? 'border-secondary-500' : 'border-primary-300'
       }`}
       onClick={() => handleRender(childRender, label)}

@@ -104,8 +104,8 @@ export const Table = ({ columns: userColumns, data, header }) => {
                   })}
                 </tr>
                 {row.isExpanded && (
-                  <tr className="glass relative overflow-hidden rounded-xl transition-all duration-300 hover:shadow-lg">
-                    <td colSpan={visibleColumns.length}>
+                  <tr className="glass relative overflow-hidden rounded-xl transition-all duration-300 hover:shadow-lg ">
+                    <td colSpan={visibleColumns.length} className="rounded-xl">
                       {renderRowSubComponent({ row })}
                     </td>
                   </tr>
