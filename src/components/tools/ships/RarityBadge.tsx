@@ -1,8 +1,8 @@
 export const RarityBadge = ({ rarity }) => {
   return (
-    <div className="flex items-center justify-end px-8">
+    <div className="flex items-center justify-end px-1 lg:px-8">
       <div
-        className={`w-full border-b-4 bg-gradient-to-t py-1 ${
+        className={`w-full truncate border-b-4 bg-gradient-to-t py-1 ${
           rarity === 'common' && 'border-common from-common/10'
         } ${rarity === 'uncommon' && 'border-uncommon from-uncommon/10'} ${
           rarity === 'rare' && 'border-rare from-rare/10'

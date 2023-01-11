@@ -33,7 +33,7 @@ export const Table = ({ columns: userColumns, data, header }) => {
   const buildTableHeader = (column, index) => (
     <th
       {...column.getHeaderProps(column.getSortByToggleProps())}
-      className={`group pb-4 font-title text-xl 
+      className={`group pb-4 font-title lg:text-xl 
                 ${index === 0 && 'w-2/6'}
 
                 `}
@@ -57,7 +57,7 @@ export const Table = ({ columns: userColumns, data, header }) => {
   const buildTableData = (row, cell, index) => (
     <td
       {...cell.getCellProps()}
-      className={`h-32 p-8 text-center
+      className={`h-16 p-1 text-center text-xs lg:h-32 lg:p-8 lg:text-base
                   ${index !== 0 && 'tr-cell'} 
                   ${index === 0 && 'rounded-l-xl'} 
                   ${index === row.cells.length - 1 && 'rounded-r-xl'}
@@ -96,7 +96,7 @@ export const Table = ({ columns: userColumns, data, header }) => {
                 <tr
                   className="glass relative overflow-hidden rounded-xl transition-all duration-300 hover:shadow-lg"
                   style={{
-                    background: `linear-gradient(to right, transparent, #F2E9D3 35%, #F2E9D3 40%, transparent), no-repeat left/39% url(${row.original.image})`,
+                    background: `linear-gradient(to right, transparent, #F2E9D3 35%, #F2E9D3 40%, transparent), no-repeat left/50% url(${row.original.image})`,
                   }}
                 >
                   {row.cells.map((cell, index) => {
