@@ -3,5 +3,6 @@ export const bcData = [
   { item: 'tools', title: 'Outils', path: '/tools' },
   { item: 'dock', title: 'Dock', path: '/tools/dock' },
   { item: 'kiosque', title: 'Kiosque', path: '/tools/kiosque' },
+  { item: 'armada', title: 'Armada', path: '/tools/armada' },
   { item: 'design', title: 'Design', path: '/design' },
 ];
