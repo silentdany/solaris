@@ -40,10 +40,18 @@ const Tools = () => {
         <div className="flex w-full flex-col items-center justify-center">
           <InnerSectionBlock bgColor={'from-primary-500/40'} fullscreen={true}>
             <div className="flex h-full w-full flex-col">
-              <div className="bg-stone-900 p-8">
+              <div
+                className="px-18 p-8"
+                style={{
+                  background:
+                    'linear-gradient(180deg, rgb(0 0 0 / 0) 0%, rgb(28 25 23 / 0.25) 10%, rgb(28 25 23 / 0.75) 29%, rgb(28 25 23 / 0.75) 71%, rgb(28 25 23 / 0.25) 90%, rgb(0 0 0 / 0) 100%)',
+                }}
+              >
                 {isError && <p>Erreur lors du chargement.</p>}
                 {isLoading ? (
-                  <p>Chargement ...</p>
+                  <p className="flex h-[60vh] w-full items-center justify-center">
+                    Chargement ...
+                  </p>
                 ) : (
                   <div className="h-[60vh] w-full">
                     <Swiper
@@ -54,11 +62,12 @@ const Tools = () => {
                       centeredSlides={true}
                       slidesPerView={3}
                       coverflowEffect={{
-                        rotate: 50,
+                        rotate: 45,
                         stretch: 0,
                         depth: 100,
                         modifier: 1,
-                        slideShadows: true,
+                        slideShadows: false,
+                        scale: 0.9,
                       }}
                       modules={[EffectCoverflow, Mousewheel]}
                       className="mySwiper h-full"
@@ -72,7 +81,7 @@ const Tools = () => {
                             <>
                               <div
                                 className={`w-1/3 duration-300 ease-in-out ${
-                                  !isActive && 'translate-x-40 opacity-25'
+                                  !isActive && 'translate-x-full opacity-0'
                                 }`}
                                 style={
                                   isActive
@@ -119,9 +128,10 @@ const Tools = () => {
                                 </div>
                               </div>
                               <div
-                                className={`card glass relative z-10 w-1/3 shadow-lg duration-300 ease-in-out ${
-                                  isActive && 'scale-110 '
-                                } ${!isActive && 'opacity-60'} ${
+                                className={`card relative z-10 w-1/3 shadow-lg duration-300 ease-in-out ${
+                                  isActive && 'scale-110'
+                                }
+                                ${!isActive && 'opacity-30'} ${
                                   isActive &&
                                   ship.rarity === 'common' &&
                                   'shadow-common'
@@ -150,14 +160,14 @@ const Tools = () => {
                                 <Image
                                   src={ship.image}
                                   alt={ship.name}
-                                  className="w-full object-cover opacity-60 duration-300 ease-in-out group-hover:scale-105 group-hover:opacity-80"
+                                  className="w-full object-cover duration-300 ease-in-out"
                                   fill
                                   sizes="(min-width: 1024px) 1024px, 100vw"
                                 />
                               </div>
                               <div
                                 className={`w-1/3 duration-300 ease-in-out ${
-                                  !isActive && '-translate-x-40 opacity-25'
+                                  !isActive && '-translate-x-full opacity-0'
                                 }`}
                                 style={
                                   isActive
@@ -169,7 +179,7 @@ const Tools = () => {
                                 }
                               >
                                 <div
-                                  className="card glass z-10 mx-12 flex h-full flex-col items-center justify-center "
+                                  className="card glass z-10 mx-12 flex h-full flex-col items-start justify-between p-4 "
                                   style={
                                     isActive
                                       ? {
@@ -180,16 +190,18 @@ const Tools = () => {
                                       : {}
                                   }
                                 >
-                                  <h3 className="text-xl font-bold text-white">
-                                    Owners
+                                  <h3 className="text-2xl font-bold text-primary-500">
+                                    Pilotes
                                   </h3>
-                                  <ul>
-                                    <li className="text-white">XlfT...LK7g</li>
-                                    <li className="text-white">
-                                      AdffT...KFF7g
+                                  <ul className="flex w-full flex-1 items-center justify-center space-x-2">
+                                    <li className="flex h-8 w-8 items-center justify-center rounded-full border-[3px] border-stone-700 bg-blue-500/25 font-extrabold text-stone-700 lg:h-10 lg:w-10">
+                                      Xlt
                                     </li>
-                                    <li className="text-white">
-                                      DlfezT...SKFg
+                                    <li className="flex h-8 w-8 items-center justify-center rounded-full border-[3px] border-stone-700 bg-red-500/25 font-extrabold text-stone-700 lg:h-10 lg:w-10">
+                                      Adf
+                                    </li>
+                                    <li className="flex h-8 w-8 items-center justify-center rounded-full border-[3px] border-stone-700 bg-yellow-500/25 font-extrabold text-stone-700 lg:h-10 lg:w-10">
+                                      Dlf
                                     </li>
                                   </ul>
                                 </div>
@@ -202,7 +214,6 @@ const Tools = () => {
                   </div>
                 )}
               </div>
-              <div className="h-24 w-full bg-gradient-to-b from-stone-900"></div>
             </div>
           </InnerSectionBlock>
         </div>
