@@ -7,16 +7,17 @@ import { RarityBadge } from '../../../components/tools/ships/RarityBadge';
 import { Table } from '../../../components/tools/ships/Table';
 import TableFilter from '../../../components/tools/ships/TableFilter';
 import { useBreakWord } from '../../../hooks/useBreakWords';
+import useNFTs from '../../../hooks/useNFTs';
 import { useRarityOrder } from '../../../hooks/useRarityOrder';
-import useShips from '../../../hooks/useShips';
 import { useShipSize } from '../../../hooks/useShipSize';
 import { useShipSizeOrder } from '../../../hooks/useShipSizeOrder';
 import InnerSectionBlock from '../../../layout/InnerSectionBlock';
 import Page from '../../../layout/Page';
 
 const ShipsList = () => {
-  const { ships, isLoading, isError } = useShips();
+  const { NFTs, NFTsLoading, NFTsError } = useNFTs();
 
+  const ships = NFTs.filter((ship) => ship.attributes.category === 'ship');
   const data = useMemo(
     () =>
       ships?.map((ship) => ({
@@ -99,10 +100,10 @@ const ShipsList = () => {
     <Index>
       <Page title="Dock" image="/assets/images/dock.webp">
         <InnerSectionBlock bgColor={'from-primary-500/40'}>
-          {isError && (
+          {NFTsError && (
             <div className="font-title text-2xl">Erreur de chargement</div>
           )}
-          {!isLoading && (
+          {!NFTsLoading && (
             <div className="flex flex-col space-y-8">
               <Table columns={columns} data={data} header={TableFilter} />
             </div>

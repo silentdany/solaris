@@ -3,15 +3,15 @@ import useSWR from 'swr';
 const galaxyUrl = 'https://galaxy.staratlas.com/nfts';
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-const useShips = () => {
+const useNFTs = () => {
   const { data, error } = useSWR(galaxyUrl, fetcher);
-  const ships = data?.filter((ship) => ship.attributes.itemType === 'ship');
+  const NFTs = data;
 
   return {
-    ships,
-    isLoading: !error && !data,
-    isError: error,
+    NFTs,
+    NFTsLoading: !error && !data,
+    NFTsError: error,
   };
 };
 
-export default useShips;
+export default useNFTs;
