@@ -1,6 +1,7 @@
 export const Infographics = [
   {
     title: 'Rôle vaisseaux',
+    anchor: 'ships-roles',
     cardTitle: ['Partie 1', 'Partie 2'],
     webp: [
       '/assets/infos/ships_roles.webp',
@@ -10,11 +11,13 @@ export const Infographics = [
   },
   {
     title: 'Effectifs par rôle',
+    anchor: 'ships-workforce',
     webp: ['/assets/infos/ships_workforce.webp'],
     png: ['/assets/infos/ships_workforce.png'],
   },
   {
     title: 'Modules vaisseaux',
+    anchor: 'ships-mods',
     cardTitle: [
       'Taille XXS & XS',
       'Taille S',
