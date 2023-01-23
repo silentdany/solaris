@@ -10,6 +10,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Index from '../..';
 import { topHodlers } from '../../../../data/topHodlers';
+import { Loader } from '../../../components/Loader';
 import useGuildMembers from '../../../hooks/useGuildMembers';
 import InnerSectionBlock from '../../../layout/InnerSectionBlock';
 import Page from '../../../layout/Page';
@@ -19,7 +20,6 @@ const Armada = () => {
 
   const [loading, setLoading] = useState(true);
   const [guildFleet, setGuildFleet] = useState<any[]>([]);
-  console.log('🚀 ~ file: index.tsx:26 ~ Armada ~ guildFleet', guildFleet);
   // const [guildTotalAssetsValue, setGuildTotalAssetsValue] = useState(0);
 
   // const rarityOrder = [
@@ -32,9 +32,9 @@ const Armada = () => {
   // ];
 
   const getGuildFleet = (members) => {
-    const fleet = members.reduce((acc, member) => {
+    const fleet = members?.reduce((acc, member) => {
       const ships = member.nfts.filter(
-        (nft) => nft.galaxyData.attributes.category === 'ship'
+        (nft) => nft?.galaxyData?.attributes.category === 'ship'
       );
       ships.forEach((ship) => {
         const { mint } = ship.galaxyData;
@@ -65,7 +65,7 @@ const Armada = () => {
   //   );
 
   useEffect(() => {
-    if (!membersLoading) {
+    if (guildMembers.length > 0) {
       setGuildFleet(getGuildFleet(guildMembers));
       setLoading(false);
     }
@@ -90,9 +90,9 @@ const Armada = () => {
                 }}
               >
                 {loading ? (
-                  <p className="flex h-[60vh] w-full items-center justify-center">
-                    Chargement ...
-                  </p>
+                  <div className="flex h-[60vh] w-full items-center justify-center">
+                    <Loader />
+                  </div>
                 ) : (
                   <div className="h-[60vh] w-full">
                     <Swiper
@@ -113,8 +113,8 @@ const Armada = () => {
                       modules={[EffectCoverflow, Mousewheel]}
                       className="mySwiper h-full"
                     >
-                      {guildFleet.map((ship) => {
-                        const shipData = ship.data.galaxyData;
+                      {guildFleet.map((fleet) => {
+                        const shipData = fleet.data.galaxyData;
                         return (
                           <SwiperSlide
                             key={shipData.name}
@@ -158,12 +158,12 @@ const Armada = () => {
                                     <div className="flex w-full items-center justify-end text-2xl text-gray-400">
                                       x
                                       <span className="text-4xl text-primary-300">
-                                        {ship.quantity}
+                                        {fleet.quantity}
                                       </span>
                                     </div>
                                     <div className="flex w-full justify-end text-xl text-gray-400">
                                       {getValueWithSeparators(
-                                        (ship.quantity * ship.value).toFixed(0)
+                                        fleet.value.toFixed(0)
                                       )}
                                       <BiDollarCircle className="ml-1 text-2xl text-yellow-500" />
                                     </div>

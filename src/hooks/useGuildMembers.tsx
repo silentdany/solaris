@@ -26,19 +26,11 @@ interface GuildMember {
 }
 
 const useGuildMembers = (pubKeys) => {
-  const { NFTs, NFTsLoading, NFTsError } = useNFTs();
+  const { NFTs } = useNFTs();
 
   const [guildMembers, setGuildMembers] = useState<GuildMember[]>([]);
   const [membersLoading, setMembersLoading] = useState(false);
   const [membersError, setMembersError] = useState<any | null>(null);
-
-  const getGalaxyData = (mint: string) => {
-    if (!NFTsLoading && !NFTsError) {
-      const ship = NFTs.find((galaxy) => galaxy.mint === mint);
-      return ship;
-    }
-    throw new Error(`No ship found for mint ${mint}`);
-  };
 
   useEffect(() => {
     setMembersLoading(true);
@@ -53,7 +45,7 @@ const useGuildMembers = (pubKeys) => {
           return {
             ...rest,
             nfts: balances.map(({ mint, quantity, valuePerAsset }) => {
-              const galaxyData = getGalaxyData(mint);
+              const galaxyData = NFTs.find((galaxy) => galaxy.mint === mint);
               return {
                 galaxyData,
                 quantity,
@@ -70,7 +62,7 @@ const useGuildMembers = (pubKeys) => {
       }
     };
     fetchData();
-  }, [pubKeys]);
+  }, [NFTs, pubKeys]);
 
   return { guildMembers, membersLoading, membersError };
 };
