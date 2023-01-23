@@ -17,7 +17,7 @@ import Page from '../../../layout/Page';
 const ShipsList = () => {
   const { NFTs, NFTsLoading, NFTsError } = useNFTs();
 
-  const ships = NFTs.filter((ship) => ship.attributes.category === 'ship');
+  const ships = NFTs?.filter((ship) => ship.attributes.category === 'ship');
   const data = useMemo(
     () =>
       ships?.map((ship) => ({
@@ -44,13 +44,13 @@ const ShipsList = () => {
         Cell: (tableProps) => (
           <div className="flex h-full flex-col justify-center text-right">
             <a
-              className="group glass absolute left-1 bottom-1 flex h-6 w-6 items-center justify-center rounded-full lg:bottom-2 lg:left-2 lg:h-12 lg:w-12"
+              className="group glass absolute left-1 bottom-1 flex h-8 w-8 items-center justify-center rounded-full lg:bottom-2 lg:left-2 lg:h-12 lg:w-12"
               {...tableProps.row.getToggleRowExpandedProps()}
             >
               {tableProps.row.isExpanded ? (
-                <BiDownArrow className="w-full text-xs text-primary-300 duration-100 ease-in-out group-hover:text-primary-500" />
+                <BiDownArrow className="w-full text-sm text-primary-300 duration-100 ease-in-out group-hover:text-primary-500" />
               ) : (
-                <BiDownArrow className="w-full -rotate-90 text-xs text-primary-300 duration-100 ease-in-out group-hover:text-primary-500" />
+                <BiDownArrow className="w-full -rotate-90 text-sm text-primary-300 duration-100 ease-in-out group-hover:text-primary-500" />
               )}
             </a>
             <div className="flex h-full flex-col p-2 lg:p-0">
