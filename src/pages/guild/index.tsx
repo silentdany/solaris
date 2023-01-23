@@ -75,7 +75,7 @@ const Guild = () => {
             />
           </div>
         </Section>
-        <Section title="Ressources" number="03" bgColor="bg-stone-50" uppercase>
+        <Section title="Ressources" number="04" bgColor="bg-stone-50" uppercase>
           <div className="flex w-full flex-col items-center justify-center">
             <InnerSectionBlock bgColor={'from-primary-500/40'} topBorder>
               <div className="w-full md:max-w-6xl">
@@ -85,7 +85,7 @@ const Guild = () => {
             <ParallaxBlock image="/assets/images/forest.webp" speed={-10} />
           </div>
         </Section>
-        <Section title="Profils" number="04" bgColor="bg-stone-50" uppercase>
+        <Section title="Profils" number="05" bgColor="bg-stone-50" uppercase>
           <div className="flex w-full flex-col items-center justify-center">
             <InnerSectionBlock bgColor={'from-primary-500/40'} topBorder>
               <div className="flex max-w-6xl flex-col md:flex-row md:space-x-16">
