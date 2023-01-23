@@ -106,6 +106,8 @@ module.exports = {
         halfbottom: 'center 75%',
       },
       animation: {
+        'spin-slow': 'spin 3s linear infinite',
+        'spin-slower': 'spin 1.5s linear infinite',
         'pulse-slow': 'pulse 12s linear infinite',
         'bounce-slow': 'bounce 3s linear infinite',
         marquee: 'marquee 10s linear infinite',
