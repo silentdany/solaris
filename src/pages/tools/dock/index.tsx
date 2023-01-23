@@ -8,7 +8,7 @@ import { Table } from '../../../components/tools/ships/Table';
 import TableFilter from '../../../components/tools/ships/TableFilter';
 import { useBreakWord } from '../../../hooks/useBreakWords';
 import useNFTs from '../../../hooks/useNFTs';
-import { useRarityOrder } from '../../../hooks/useRarityOrder';
+import { useTableRarityOrder } from '../../../hooks/useRarityOrder';
 import { useShipSize } from '../../../hooks/useShipSize';
 import { useShipSizeOrder } from '../../../hooks/useShipSizeOrder';
 import InnerSectionBlock from '../../../layout/InnerSectionBlock';
@@ -89,7 +89,7 @@ const ShipsList = () => {
       {
         Header: 'Rareté',
         accessor: 'rarity',
-        sortType: useRarityOrder,
+        sortType: useTableRarityOrder,
         Cell: (tableProps) => <RarityBadge rarity={tableProps.value} />,
       },
     ],

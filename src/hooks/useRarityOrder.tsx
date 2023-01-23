@@ -1,7 +1,8 @@
 /* eslint-disable consistent-return */
+
 import { Row } from 'react-table';
 
-const array = [
+export const rarityOrder = [
   {
     order: 1,
     rarity: 'common',
@@ -28,9 +29,13 @@ const array = [
   },
 ];
 
-export const useRarityOrder = (rowA: Row, rowB: Row, columnId: string) => {
-  const aRarity = array.find((item) => item.rarity === rowA.original[columnId]);
-  const bRarity = array.find((item) => item.rarity === rowB.original[columnId]);
+export const useTableRarityOrder = (rowA: Row, rowB: Row, columnId: string) => {
+  const aRarity = rarityOrder.find(
+    (item) => item.rarity === rowA.original[columnId]
+  );
+  const bRarity = rarityOrder.find(
+    (item) => item.rarity === rowB.original[columnId]
+  );
   if (aRarity && bRarity) {
     if (aRarity.order > bRarity.order) {
       return 1;

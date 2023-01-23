@@ -29,7 +29,7 @@ const useGuildMembers = (pubKeys) => {
   const { NFTs } = useNFTs();
 
   const [guildMembers, setGuildMembers] = useState<GuildMember[]>([]);
-  const [membersLoading, setMembersLoading] = useState(false);
+  const [membersLoading, setMembersLoading] = useState(true);
   const [membersError, setMembersError] = useState<any | null>(null);
 
   useEffect(() => {

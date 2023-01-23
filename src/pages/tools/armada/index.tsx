@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import Image from 'next/future/image';
 import { BiDollarCircle } from 'react-icons/bi';
@@ -11,48 +11,16 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Index from '../..';
 import { topHodlers } from '../../../../data/topHodlers';
 import { Loader } from '../../../components/Loader';
-import useGuildMembers from '../../../hooks/useGuildMembers';
+import useFleet from '../../../hooks/useFleet';
 import InnerSectionBlock from '../../../layout/InnerSectionBlock';
 import Page from '../../../layout/Page';
 
 const Armada = () => {
-  const { guildMembers, membersLoading } = useGuildMembers(topHodlers);
+  const { fleet, fleetLoading } = useFleet(topHodlers);
+  console.log('🚀 ~ file: index.tsx:20 ~ Armada ~ fleetLoading', fleetLoading);
+  console.log('🚀 ~ file: index.tsx:20 ~ Armada ~ fleet', fleet);
 
-  const [loading, setLoading] = useState(true);
-  const [guildFleet, setGuildFleet] = useState<any[]>([]);
   // const [guildTotalAssetsValue, setGuildTotalAssetsValue] = useState(0);
-
-  // const rarityOrder = [
-  //   'anomaly',
-  //   'legendary',
-  //   'epic',
-  //   'rare',
-  //   'uncommon',
-  //   'common',
-  // ];
-
-  const getGuildFleet = (members) => {
-    const fleet = members?.reduce((acc, member) => {
-      const ships = member.nfts.filter(
-        (nft) => nft?.galaxyData?.attributes.category === 'ship'
-      );
-      ships.forEach((ship) => {
-        const { mint } = ship.galaxyData;
-        if (acc[mint]) {
-          acc[mint].quantity += ship.quantity;
-          acc[mint].value += ship.valuePerAsset * ship.quantity;
-        } else {
-          acc[mint] = {
-            data: ship,
-            quantity: ship.quantity,
-            value: ship.valuePerAsset * ship.quantity,
-          };
-        }
-      });
-      return acc;
-    }, {});
-    return Object.values(fleet);
-  };
 
   // const getGuildValue = () =>
   //   setGuildTotalAssetsValue(
@@ -64,18 +32,10 @@ const Armada = () => {
   //     }, 0)
   //   );
 
-  useEffect(() => {
-    if (guildMembers.length > 0) {
-      setGuildFleet(getGuildFleet(guildMembers));
-      setLoading(false);
-    }
-  }, [guildMembers, membersLoading]);
-
   const getValueWithSeparators = (x: any) =>
     x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   // const getCroppedPublicKey = (publicKey: string) => `${publicKey.slice(0, 3)}`;
-
   return (
     <Index>
       <Page title="Armada" image="/assets/images/kiosk.webp">
@@ -89,7 +49,7 @@ const Armada = () => {
                     'linear-gradient(180deg, rgb(0 0 0 / 0) 0%, rgb(28 25 23 / 0.25) 10%, rgb(28 25 23 / 0.75) 29%, rgb(28 25 23 / 0.75) 71%, rgb(28 25 23 / 0.25) 90%, rgb(0 0 0 / 0) 100%)',
                 }}
               >
-                {loading ? (
+                {fleetLoading ? (
                   <div className="flex h-[60vh] w-full items-center justify-center">
                     <Loader />
                   </div>
@@ -113,8 +73,8 @@ const Armada = () => {
                       modules={[EffectCoverflow, Mousewheel]}
                       className="mySwiper h-full"
                     >
-                      {guildFleet.map((fleet) => {
-                        const shipData = fleet.data.galaxyData;
+                      {fleet.map((f) => {
+                        const shipData = f.data.galaxyData;
                         return (
                           <SwiperSlide
                             key={shipData.name}
@@ -158,12 +118,12 @@ const Armada = () => {
                                     <div className="flex w-full items-center justify-end text-2xl text-gray-400">
                                       x
                                       <span className="text-4xl text-primary-300">
-                                        {fleet.quantity}
+                                        {f.quantity}
                                       </span>
                                     </div>
                                     <div className="flex w-full justify-end text-xl text-gray-400">
                                       {getValueWithSeparators(
-                                        fleet.value.toFixed(0)
+                                        f.value.toFixed(0)
                                       )}
                                       <BiDollarCircle className="ml-1 text-2xl text-yellow-500" />
                                     </div>
