@@ -30,7 +30,7 @@ const Guild = () => {
             <InnerSectionBlock bgColor={'from-primary-500/40'} topBorder>
               <div className="flex w-full flex-col">
                 <DataBlock data={position} />
-                <DividerTriangle data={null} index={1} />
+                <DividerTriangle index={1} />
                 <DataBlock data={datas} />
               </div>
             </InnerSectionBlock>
@@ -52,7 +52,7 @@ const Guild = () => {
             <InnerSectionBlock bgColor={'from-primary-500/40'} topBorder>
               <div className="md:max-w-md lg:max-w-6xl">
                 <ProjectBlock data={project} />
-                <DividerTriangle data={null} index={1} />
+                <DividerTriangle index={1} />
                 <div className="flex flex-col py-16">
                   <p className="mb-2 border-b-[1px] border-primary-300 font-title text-2xl md:text-3xl lg:text-4xl">
                     <span className="font-hero">

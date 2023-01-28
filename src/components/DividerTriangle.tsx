@@ -1,8 +1,13 @@
 import { BiDownArrow } from 'react-icons/bi';
 
-export const DividerTriangle = ({ data, index }) => (
+interface Props {
+  data?: any;
+  index: number;
+}
+
+export const DividerTriangle = ({ data, index }: Props) => (
   <div
-    className={`my-12 flex justify-around text-3xl lg:m-16 ${
+    className={`my-12 flex w-full justify-around text-3xl lg:m-16 ${
       data && data.length - 1 === index && 'hidden'
     }`}
   >

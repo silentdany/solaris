@@ -47,13 +47,14 @@ interface Attributes {
   unitWidth: number;
 }
 
-const useFleet = (pubKeys) => {
+const useFleet = (pubKeys: string[]) => {
   const { guildMembers, membersLoading, membersError } =
     useGuildMembers(pubKeys);
 
   const [fleet, setFleet] = useState<Fleet[]>([]);
-  console.log('🚀 ~ file: useFleet.tsx:24 ~ useFleet ~ fleet', fleet);
   const [fleetLoading, setFleetLoading] = useState(true);
+
+  const [fleetValue, setFleetValue] = useState(0);
 
   const getFleet = (members) => {
     const totalFleet = members?.reduce((acc, member) => {
@@ -78,7 +79,7 @@ const useFleet = (pubKeys) => {
     return Object.values(totalFleet);
   };
 
-  const sortFleet = (f) =>
+  const sortFleet = (f: any[]) =>
     f.sort((a, b) => {
       const rarityA: any = rarityOrder.find(
         (item) => item.rarity === a.data.galaxyData.attributes.rarity
@@ -90,15 +91,23 @@ const useFleet = (pubKeys) => {
       return rarityB.order - rarityA.order;
     });
 
+  const totalFleetValue = fleet.reduce((acc, ship) => acc + ship.value, 0);
+
   useEffect(() => {
     if (!membersLoading || !membersError) {
       const sortedFleet = sortFleet(getFleet(guildMembers));
       setFleet(sortedFleet);
+      setFleetValue(totalFleetValue);
+    }
+  }, [guildMembers, membersError, membersLoading, pubKeys, totalFleetValue]);
+
+  useEffect(() => {
+    if (fleet.length !== 0) {
       setFleetLoading(false);
     }
-  }, [guildMembers, pubKeys]);
+  }, [fleet]);
 
-  return { fleet, fleetLoading };
+  return { fleet, fleetValue, fleetLoading };
 };
 
 export default useFleet;

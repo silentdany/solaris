@@ -62,6 +62,6 @@ export const ProfilesBlock = ({ data, isMobile }) =>
           </ul>
         </div>
       </motion.div>
-      {isMobile && <DividerTriangle data index />}
+      {isMobile && <DividerTriangle index={1} />}
     </>
   ));

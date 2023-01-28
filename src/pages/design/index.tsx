@@ -166,7 +166,7 @@ const DesignPage = () => {
               ))}
             </div>
             <div className="m-8 w-full">
-              <DividerTriangle data={null} index={null} />
+              <DividerTriangle index={1} />
             </div>
             <div className="flex items-center self-start">
               <BiDownArrow className="mr-6 -rotate-90 text-right text-3xl text-primary-500" />
@@ -199,7 +199,7 @@ const DesignPage = () => {
               ))}
             </div>
             <div className="m-8 w-full">
-              <DividerTriangle data={null} index={null} />
+              <DividerTriangle index={1} />
             </div>
             <div className="flex items-center self-start">
               <BiDownArrow className="mr-6 -rotate-90 text-right text-3xl text-primary-500" />

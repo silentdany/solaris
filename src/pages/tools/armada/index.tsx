@@ -10,27 +10,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Index from '../..';
 import { topHodlers } from '../../../../data/topHodlers';
+import { DividerTriangle } from '../../../components/DividerTriangle';
 import { Loader } from '../../../components/Loader';
 import useFleet from '../../../hooks/useFleet';
 import InnerSectionBlock from '../../../layout/InnerSectionBlock';
 import Page from '../../../layout/Page';
 
 const Armada = () => {
-  const { fleet, fleetLoading } = useFleet(topHodlers);
-  console.log('🚀 ~ file: index.tsx:20 ~ Armada ~ fleetLoading', fleetLoading);
-  console.log('🚀 ~ file: index.tsx:20 ~ Armada ~ fleet', fleet);
-
-  // const [guildTotalAssetsValue, setGuildTotalAssetsValue] = useState(0);
-
-  // const getGuildValue = () =>
-  //   setGuildTotalAssetsValue(
-  //     guildFleet.reduce((acc, member) => {
-  //       const memberValue = member.nfts.reduce((acc, nft) => {
-  //         return acc + nft.quantity * nft.valuePerAsset;
-  //       }, 0);
-  //       return acc + memberValue;
-  //     }, 0)
-  //   );
+  const { fleet, fleetValue, fleetLoading } = useFleet(topHodlers);
 
   const getValueWithSeparators = (x: any) =>
     x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -42,19 +29,13 @@ const Armada = () => {
         <div className="flex w-full flex-col items-center justify-center">
           <InnerSectionBlock bgColor={'from-primary-500/40'} fullscreen={true}>
             <div className="flex h-full w-full flex-col">
-              <div
-                className="px-18 p-8"
-                style={{
-                  background:
-                    'linear-gradient(180deg, rgb(0 0 0 / 0) 0%, rgb(28 25 23 / 0.25) 10%, rgb(28 25 23 / 0.75) 29%, rgb(28 25 23 / 0.75) 71%, rgb(28 25 23 / 0.25) 90%, rgb(0 0 0 / 0) 100%)',
-                }}
-              >
+              <div className="min-h-[60]">
                 {fleetLoading ? (
                   <div className="flex h-[60vh] w-full items-center justify-center">
                     <Loader />
                   </div>
                 ) : (
-                  <div className="h-[60vh] w-full">
+                  <div className="h-full w-full">
                     <Swiper
                       effect={'coverflow'}
                       loop={true}
@@ -71,7 +52,12 @@ const Armada = () => {
                         scale: 0.9,
                       }}
                       modules={[EffectCoverflow, Mousewheel]}
-                      className="mySwiper h-full"
+                      className="h-[500px]"
+                      style={{
+                        padding: '0 96px',
+                        background:
+                          'linear-gradient(180deg, rgb(0 0 0 / 0) 0%, rgb(28 25 23 / 0.25) 10%, rgb(28 25 23 / 0.75) 29%, rgb(28 25 23 / 0.75) 71%, rgb(28 25 23 / 0.25) 90%, rgb(0 0 0 / 0) 100%)',
+                      }}
                     >
                       {fleet.map((f) => {
                         const shipData = f.data.galaxyData;
@@ -215,6 +201,20 @@ const Armada = () => {
                         );
                       })}
                     </Swiper>
+                    <div className="card flex flex-col items-center justify-center bg-stone-900/75 px-12 text-stone-50">
+                      <DividerTriangle index={1} />
+                      <h2 className="text-2xl text-primary-500">
+                        Valeur de la flotte de guerre
+                      </h2>
+                      <div className="flex flex-col items-center justify-between p-8">
+                        <div className="flex items-center space-x-1">
+                          <span className="text-3xl font-bold">
+                            {fleetValue.toFixed(0)}
+                          </span>
+                          <BiDollarCircle className="text-4xl text-primary-500" />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
