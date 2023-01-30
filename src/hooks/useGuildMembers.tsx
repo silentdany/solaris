@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import useNFTs from './useNFTs';
+import useFetchNFTs from './useFetchNFTs';
 
 const galaxyUrl = 'https://galaxy.staratlas.com/players';
 
@@ -26,7 +26,7 @@ interface GuildMember {
 }
 
 const useGuildMembers = (pubKeys) => {
-  const { NFTs } = useNFTs();
+  const { NFTs } = useFetchNFTs();
 
   const [guildMembers, setGuildMembers] = useState<GuildMember[]>([]);
   const [membersLoading, setMembersLoading] = useState(true);

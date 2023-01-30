@@ -7,7 +7,7 @@ import { RarityBadge } from '../../../components/tools/ships/RarityBadge';
 import { Table } from '../../../components/tools/ships/Table';
 import TableFilter from '../../../components/tools/ships/TableFilter';
 import { useBreakWord } from '../../../hooks/useBreakWords';
-import useNFTs from '../../../hooks/useNFTs';
+import useFetchNFTs from '../../../hooks/useFetchNFTs';
 import { useTableRarityOrder } from '../../../hooks/useRarityOrder';
 import { useShipSize } from '../../../hooks/useShipSize';
 import { useShipSizeOrder } from '../../../hooks/useShipSizeOrder';
@@ -15,7 +15,7 @@ import InnerSectionBlock from '../../../layout/InnerSectionBlock';
 import Page from '../../../layout/Page';
 
 const ShipsList = () => {
-  const { NFTs, NFTsLoading, NFTsError } = useNFTs();
+  const { NFTs, NFTsLoading, NFTsError } = useFetchNFTs();
 
   const ships = NFTs?.filter((ship) => ship.attributes.category === 'ship');
   const data = useMemo(

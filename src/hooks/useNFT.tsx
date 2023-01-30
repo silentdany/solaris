@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import useGuildMembers from './useGuildMembers';
 import { rarityOrder } from './useRarityOrder';
 
-interface Fleet {
+interface NFT {
   data: {
     galaxyData: GalaxyData;
     quantity: number;
@@ -47,19 +47,19 @@ interface Attributes {
   unitWidth: number;
 }
 
-const useFleet = (pubKeys: string[]) => {
+const useNFT = (pubKeys: string[], NFTtype: string) => {
   const { guildMembers, membersLoading, membersError } =
     useGuildMembers(pubKeys);
 
-  const [fleet, setFleet] = useState<Fleet[]>([]);
-  const [fleetLoading, setFleetLoading] = useState(true);
+  const [nft, setNFT] = useState<NFT[]>([]);
+  const [nftLoading, setNFTLoading] = useState(true);
 
-  const [fleetValue, setFleetValue] = useState(0);
+  const [nftValue, setNFTValue] = useState(0);
 
-  const getFleet = (members) => {
-    const totalFleet = members?.reduce((acc, member) => {
+  const getNFT = (members) => {
+    const totalNFT = members?.reduce((acc, member) => {
       const ships = member.nfts.filter(
-        (nft) => nft?.galaxyData?.attributes.category === 'ship'
+        (n) => n?.galaxyData?.attributes.itemType === NFTtype
       );
       ships.forEach((ship) => {
         const { mint } = ship.galaxyData;
@@ -76,10 +76,10 @@ const useFleet = (pubKeys: string[]) => {
       });
       return acc;
     }, {});
-    return Object.values(totalFleet);
+    return Object.values(totalNFT);
   };
 
-  const sortFleet = (f: any[]) =>
+  const sortNFT = (f: any[]) =>
     f.sort((a, b) => {
       const rarityA: any = rarityOrder.find(
         (item) => item.rarity === a.data.galaxyData.attributes.rarity
@@ -91,23 +91,23 @@ const useFleet = (pubKeys: string[]) => {
       return rarityB.order - rarityA.order;
     });
 
-  const totalFleetValue = fleet.reduce((acc, ship) => acc + ship.value, 0);
+  const totalNFTValue = nft.reduce((acc, ship) => acc + ship.value, 0);
 
   useEffect(() => {
     if (!membersLoading || !membersError) {
-      const sortedFleet = sortFleet(getFleet(guildMembers));
-      setFleet(sortedFleet);
-      setFleetValue(totalFleetValue);
+      const sortedNFT = sortNFT(getNFT(guildMembers));
+      setNFT(sortedNFT);
+      setNFTValue(totalNFTValue);
     }
-  }, [guildMembers, membersError, membersLoading, pubKeys, totalFleetValue]);
+  }, [guildMembers, membersError, membersLoading, pubKeys, totalNFTValue]);
 
   useEffect(() => {
-    if (fleet.length !== 0) {
-      setFleetLoading(false);
+    if (nft.length !== 0) {
+      setNFTLoading(false);
     }
-  }, [fleet]);
+  }, [nft]);
 
-  return { fleet, fleetValue, fleetLoading };
+  return { nft, nftValue, nftLoading };
 };
 
-export default useFleet;
+export default useNFT;
