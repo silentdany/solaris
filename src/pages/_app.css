@@ -24,3 +24,13 @@ body {
 .swiperGallery .swiper-slide-thumb-active {
   opacity: 1;
 }
+
+.swiper-pagination-bullet {
+  width: 10%!important;
+  height: 24px!important;
+  background: #526d96!important;
+  border-radius: 25px!important;
+  opacity: 1!important;
+  margin: 0 20px!important;
+  color: #fff!important;
+  }
