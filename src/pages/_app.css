@@ -25,12 +25,25 @@ body {
   opacity: 1;
 }
 
+.swiper-wrapper {
+  height: 63vh!important;
+}
+
 .swiper-pagination-bullet {
-  width: 10%!important;
-  height: 24px!important;
-  background: #526d96!important;
-  border-radius: 25px!important;
-  opacity: 1!important;
-  margin: 0 20px!important;
-  color: #fff!important;
+  width: unset!important;
+  height: unset!important;
+  background: unset!important;
+  border-radius: unset!important;
+  opacity: unset!important;
+  margin: unset!important;
+  @apply w-full flex-1 ease-in-out duration-100 font-title p-1 mx-4 text-xl text-stone-300/50 border-b-4 border-transparent hover:border-secondary-500 hover:bg-gradient-to-t hover:from-common/10;
   }
+
+.swiper-pagination-bullet-active {
+  @apply border-primary-500 bg-gradient-to-t text-stone-300 from-common/10;
+}
+
+.swiper-pagination {
+  position: unset!important;
+  @apply bg-stone-800 flex
+}

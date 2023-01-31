@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 
 import Image from 'next/future/image';
-import { BiDollarCircle } from 'react-icons/bi';
+import { BiDollarCircle, BiDownArrow, BiUserCheck } from 'react-icons/bi';
+import { HiOutlineOfficeBuilding } from 'react-icons/hi';
+import { MdOutlineCollections } from 'react-icons/md';
+import { RiSpaceShipLine } from 'react-icons/ri';
+import { TbMilitaryRank } from 'react-icons/tb';
 import { EffectCoverflow, Mousewheel, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -10,11 +14,17 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Index from '../..';
 import { topHodlers } from '../../../../data/topHodlers';
-import { DividerTriangle } from '../../../components/DividerTriangle';
 import { Loader } from '../../../components/Loader';
 import useNFT from '../../../hooks/useNFT';
 import InnerSectionBlock from '../../../layout/InnerSectionBlock';
 import Page from '../../../layout/Page';
+
+interface StatContentProps {
+  icon: JSX.Element;
+  title: string;
+  value: number;
+  sub?: string;
+}
 
 const Armada = () => {
   const [loading, setLoading] = useState(true);
@@ -60,7 +70,7 @@ const Armada = () => {
         scale: 0.9,
       }}
       modules={[EffectCoverflow, Mousewheel]}
-      className="h-[500px]"
+      className="h-[63vh]"
       style={{
         padding: '0 96px',
         background:
@@ -160,7 +170,7 @@ const Armada = () => {
                   <Image
                     src={data.image}
                     alt={data.name}
-                    className="w-full object-cover duration-300 ease-in-out"
+                    className="w-full bg-stone-800 object-cover duration-300 ease-in-out"
                     fill
                     sizes="(min-width: 1024px) 1024px, 100vw"
                   />
@@ -214,26 +224,35 @@ const Armada = () => {
     </Swiper>
   );
 
-  const SummarySubBlock = ({ title, value }) => (
-    <div className="flex flex-col">
-      <h2 className="text-2xl text-primary-500">{title}</h2>
-      <div className="flex flex-col items-center justify-between p-8">
-        <div className="flex items-center space-x-1">
-          <span className="text-3xl font-bold">{value.toFixed(0)}</span>
-          <BiDollarCircle className="text-4xl text-primary-500" />
-        </div>
-      </div>
-    </div>
-  );
-
   const pages = ['Flotte', 'Structures', 'Collection', 'Badges'];
+
+  const customBullet = ({ index, className }) =>
+    `<div class="${className}">
+      ${pages[index]}
+    </div>`;
 
   const pagination = {
     clickable: true,
-    renderBullet(index, className) {
-      return `<span class="${className}">${pages[index]}</span>`;
+    renderBullet: (index, className) => {
+      return customBullet({ index, className });
     },
   };
+
+  const StatContent = ({ icon, title, value, sub }: StatContentProps) => (
+    <div className="stat">
+      <div className="text-primary stat-figure">{icon}</div>
+      <div className="stat-title">{title}</div>
+      <div className="text-primary stat-value">{value}</div>
+      {sub && <div className="stat-desc">{sub}</div>}
+    </div>
+  );
+
+  const getPercentage = (value, values) => {
+    const sum = values.reduce((total, val) => total + val, 0);
+    return (value / sum) * 100;
+  };
+
+  const capital = [shipsValue, structuresValue, collectiblesValue, accessValue];
 
   useEffect(() => {
     if (
@@ -252,9 +271,9 @@ const Armada = () => {
         <div className="flex w-full flex-col items-center justify-center">
           <InnerSectionBlock bgColor={'from-primary-500/40'} fullscreen={true}>
             <div className="flex h-full w-full flex-col">
-              <div className="min-h-[60]">
+              <div className="min-h-[60vh]">
                 {loading ? (
-                  <div className="flex h-[60vh] w-full items-center justify-center">
+                  <div className="flex h-full w-full items-center justify-center">
                     <Loader />
                   </div>
                 ) : (
@@ -279,44 +298,104 @@ const Armada = () => {
                         <SwiperContent nfts={access} />
                       </SwiperSlide>
                     </Swiper>
-                    <div className="card flex flex-col items-center justify-center bg-stone-900/75 px-12 text-stone-50">
-                      <DividerTriangle index={1} />
-                      <h2 className="text-2xl text-primary-500">
-                        Patrimoine total
-                      </h2>
-                      <div className="flex flex-col items-center justify-between p-8">
-                        <div className="flex items-center space-x-1">
-                          <span className="text-3xl font-bold">
-                            {(
-                              shipsValue +
-                              structuresValue +
-                              collectiblesValue +
-                              accessValue
-                            ).toFixed(0)}
+                    <div className="flex flex-col items-center justify-center space-y-8 bg-stone-900/75 p-4 text-stone-50">
+                      <a
+                        href="#capital"
+                        className="group flex w-full items-center justify-evenly"
+                      >
+                        <BiDownArrow className="animate-bounce-slow text-4xl text-primary-700/50 duration-200 ease-in-out group-hover:text-primary-700" />
+                        <h2 className="text-2xl">
+                          <span className="font-hero">
+                            Sol
+                            <span className="text-primary-500">a</span>
+                            ris
                           </span>
-                          <BiDollarCircle className="text-4xl text-primary-500" />
+                          <span className="mx-4 text-primary-500">|</span>
+                          Capital
+                        </h2>
+                        <BiDownArrow className="animate-bounce-slow text-4xl text-primary-700/50 duration-200 ease-in-out group-hover:text-primary-700" />
+                      </a>
+                      <div
+                        id="capital"
+                        className="flex w-full max-w-4xl flex-col items-start justify-between space-y-24 p-8 "
+                      >
+                        <div className="stats bg-stone-300 shadow">
+                          <StatContent
+                            icon={
+                              <BiUserCheck className="text-4xl text-primary-500" />
+                            }
+                            title="Solars incorporés"
+                            value={topHodlers.length}
+                          />
+                          <StatContent
+                            icon={
+                              <BiDollarCircle className="text-4xl text-primary-500" />
+                            }
+                            title="Capital Total"
+                            value={
+                              +capital
+                                .reduce((total, val) => total + val, 0)
+                                .toFixed(0)
+                            }
+                          />
+                          <StatContent
+                            icon={
+                              <BiUserCheck className="text-4xl text-primary-500" />
+                            }
+                            title="Vaisseaux"
+                            value={ships.reduce(
+                              (acc, ship) => acc + ship.quantity,
+                              0
+                            )}
+                          />
+                        </div>
+                        <div className="stats self-end bg-stone-300 shadow">
+                          <StatContent
+                            icon={
+                              <RiSpaceShipLine className="text-4xl text-primary-500" />
+                            }
+                            title="Flotte"
+                            value={+shipsValue.toFixed(0)}
+                            sub={`${getPercentage(shipsValue, capital).toFixed(
+                              0
+                            )}% du capital`}
+                          />
+                          <StatContent
+                            icon={
+                              <HiOutlineOfficeBuilding className="text-4xl text-primary-500" />
+                            }
+                            title="Structures"
+                            value={+structuresValue.toFixed(0)}
+                            sub={`${getPercentage(
+                              structuresValue,
+                              capital
+                            ).toFixed(0)}% du capital`}
+                          />
+                          <StatContent
+                            icon={
+                              <MdOutlineCollections className="text-4xl text-primary-500" />
+                            }
+                            title="Collection"
+                            value={+collectiblesValue.toFixed(0)}
+                            sub={`${getPercentage(
+                              collectiblesValue,
+                              capital
+                            ).toFixed(0)}% du capital`}
+                          />
+                          <StatContent
+                            icon={
+                              <TbMilitaryRank className="text-4xl text-primary-500" />
+                            }
+                            title="Badges"
+                            value={+accessValue.toFixed(0)}
+                            sub={`${getPercentage(accessValue, capital).toFixed(
+                              0
+                            )}% du capital`}
+                          />
                         </div>
                       </div>
-                      <DividerTriangle index={1} />
-                      <div className="grid grid-cols-4 gap-2">
-                        <SummarySubBlock
-                          title="Valeur de la flotte"
-                          value={shipsValue}
-                        />
-                        <SummarySubBlock
-                          title="Valeur des emprises"
-                          value={structuresValue}
-                        />
-                        <SummarySubBlock
-                          title="Valeur de la collection"
-                          value={collectiblesValue}
-                        />
-                        <SummarySubBlock
-                          title="Valeur des insignes"
-                          value={accessValue}
-                        />
-                      </div>
                     </div>
+                    <div className="h-10 w-full bg-primary-500"></div>
                   </div>
                 )}
               </div>
