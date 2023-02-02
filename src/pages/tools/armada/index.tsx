@@ -16,13 +16,14 @@ import Index from '../..';
 import { topHodlers } from '../../../../data/topHodlers';
 import { Loader } from '../../../components/Loader';
 import useNFT from '../../../hooks/useNFT';
+import { useShipSize } from '../../../hooks/useShipSize';
 import InnerSectionBlock from '../../../layout/InnerSectionBlock';
 import Page from '../../../layout/Page';
 
 interface StatContentProps {
   icon: JSX.Element;
   title: string;
-  value: number;
+  value: number | JSX.Element;
   sub?: string;
 }
 
@@ -52,6 +53,14 @@ const Armada = () => {
 
   const getValueWithSeparators = (x: any) =>
     x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  const ShipSize = (shipSize: string) => (
+    <div className="flex items-center justify-center">
+      <div className="flex h-10 w-10 items-center justify-center rounded-full border-[3px] border-primary-300 text-sm font-extrabold uppercase lg:h-12 lg:w-12">
+        {useShipSize(shipSize.toLowerCase())}
+      </div>
+    </div>
+  );
 
   const SwiperContent = ({ nfts }: any) => (
     <Swiper
@@ -131,9 +140,10 @@ const Armada = () => {
                         {nft.quantity}
                       </span>
                     </div>
-                    <div className="flex w-full justify-end text-xl text-gray-400">
-                      {getValueWithSeparators(nft.value.toFixed(0))}
-                      <BiDollarCircle className="ml-1 text-2xl text-yellow-500" />
+                    <div className="flex w-full items-center justify-end space-x-2 text-xl capitalize text-stone-300">
+                      {data.attributes.spec}
+                      <span className="text-primary-300"></span>
+                      {ShipSize(data.attributes.class)}
                     </div>
                   </div>
                 </div>
@@ -200,20 +210,55 @@ const Armada = () => {
                         : {}
                     }
                   >
-                    <h3 className="text-2xl font-bold text-primary-500">
-                      Pilotes
-                    </h3>
-                    <ul className="flex w-full flex-1 items-center justify-center space-x-2">
-                      <li className="flex h-8 w-8 items-center justify-center rounded-full border-[3px] border-stone-700 bg-blue-500/25 font-extrabold text-stone-700 lg:h-10 lg:w-10">
-                        Xlt
-                      </li>
-                      <li className="flex h-8 w-8 items-center justify-center rounded-full border-[3px] border-stone-700 bg-red-500/25 font-extrabold text-stone-700 lg:h-10 lg:w-10">
-                        Adf
-                      </li>
-                      <li className="flex h-8 w-8 items-center justify-center rounded-full border-[3px] border-stone-700 bg-yellow-500/25 font-extrabold text-stone-700 lg:h-10 lg:w-10">
-                        Dlf
-                      </li>
-                    </ul>
+                    <div className="grid h-full w-full grid-cols-3">
+                      <div className="flex w-full items-center justify-center">
+                        <BiDollarCircle className="text-3xl text-yellow-500" />
+                      </div>
+                      <div className="flex w-full items-center justify-start font-title text-xl text-stone-300">
+                        Total
+                      </div>
+                      <div className="flex w-full items-center justify-start font-title text-xl text-stone-300">
+                        Unité
+                      </div>
+                      <div className="flex w-full items-center justify-start font-title text-xl text-stone-400">
+                        MSRP
+                      </div>
+                      <div className="flex w-full items-center justify-start text-2xl text-stone-400">
+                        {getValueWithSeparators(
+                          parseInt(data.tradeSettings?.msrp?.value, 10) *
+                            nft.quantity
+                        )}
+                      </div>
+                      <div className="flex w-full items-center justify-start text-2xl text-stone-400">
+                        {getValueWithSeparators(
+                          parseInt(data.tradeSettings?.msrp?.value, 10)
+                        )}
+                      </div>
+                      <div className="flex w-full items-center justify-start font-title text-xl text-stone-400">
+                        VWAP
+                      </div>
+                      <div className="flex w-full items-center justify-start text-2xl text-stone-400">
+                        {getValueWithSeparators(
+                          parseInt(data.tradeSettings?.vwap, 10) * nft.quantity
+                        )}
+                      </div>
+                      <div className="flex w-full items-center justify-start text-2xl text-stone-400">
+                        {getValueWithSeparators(
+                          parseInt(data.tradeSettings?.vwap, 10)
+                        )}
+                      </div>
+                      <div className="flex w-full items-center justify-start font-title text-xl text-stone-300">
+                        Marché
+                      </div>
+                      <div className="flex w-full items-center justify-start text-2xl text-primary-300">
+                        {getValueWithSeparators(nft.value.toFixed(0))}
+                      </div>
+                      <div className="flex w-full items-center justify-start text-2xl text-primary-300">
+                        {getValueWithSeparators(
+                          (nft.value / nft.quantity).toFixed(0)
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </>
@@ -239,7 +284,7 @@ const Armada = () => {
   };
 
   const StatContent = ({ icon, title, value, sub }: StatContentProps) => (
-    <div className="stat">
+    <div className="stat z-10">
       <div className="text-primary stat-figure">{icon}</div>
       <div className="stat-title">{title}</div>
       <div className="text-primary stat-value">{value}</div>
@@ -301,7 +346,7 @@ const Armada = () => {
                     <div className="flex flex-col items-center justify-center space-y-8 bg-stone-900/75 p-4 text-stone-50">
                       <a
                         href="#capital"
-                        className="group flex w-full items-center justify-evenly"
+                        className="group flex w-full  items-center justify-evenly"
                       >
                         <BiDownArrow className="animate-bounce-slow text-4xl text-primary-700/50 duration-200 ease-in-out group-hover:text-primary-700" />
                         <h2 className="text-2xl">
@@ -317,9 +362,10 @@ const Armada = () => {
                       </a>
                       <div
                         id="capital"
-                        className="flex w-full max-w-4xl flex-col items-start justify-between space-y-24 p-8 "
+                        className="flex w-full max-w-4xl scroll-mt-36 flex-col items-start justify-between space-y-24 p-8 pb-20"
                       >
-                        <div className="stats bg-stone-300 shadow">
+                        <div className="stats relative overflow-x-visible bg-stone-300 shadow duration-300 ease-in-out hover:shadow-xl">
+                          <div className="absolute top-0 right-0 z-0 h-full w-screen rounded-2xl bg-stone-300/25"></div>
                           <StatContent
                             icon={
                               <BiUserCheck className="text-4xl text-primary-500" />
@@ -340,7 +386,7 @@ const Armada = () => {
                           />
                           <StatContent
                             icon={
-                              <BiUserCheck className="text-4xl text-primary-500" />
+                              <RiSpaceShipLine className="text-4xl text-primary-500" />
                             }
                             title="Vaisseaux"
                             value={ships.reduce(
@@ -349,13 +395,19 @@ const Armada = () => {
                             )}
                           />
                         </div>
-                        <div className="stats self-end bg-stone-300 shadow">
+                        <div className="stats relative self-end overflow-x-visible bg-stone-300 shadow duration-300 ease-in-out hover:shadow-xl">
+                          <div className="absolute top-0 left-0 z-0 h-full w-screen rounded-2xl bg-stone-300/25"></div>
                           <StatContent
                             icon={
                               <RiSpaceShipLine className="text-4xl text-primary-500" />
                             }
                             title="Flotte"
-                            value={+shipsValue.toFixed(0)}
+                            value={
+                              <span className="flex items-center">
+                                {+shipsValue.toFixed(0)}
+                                <span className="opacity-20">$</span>
+                              </span>
+                            }
                             sub={`${getPercentage(shipsValue, capital).toFixed(
                               0
                             )}% du capital`}
@@ -365,7 +417,12 @@ const Armada = () => {
                               <HiOutlineOfficeBuilding className="text-4xl text-primary-500" />
                             }
                             title="Structures"
-                            value={+structuresValue.toFixed(0)}
+                            value={
+                              <span className="flex items-center">
+                                {+structuresValue.toFixed(0)}
+                                <span className="opacity-20">$</span>
+                              </span>
+                            }
                             sub={`${getPercentage(
                               structuresValue,
                               capital
@@ -376,7 +433,12 @@ const Armada = () => {
                               <MdOutlineCollections className="text-4xl text-primary-500" />
                             }
                             title="Collection"
-                            value={+collectiblesValue.toFixed(0)}
+                            value={
+                              <span className="flex items-center">
+                                {+collectiblesValue.toFixed(0)}
+                                <span className="opacity-20">$</span>
+                              </span>
+                            }
                             sub={`${getPercentage(
                               collectiblesValue,
                               capital
@@ -387,7 +449,12 @@ const Armada = () => {
                               <TbMilitaryRank className="text-4xl text-primary-500" />
                             }
                             title="Badges"
-                            value={+accessValue.toFixed(0)}
+                            value={
+                              <span className="flex items-center">
+                                {+accessValue.toFixed(0)}
+                                <span className="opacity-20">$</span>
+                              </span>
+                            }
                             sub={`${getPercentage(accessValue, capital).toFixed(
                               0
                             )}% du capital`}
