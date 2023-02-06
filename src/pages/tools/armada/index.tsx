@@ -51,14 +51,26 @@ const Armada = () => {
     nftLoading: accessLoading,
   } = useNFT(topHodlers, 'access');
 
-  const getValueWithSeparators = (x: any) =>
-    x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const getValueWithSeparators = (x: any) => {
+    if (x === 0 || Number.isNaN(x)) return '??';
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
 
   const ShipSize = (shipSize: string) => (
     <div className="flex items-center justify-center">
       <div className="flex h-10 w-10 items-center justify-center rounded-full border-[3px] border-primary-300 text-sm font-extrabold uppercase lg:h-12 lg:w-12">
         {useShipSize(shipSize.toLowerCase())}
       </div>
+    </div>
+  );
+
+  const NftAttributes = ({ data }: any) => (
+    <div className="flex w-full items-center justify-end space-x-2 text-xl capitalize text-stone-300">
+      {data.attributes.category === 'ship' && data.attributes.spec}
+      <span className="text-primary-300"></span>
+      {data.attributes.category === 'ship'
+        ? ShipSize(data.attributes.class)
+        : data.attributes.class}
     </div>
   );
 
@@ -89,6 +101,7 @@ const Armada = () => {
       {nfts.map((nft) => {
         const data = nft.data.galaxyData;
         const { category } = data.attributes;
+
         return (
           <SwiperSlide key={data.name} className="group flex h-full">
             {({ isActive }) => (
@@ -140,11 +153,7 @@ const Armada = () => {
                         {nft.quantity}
                       </span>
                     </div>
-                    <div className="flex w-full items-center justify-end space-x-2 text-xl capitalize text-stone-300">
-                      {data.attributes.spec}
-                      <span className="text-primary-300"></span>
-                      {ShipSize(data.attributes.class)}
-                    </div>
+                    <NftAttributes data={data} />
                   </div>
                 </div>
                 <div
@@ -180,7 +189,8 @@ const Armada = () => {
                   <Image
                     src={data.image}
                     alt={data.name}
-                    className="w-full bg-stone-800 object-cover duration-300 ease-in-out"
+                    className="inset-0 w-full bg-stone-800 object-cover duration-300 ease-in-out"
+                    priority={isActive}
                     fill
                     sizes="(min-width: 1024px) 1024px, 100vw"
                   />
@@ -251,11 +261,13 @@ const Armada = () => {
                         Marché
                       </div>
                       <div className="flex w-full items-center justify-start text-2xl text-primary-300">
-                        {getValueWithSeparators(nft.value.toFixed(0))}
+                        {getValueWithSeparators(
+                          parseInt(nft.value.toFixed(0), 10)
+                        )}
                       </div>
                       <div className="flex w-full items-center justify-start text-2xl text-primary-300">
                         {getValueWithSeparators(
-                          (nft.value / nft.quantity).toFixed(0)
+                          parseInt((nft.value / nft.quantity).toFixed(0), 10)
                         )}
                       </div>
                     </div>
