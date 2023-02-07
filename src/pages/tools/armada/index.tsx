@@ -1,10 +1,17 @@
 import { useEffect, useState } from 'react';
 
+import { motion } from 'framer-motion';
 import Image from 'next/future/image';
-import { BiDollarCircle, BiDownArrow, BiUserCheck } from 'react-icons/bi';
+import {
+  BiDollarCircle,
+  BiDownArrow,
+  BiTargetLock,
+  BiUserCheck,
+} from 'react-icons/bi';
+import { FiPackage } from 'react-icons/fi';
 import { HiOutlineOfficeBuilding } from 'react-icons/hi';
 import { MdOutlineCollections } from 'react-icons/md';
-import { RiSpaceShipLine } from 'react-icons/ri';
+import { RiServiceFill, RiSpaceShipLine, RiStarHalfLine } from 'react-icons/ri';
 import { TbMilitaryRank } from 'react-icons/tb';
 import { EffectCoverflow, Mousewheel, Pagination } from 'swiper';
 import 'swiper/css';
@@ -73,6 +80,20 @@ const Armada = () => {
         : data.attributes.class}
     </div>
   );
+
+  const getTotalShipCount = () =>
+    ships.reduce((acc, ship) => acc + ship.quantity, 0);
+
+  const getShipCountBySpec = (spec: Array<string>) => {
+    const filteredShips = ships.filter((ship: any) =>
+      spec.includes(ship.data.galaxyData.attributes.spec)
+    );
+    const total = filteredShips.reduce(
+      (acc: any, ship: any) => acc + ship.quantity,
+      0
+    );
+    return total;
+  };
 
   const SwiperContent = ({ nfts }: any) => (
     <Swiper
@@ -374,104 +395,235 @@ const Armada = () => {
                       </a>
                       <div
                         id="capital"
-                        className="flex w-full max-w-4xl scroll-mt-36 flex-col items-start justify-between space-y-24 p-8 pb-20"
+                        className="flex w-full max-w-4xl scroll-mt-36 flex-col items-center justify-center space-y-24 p-8 pb-20"
                       >
-                        <div className="stats relative overflow-x-visible bg-stone-300 shadow duration-300 ease-in-out hover:shadow-xl">
-                          <div className="absolute top-0 right-0 z-0 h-full w-screen rounded-2xl bg-stone-300/25"></div>
-                          <StatContent
-                            icon={
-                              <BiUserCheck className="text-4xl text-primary-500" />
-                            }
-                            title="Solars incorporés"
-                            value={topHodlers.length}
-                          />
-                          <StatContent
-                            icon={
-                              <BiDollarCircle className="text-4xl text-primary-500" />
-                            }
-                            title="Capital Total"
-                            value={
-                              +capital
-                                .reduce((total, val) => total + val, 0)
-                                .toFixed(0)
-                            }
-                          />
-                          <StatContent
-                            icon={
-                              <RiSpaceShipLine className="text-4xl text-primary-500" />
-                            }
-                            title="Vaisseaux"
-                            value={ships.reduce(
-                              (acc, ship) => acc + ship.quantity,
-                              0
-                            )}
-                          />
-                        </div>
-                        <div className="stats relative self-end overflow-x-visible bg-stone-300 shadow duration-300 ease-in-out hover:shadow-xl">
-                          <div className="absolute top-0 left-0 z-0 h-full w-screen rounded-2xl bg-stone-300/25"></div>
-                          <StatContent
-                            icon={
-                              <RiSpaceShipLine className="text-4xl text-primary-500" />
-                            }
-                            title="Flotte"
-                            value={
-                              <span className="flex items-center">
-                                {+shipsValue.toFixed(0)}
-                                <span className="opacity-20">$</span>
-                              </span>
-                            }
-                            sub={`${getPercentage(shipsValue, capital).toFixed(
-                              0
-                            )}% du capital`}
-                          />
-                          <StatContent
-                            icon={
-                              <HiOutlineOfficeBuilding className="text-4xl text-primary-500" />
-                            }
-                            title="Structures"
-                            value={
-                              <span className="flex items-center">
-                                {+structuresValue.toFixed(0)}
-                                <span className="opacity-20">$</span>
-                              </span>
-                            }
-                            sub={`${getPercentage(
-                              structuresValue,
-                              capital
-                            ).toFixed(0)}% du capital`}
-                          />
-                          <StatContent
-                            icon={
-                              <MdOutlineCollections className="text-4xl text-primary-500" />
-                            }
-                            title="Collection"
-                            value={
-                              <span className="flex items-center">
-                                {+collectiblesValue.toFixed(0)}
-                                <span className="opacity-20">$</span>
-                              </span>
-                            }
-                            sub={`${getPercentage(
-                              collectiblesValue,
-                              capital
-                            ).toFixed(0)}% du capital`}
-                          />
-                          <StatContent
-                            icon={
-                              <TbMilitaryRank className="text-4xl text-primary-500" />
-                            }
-                            title="Badges"
-                            value={
-                              <span className="flex items-center">
-                                {+accessValue.toFixed(0)}
-                                <span className="opacity-20">$</span>
-                              </span>
-                            }
-                            sub={`${getPercentage(accessValue, capital).toFixed(
-                              0
-                            )}% du capital`}
-                          />
-                        </div>
+                        <motion.div
+                          initial={{
+                            translateX: -200,
+                            opacity: 0,
+                          }}
+                          whileInView={{ translateX: 0, opacity: 1 }}
+                          viewport={{ amount: 0.1, once: true }}
+                          className="flex flex-col -space-y-2"
+                        >
+                          <motion.h3
+                            initial={{
+                              opacity: 0,
+                            }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ amount: 0.1, once: false }}
+                            className="flex font-title text-3xl font-bold uppercase text-primary-500/50"
+                          >
+                            Résumé
+                          </motion.h3>
+                          <div className="stats relative overflow-x-visible bg-stone-300 shadow duration-300 ease-in-out hover:shadow-xl">
+                            <div className="absolute top-0 right-0 z-0 h-full w-screen rounded-2xl bg-stone-300/25"></div>
+                            <StatContent
+                              icon={
+                                <BiUserCheck className="text-4xl text-secondary-200" />
+                              }
+                              title="Solars incorporés"
+                              value={topHodlers.length}
+                            />
+                            <StatContent
+                              icon={
+                                <BiDollarCircle className="text-4xl text-secondary-200" />
+                              }
+                              title="Capital Total"
+                              value={
+                                +capital
+                                  .reduce((total, val) => total + val, 0)
+                                  .toFixed(0)
+                              }
+                            />
+                            <StatContent
+                              icon={
+                                <RiSpaceShipLine className="text-4xl text-secondary-200" />
+                              }
+                              title="Vaisseaux"
+                              value={getTotalShipCount()}
+                            />
+                          </div>
+                        </motion.div>
+                        <motion.div
+                          initial={{
+                            translateX: 200,
+                            opacity: 0,
+                          }}
+                          whileInView={{ translateX: 0, opacity: 1 }}
+                          viewport={{ amount: 0.1, once: true }}
+                          className="flex flex-col -space-y-2"
+                        >
+                          <motion.h3
+                            initial={{
+                              opacity: 0,
+                            }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ amount: 0.1, once: false }}
+                            className="flex justify-end font-title text-3xl font-bold uppercase text-primary-500/50"
+                          >
+                            Répartition capitaux
+                          </motion.h3>
+                          <div className="stats relative self-end overflow-x-visible bg-stone-300 shadow duration-300 ease-in-out hover:shadow-xl">
+                            <div className="absolute top-0 left-0 z-0 h-full w-screen rounded-2xl bg-stone-300/25"></div>
+                            <StatContent
+                              icon={
+                                <RiSpaceShipLine className="text-4xl text-secondary-200" />
+                              }
+                              title="Flotte"
+                              value={
+                                <span className="flex items-center">
+                                  {+shipsValue.toFixed(0)}
+                                  <span className="opacity-20">$</span>
+                                </span>
+                              }
+                              sub={`${getPercentage(
+                                shipsValue,
+                                capital
+                              ).toFixed(0)}% du capital`}
+                            />
+                            <StatContent
+                              icon={
+                                <HiOutlineOfficeBuilding className="text-4xl text-secondary-200" />
+                              }
+                              title="Structures"
+                              value={
+                                <span className="flex items-center">
+                                  {+structuresValue.toFixed(0)}
+                                  <span className="opacity-20">$</span>
+                                </span>
+                              }
+                              sub={`${getPercentage(
+                                structuresValue,
+                                capital
+                              ).toFixed(0)}% du capital`}
+                            />
+                            <StatContent
+                              icon={
+                                <MdOutlineCollections className="text-4xl text-secondary-200" />
+                              }
+                              title="Collection"
+                              value={
+                                <span className="flex items-center">
+                                  {+collectiblesValue.toFixed(0)}
+                                  <span className="opacity-20">$</span>
+                                </span>
+                              }
+                              sub={`${getPercentage(
+                                collectiblesValue,
+                                capital
+                              ).toFixed(0)}% du capital`}
+                            />
+                            <StatContent
+                              icon={
+                                <TbMilitaryRank className="text-4xl text-secondary-200" />
+                              }
+                              title="Badges"
+                              value={
+                                <span className="flex items-center">
+                                  {+accessValue.toFixed(0)}
+                                  <span className="opacity-20">$</span>
+                                </span>
+                              }
+                              sub={`${getPercentage(
+                                accessValue,
+                                capital
+                              ).toFixed(0)}% du capital`}
+                            />
+                          </div>
+                        </motion.div>
+                        <motion.div
+                          initial={{
+                            translateX: -200,
+                            opacity: 0,
+                          }}
+                          whileInView={{ translateX: 0, opacity: 1 }}
+                          viewport={{ amount: 0.1, once: true }}
+                          className="flex flex-col -space-y-2"
+                        >
+                          <motion.h3
+                            initial={{
+                              opacity: 0,
+                            }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ amount: 0.1, once: false }}
+                            className="flex font-title text-3xl font-bold uppercase text-primary-500/50"
+                          >
+                            Répartition flotte
+                          </motion.h3>
+                          <div className="stats relative overflow-x-visible bg-stone-300 shadow duration-300 ease-in-out hover:shadow-xl">
+                            <div className="absolute top-0 right-0 z-0 h-full w-screen rounded-2xl bg-stone-300/25"></div>
+                            <StatContent
+                              icon={
+                                <BiTargetLock className="text-4xl text-secondary-200" />
+                              }
+                              title="Combat"
+                              value={getShipCountBySpec(['fighter', 'bomber'])}
+                              sub={`${(
+                                (getShipCountBySpec(['fighter', 'bomber']) /
+                                  getTotalShipCount()) *
+                                100
+                              ).toFixed(0)}% de la flotte`}
+                            />
+                            <StatContent
+                              icon={
+                                <FiPackage className="text-4xl text-secondary-200" />
+                              }
+                              title="Transport"
+                              value={getShipCountBySpec([
+                                'freight',
+                                'transport',
+                              ])}
+                              sub={`${(
+                                (getShipCountBySpec(['freight', 'transport']) /
+                                  getTotalShipCount()) *
+                                100
+                              ).toFixed(0)}% de la flotte`}
+                            />
+                            <StatContent
+                              icon={
+                                <RiServiceFill className="text-4xl text-secondary-200" />
+                              }
+                              title="Service"
+                              value={getShipCountBySpec([
+                                'rescue',
+                                'repair',
+                                'refuel/repair',
+                              ])}
+                              sub={`${(
+                                (getShipCountBySpec([
+                                  'rescue',
+                                  'repair',
+                                  'refuel/repair',
+                                ]) /
+                                  getTotalShipCount()) *
+                                100
+                              ).toFixed(0)}% de la flotte`}
+                            />
+                            <StatContent
+                              icon={
+                                <RiStarHalfLine className="text-4xl text-secondary-200" />
+                              }
+                              title="Spé"
+                              value={getShipCountBySpec([
+                                'multi-role',
+                                'bounty hunter',
+                                'racer',
+                                'data runner',
+                              ])}
+                              sub={`${(
+                                (getShipCountBySpec([
+                                  'multi-role',
+                                  'bounty hunter',
+                                  'racer',
+                                  'data runner',
+                                ]) /
+                                  getTotalShipCount()) *
+                                100
+                              ).toFixed(0)}% de la flotte`}
+                            />
+                          </div>
+                        </motion.div>
                       </div>
                     </div>
                     <div className="h-10 w-full bg-primary-500"></div>
