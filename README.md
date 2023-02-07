@@ -9,6 +9,7 @@
 - Daisy UI
 - Framer Motion
 - React-Table
+- Swiper
 
 ## Artworks
 
