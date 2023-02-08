@@ -11,6 +11,15 @@ import Page from '../../../layout/Page';
 import { Core } from '../../../utils/data/Core';
 import { Infographics } from '../../../utils/data/Infographics';
 
+interface Info {
+  title: string;
+  anchor: string;
+  cardTitle?: Array<string>;
+  thumbnails: any;
+  webp: Array<string>;
+  jpg: Array<string>;
+}
+
 const DownloadLink = ({ url, ext }) => (
   <div className="flex items-center duration-200 ease-in-out hover:translate-x-1">
     <BiDownArrow className="mr-4 -rotate-90" />
@@ -37,7 +46,7 @@ const Tools = () => {
               <h2 className="font-title text-3xl font-bold text-secondary-500 md:text-4xl lg:text-5xl">
                 Infographies
               </h2>
-              {Infographics.map((info, index) => (
+              {Infographics.map((info: Info, index) => (
                 <div
                   className="flex w-full scroll-mt-16 flex-col items-start justify-center"
                   key={info.title}
@@ -67,7 +76,7 @@ const Tools = () => {
                                 onClick={openPortal}
                               >
                                 <Image
-                                  src={item}
+                                  src={info.thumbnails[itemIndex]}
                                   alt={info.title}
                                   className="object-cover object-top duration-300 ease-in-out group-hover:scale-105"
                                   width={400}
@@ -80,7 +89,7 @@ const Tools = () => {
                                     <Image
                                       src={item}
                                       alt={info.title}
-                                      width={1170}
+                                      width={1000}
                                       height={600}
                                       className="flex justify-center rounded-xl bg-stone-900/50 object-cover shadow-xl"
                                       placeholder="blur"
@@ -100,7 +109,7 @@ const Tools = () => {
                             </h4>
                           )}
                           <DownloadLink url={info.webp[itemIndex]} ext="webp" />
-                          <DownloadLink url={info.png[itemIndex]} ext="png" />
+                          <DownloadLink url={info.jpg[itemIndex]} ext="jpg" />
                         </div>
                       </div>
                     ))}
