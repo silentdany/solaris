@@ -104,6 +104,7 @@ const Armada = () => {
                       effect="creative"
                       modules={[Pagination]}
                       loop={true}
+                      className="px-24"
                     >
                       <SwiperSlide>
                         <SwiperContent nfts={ships} />
