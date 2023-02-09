@@ -5,9 +5,10 @@ import { BiDollarCircle } from 'react-icons/bi';
 import { EffectCoverflow, Mousewheel } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { NFT } from '../../../hooks/useNFT';
 import { useShipSize } from '../../../hooks/useShipSize';
 
-const getValueWithSeparators = (x: any) => {
+const getValueWithSeparators = (x: number | string) => {
   if (x === 0 || Number.isNaN(x)) return '??';
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
@@ -54,7 +55,7 @@ const SwiperContent = ({ nfts }: any) => (
         'linear-gradient(180deg, rgb(0 0 0 / 0) 0%, rgb(28 25 23 / 0.25) 10%, rgb(28 25 23 / 0.75) 29%, rgb(28 25 23 / 0.75) 71%, rgb(28 25 23 / 0.25) 90%, rgb(0 0 0 / 0) 100%)',
     }}
   >
-    {nfts.map((nft) => {
+    {nfts.map((nft: NFT) => {
       const data = nft.data.galaxyData;
       const { category } = data.attributes;
 
@@ -186,28 +187,36 @@ const SwiperContent = ({ nfts }: any) => (
                       MSRP
                     </div>
                     <div className="flex w-full items-center justify-start text-2xl text-stone-400">
-                      {getValueWithSeparators(
-                        parseInt(data.tradeSettings?.msrp?.value, 10) *
-                          nft.quantity
-                      )}
+                      {data.tradeSettings.msrp
+                        ? getValueWithSeparators(
+                            +data.tradeSettings.msrp.value.toFixed(0) *
+                              nft.quantity
+                          )
+                        : '??'}
                     </div>
                     <div className="flex w-full items-center justify-start text-2xl text-stone-400">
-                      {getValueWithSeparators(
-                        parseInt(data.tradeSettings?.msrp?.value, 10)
-                      )}
+                      {data.tradeSettings.msrp
+                        ? getValueWithSeparators(
+                            data.tradeSettings?.msrp?.value.toFixed(0)
+                          )
+                        : '??'}
                     </div>
                     <div className="flex w-full items-center justify-start font-title text-xl text-stone-400">
                       VWAP
                     </div>
                     <div className="flex w-full items-center justify-start text-2xl text-stone-400">
-                      {getValueWithSeparators(
-                        parseInt(data.tradeSettings?.vwap, 10) * nft.quantity
-                      )}
+                      {data.tradeSettings.vwap
+                        ? getValueWithSeparators(
+                            +data.tradeSettings.vwap.toFixed(0) * nft.quantity
+                          )
+                        : '??'}
                     </div>
                     <div className="flex w-full items-center justify-start text-2xl text-stone-400">
-                      {getValueWithSeparators(
-                        parseInt(data.tradeSettings?.vwap, 10)
-                      )}
+                      {data.tradeSettings.vwap
+                        ? getValueWithSeparators(
+                            data.tradeSettings?.vwap.toFixed(0)
+                          )
+                        : '??'}
                     </div>
                     <div className="flex w-full items-center justify-start font-title text-xl text-stone-300">
                       Marché

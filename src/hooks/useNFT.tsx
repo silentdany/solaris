@@ -28,7 +28,7 @@ export interface GalaxyData {
   primarySales: Array<Object>;
   slots: Object;
   symbol: string;
-  tradeSettings: Object;
+  tradeSettings: TradeSettings;
   updatedAt: string;
   _id: string;
 }
@@ -45,6 +45,12 @@ export interface Attributes {
   unitHeight: number;
   unitLength: number;
   unitWidth: number;
+}
+
+export interface TradeSettings {
+  msrp: { currencySymbol: string; value: number };
+  vwap: number;
+  saleTime?: number;
 }
 
 const useNFT = (pubKeys: string[], NFTtype: string) => {
