@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import useGuildMembers from './useGuildMembers';
 import { rarityOrder } from './useRarityOrder';
 
-interface NFT {
+export interface NFT {
   data: {
     galaxyData: GalaxyData;
     quantity: number;
@@ -12,7 +12,7 @@ interface NFT {
   quantity: number;
   value: number;
 }
-interface GalaxyData {
+export interface GalaxyData {
   airdrops: Array<Object>;
   attributes: Attributes;
   collection: Object;
@@ -33,7 +33,7 @@ interface GalaxyData {
   _id: string;
 }
 
-interface Attributes {
+export interface Attributes {
   category: string;
   class: string;
   itemType: string;
