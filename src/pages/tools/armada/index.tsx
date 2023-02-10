@@ -69,7 +69,7 @@ const Armada = () => {
 
   const pagination = {
     clickable: true,
-    renderBullet: (index, className) => {
+    renderBullet: (index: number, className: string) => {
       return customBullet({ index, className });
     },
   };
@@ -122,10 +122,10 @@ const Armada = () => {
                     <div className="flex flex-col items-center justify-center space-y-8 bg-stone-900/75 p-4 text-stone-50">
                       <a
                         href="#capital"
-                        className="group flex w-full  items-center justify-evenly"
+                        className="group flex w-full items-center justify-evenly"
                       >
-                        <BiDownArrow className="animate-bounce-slow text-4xl text-primary-700/50 duration-200 ease-in-out group-hover:text-primary-700" />
-                        <h2 className="text-2xl">
+                        <BiDownArrow className="animate-bounce-slow text-xl text-primary-700/50 duration-200 ease-in-out group-hover:text-primary-700 md:text-4xl" />
+                        <h2 className="text-lg md:text-2xl">
                           <span className="font-hero">
                             Sol
                             <span className="text-primary-500">a</span>
@@ -134,7 +134,7 @@ const Armada = () => {
                           <span className="mx-4 text-primary-500">|</span>
                           Capital
                         </h2>
-                        <BiDownArrow className="animate-bounce-slow text-4xl text-primary-700/50 duration-200 ease-in-out group-hover:text-primary-700" />
+                        <BiDownArrow className="animate-bounce-slow text-xl text-primary-700/50 duration-200 ease-in-out group-hover:text-primary-700 md:text-4xl" />
                       </a>
                       <div
                         id="capital"

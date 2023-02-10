@@ -19,17 +19,21 @@ export const getResume = (
   getTotalShipCount: { (): number }
 ) => [
   {
-    icon: <BiUserCheck className="text-4xl text-secondary-200" />,
+    icon: <BiUserCheck className="text-2xl text-secondary-200 md:text-4xl" />,
     title: 'Solars incorporés',
     value: topHodlers.length,
   },
   {
-    icon: <BiDollarCircle className="text-4xl text-secondary-200" />,
+    icon: (
+      <BiDollarCircle className="text-2xl text-secondary-200 md:text-4xl" />
+    ),
     title: 'Capital Total',
     value: +capital.reduce((total, val) => total + val, 0).toFixed(0),
   },
   {
-    icon: <RiSpaceShipLine className="text-4xl text-secondary-200" />,
+    icon: (
+      <RiSpaceShipLine className="text-2xl text-secondary-200 md:text-4xl" />
+    ),
     title: 'Vaisseaux',
     value: getTotalShipCount(),
   },
@@ -44,7 +48,9 @@ export const getCapitalRepartition = (
 ) => {
   return [
     {
-      icon: <RiSpaceShipLine className="text-4xl text-secondary-200" />,
+      icon: (
+        <RiSpaceShipLine className="text-2xl text-secondary-200 md:text-4xl" />
+      ),
       title: 'Flotte',
       value: (
         <span className="flex items-center">
@@ -55,7 +61,9 @@ export const getCapitalRepartition = (
       sub: `${getPercentage(shipsValue, capital).toFixed(0)}% du capital`,
     },
     {
-      icon: <HiOutlineOfficeBuilding className="text-4xl text-secondary-200" />,
+      icon: (
+        <HiOutlineOfficeBuilding className="text-2xl text-secondary-200 md:text-4xl" />
+      ),
       title: 'Structures',
       value: (
         <span className="flex items-center">
@@ -66,7 +74,9 @@ export const getCapitalRepartition = (
       sub: `${getPercentage(structuresValue, capital).toFixed(0)}% du capital`,
     },
     {
-      icon: <MdOutlineCollections className="text-4xl text-secondary-200" />,
+      icon: (
+        <MdOutlineCollections className="text-2xl text-secondary-200 md:text-4xl" />
+      ),
       title: 'Collection',
       value: (
         <span className="flex items-center">
@@ -79,7 +89,9 @@ export const getCapitalRepartition = (
       )}% du capital`,
     },
     {
-      icon: <TbMilitaryRank className="text-4xl text-secondary-200" />,
+      icon: (
+        <TbMilitaryRank className="text-2xl text-secondary-200 md:text-4xl" />
+      ),
       title: 'Badges',
       value: (
         <span className="flex items-center">
@@ -98,7 +110,9 @@ export const getFleetRepartition = (
 ) => {
   return [
     {
-      icon: <BiTargetLock className="text-4xl text-secondary-200" />,
+      icon: (
+        <BiTargetLock className="text-2xl text-secondary-200 md:text-4xl" />
+      ),
       title: 'Combat',
       value: getShipCountBySpec(['fighter', 'bomber']),
       sub: `${(
@@ -107,7 +121,7 @@ export const getFleetRepartition = (
       ).toFixed(0)}% de la flotte`,
     },
     {
-      icon: <FiPackage className="text-4xl text-secondary-200" />,
+      icon: <FiPackage className="text-2xl text-secondary-200 md:text-4xl" />,
       title: 'Transport',
       value: getShipCountBySpec(['freight', 'transport']),
       sub: `${(
@@ -116,7 +130,9 @@ export const getFleetRepartition = (
       ).toFixed(0)}% de la flotte`,
     },
     {
-      icon: <RiServiceFill className="text-4xl text-secondary-200" />,
+      icon: (
+        <RiServiceFill className="text-2xl text-secondary-200 md:text-4xl" />
+      ),
       title: 'Service',
       value: getShipCountBySpec(['rescue', 'repair', 'refuel/repair']),
       sub: `${(
@@ -126,7 +142,9 @@ export const getFleetRepartition = (
       ).toFixed(0)}% de la flotte`,
     },
     {
-      icon: <RiStarHalfLine className="text-4xl text-secondary-200" />,
+      icon: (
+        <RiStarHalfLine className="text-2xl text-secondary-200 md:text-4xl" />
+      ),
       title: 'Spé',
       value: getShipCountBySpec([
         'multi-role',

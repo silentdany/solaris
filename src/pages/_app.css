@@ -36,7 +36,7 @@ body {
   border-radius: unset!important;
   opacity: unset!important;
   margin: unset!important;
-  @apply w-full flex-1 ease-in-out duration-100 font-title p-1 mx-4 text-xl text-stone-300/50 border-b-4 border-transparent hover:border-secondary-500 hover:bg-gradient-to-t hover:from-common/10;
+  @apply w-full flex-1 ease-in-out duration-100 font-title p-1 mx-4 md:text-xl text-stone-300/50 border-b-4 border-transparent hover:border-secondary-500 hover:bg-gradient-to-t hover:from-common/10;
   }
 
 .swiper-pagination-bullet-active {

@@ -169,7 +169,7 @@ const SwiperContent = ({ nfts }: any) => {
                   }
                 >
                   <div
-                    className="md card glass z-10 ml-4 flex h-full flex-col items-start justify-between p-4 lg:mx-12 "
+                    className="md card glass z-10 flex h-full flex-col items-start justify-between p-4 md:ml-4 lg:mx-12 "
                     style={
                       isActive
                         ? {
