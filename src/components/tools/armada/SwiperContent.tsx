@@ -16,14 +16,14 @@ const getValueWithSeparators = (x: number | string) => {
 
 const ShipSize = (shipSize: string) => (
   <div className="flex items-center justify-center">
-    <div className="flex h-7 w-7 items-center justify-center rounded-full border-[3px] border-primary-300 text-[0.5rem] font-extrabold uppercase lg:h-12 lg:w-12 lg:text-sm">
+    <div className="flex h-7 w-7 items-center justify-center rounded-full border-[3px] border-primary-300 text-[0.5rem] font-extrabold uppercase md:h-10 md:w-10 md:text-xs lg:h-12 lg:w-12 lg:text-sm">
       {useShipSize(shipSize.toLowerCase())}
     </div>
   </div>
 );
 
 const NftAttributes = ({ data }: any) => (
-  <div className="flex w-full items-center justify-end space-x-1 break-words text-xs capitalize text-stone-300 lg:space-x-2 lg:text-xl">
+  <div className="flex w-full items-center justify-end space-x-1 break-words text-xs capitalize text-stone-300 md:space-x-2 md:text-xl">
     {data.attributes.category === 'ship' && data.attributes.spec}
     <span className="text-primary-300"></span>
     {data.attributes.category === 'ship'
@@ -53,7 +53,7 @@ const SwiperContent = ({ nfts }: any) => {
       }}
       modules={[EffectCoverflow, Mousewheel]}
       style={{
-        padding: isTablet ? '0 8px' : '0 96px',
+        padding: isMobile ? '0 8px' : '0 64px',
         background:
           'linear-gradient(180deg, rgb(0 0 0 / 0) 0%, rgb(28 25 23 / 0.25) 10%, rgb(28 25 23 / 0.75) 29%, rgb(28 25 23 / 0.75) 71%, rgb(28 25 23 / 0.25) 90%, rgb(0 0 0 / 0) 100%)',
       }}
@@ -80,7 +80,7 @@ const SwiperContent = ({ nfts }: any) => {
                   }
                 >
                   <div
-                    className="card glass flex h-full flex-col items-center justify-between p-4 lg:mx-12"
+                    className="card glass flex h-full flex-col items-center justify-between p-4 md:mr-4 lg:mx-12"
                     style={
                       isActive
                         ? {
@@ -94,22 +94,22 @@ const SwiperContent = ({ nfts }: any) => {
                     <h3 className="flex w-full flex-col items-end">
                       {category === 'ship' ? (
                         <>
-                          <span className="-mb-1 truncate text-right font-title text-gray-200 lg:-mb-3 lg:text-lg">
+                          <span className="-mb-1 truncate text-right font-title text-gray-200 md:text-lg lg:-mb-3">
                             {data.attributes.make}
                           </span>
-                          <span className="break-words text-right text-sm font-bold leading-3 text-primary-500 lg:text-3xl lg:leading-normal">
+                          <span className="break-words text-right text-sm font-bold leading-3 text-primary-500 md:text-2xl md:leading-none lg:text-3xl lg:leading-normal">
                             {data.attributes.model}
                           </span>
                         </>
                       ) : (
-                        <span className="break-words text-right font-bold leading-none text-primary-500 lg:text-2xl lg:leading-normal">
+                        <span className="break-words text-right font-bold leading-none text-primary-500 md:text-2xl lg:leading-normal">
                           {data.name}
                         </span>
                       )}
                     </h3>
-                    <div className="flex w-full items-center justify-end text-gray-400 lg:text-2xl">
+                    <div className="flex w-full items-center justify-end text-gray-400 md:text-2xl">
                       x
-                      <span className="text-xl text-primary-300 lg:text-4xl">
+                      <span className="text-xl text-primary-300 md:text-4xl">
                         {nft.quantity}
                       </span>
                     </div>
@@ -169,7 +169,7 @@ const SwiperContent = ({ nfts }: any) => {
                   }
                 >
                   <div
-                    className="card glass z-10 flex h-full flex-col items-start justify-between p-4 lg:mx-12 "
+                    className="md card glass z-10 ml-4 flex h-full flex-col items-start justify-between p-4 lg:mx-12 "
                     style={
                       isActive
                         ? {
@@ -182,20 +182,20 @@ const SwiperContent = ({ nfts }: any) => {
                   >
                     <div className="grid h-full w-full grid-cols-2 lg:grid-cols-3">
                       <div className="flex w-full items-center justify-center">
-                        <BiDollarCircle className="text-xl text-yellow-500 lg:text-3xl" />
+                        <BiDollarCircle className="text-xl text-yellow-500 md:text-3xl" />
                       </div>
-                      <div className="flex w-full items-center justify-start font-title text-lg text-stone-300 lg:text-xl">
+                      <div className="flex w-full items-center justify-start font-title text-lg text-stone-300 md:text-xl">
                         Total
                       </div>
                       {!isTablet && !isMobile && (
-                        <div className="flex w-full items-center justify-start font-title text-lg text-stone-300 lg:text-xl">
+                        <div className="flex w-full items-center justify-start font-title text-lg text-stone-300 md:text-xl">
                           Unité
                         </div>
                       )}
-                      <div className="flex w-full items-center justify-start font-title text-xs text-stone-400 lg:text-xl">
+                      <div className="flex w-full items-center justify-start font-title text-xs text-stone-400 md:text-xl">
                         MSRP
                       </div>
-                      <div className="flex w-full items-center justify-start text-stone-400 lg:text-2xl">
+                      <div className="flex w-full items-center justify-start text-stone-400 md:text-2xl">
                         {data.tradeSettings.msrp
                           ? getValueWithSeparators(
                               +data.tradeSettings.msrp.value.toFixed(0) *
@@ -204,7 +204,7 @@ const SwiperContent = ({ nfts }: any) => {
                           : '??'}
                       </div>
                       {!isTablet && !isMobile && (
-                        <div className="flex w-full items-center justify-start text-xl text-stone-400 lg:text-2xl">
+                        <div className="flex w-full items-center justify-start text-xl text-stone-400 md:text-2xl">
                           {data.tradeSettings.msrp
                             ? getValueWithSeparators(
                                 data.tradeSettings?.msrp?.value.toFixed(0)
@@ -212,10 +212,10 @@ const SwiperContent = ({ nfts }: any) => {
                             : '??'}
                         </div>
                       )}
-                      <div className="flex w-full items-center justify-start font-title text-xs text-stone-400 lg:text-xl">
+                      <div className="flex w-full items-center justify-start font-title text-xs text-stone-400 md:text-xl">
                         VWAP
                       </div>
-                      <div className="flex w-full items-center justify-start text-stone-400 lg:text-2xl">
+                      <div className="flex w-full items-center justify-start text-stone-400 md:text-2xl">
                         {data.tradeSettings.vwap
                           ? getValueWithSeparators(
                               +data.tradeSettings.vwap.toFixed(0) * nft.quantity
@@ -223,7 +223,7 @@ const SwiperContent = ({ nfts }: any) => {
                           : '??'}
                       </div>
                       {!isTablet && !isMobile && (
-                        <div className="flex w-full items-center justify-start text-xl text-stone-400 lg:text-2xl">
+                        <div className="flex w-full items-center justify-start text-xl text-stone-400 md:text-2xl">
                           {data.tradeSettings.vwap
                             ? getValueWithSeparators(
                                 data.tradeSettings?.vwap.toFixed(0)
@@ -231,17 +231,17 @@ const SwiperContent = ({ nfts }: any) => {
                             : '??'}
                         </div>
                       )}
-                      <div className="flex w-full items-center justify-start font-title text-xs text-stone-300 lg:text-xl">
+                      <div className="flex w-full items-center justify-start font-title text-xs text-stone-300 md:text-xl">
                         Marché
                       </div>
 
-                      <div className="flex w-full items-center justify-start text-primary-300 lg:text-2xl">
+                      <div className="flex w-full items-center justify-start text-primary-300 md:text-2xl">
                         {getValueWithSeparators(
                           parseInt(nft.value.toFixed(0), 10)
                         )}
                       </div>
                       {!isTablet && !isMobile && (
-                        <div className="flex w-full items-center justify-start text-xl text-primary-300 lg:text-2xl">
+                        <div className="flex w-full items-center justify-start text-xl text-primary-300 md:text-2xl">
                           {getValueWithSeparators(
                             parseInt((nft.value / nft.quantity).toFixed(0), 10)
                           )}
