@@ -34,11 +34,10 @@ export const Core = [
       'https://storage.googleapis.com/nft-assets/items/CORE3SA-a8468616.jpg',
     pdf: 'https://drive.google.com/file/d/1zYpUrZKsSrlvbfhB8r-nWagv6w0FYW7V/view?usp=share_link',
   },
-   {
+  {
     title: 'Episode 4',
     anchor: 'core-episode-4',
-    image:
-      'https://storage.googleapis.com/nft-assets/items/CORE4-SA.jpg',
+    image: 'https://storage.googleapis.com/nft-assets/items/CORE4-SA.jpg',
     pdf: 'https://drive.google.com/file/d/1QsHUoz_IAy6ETbvgfnETd03dzNUVMGU5/view?usp=share_link',
-  },  
+  },
 ];
