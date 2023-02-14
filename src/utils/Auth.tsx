@@ -1,3 +1,25 @@
+export interface DiscordSession {
+  accessToken: string;
+  expires: string;
+  user: DiscordUser;
+}
+
+export interface DiscordUser {
+  id: string;
+  name: string;
+  discriminator: string;
+  image: string;
+  locale: string;
+  email: string;
+  roles: DiscordRole[];
+}
+
+interface DiscordRole {
+  id: string;
+  name: string;
+  slug: string;
+}
+
 const discordRoles = [
   {
     id: '992464344564646089',
@@ -30,6 +52,5 @@ export async function checkUserRoles(accessToken: string, guildId: string) {
       );
     }
   }
-  console.error('Failed to get roles from Discord API');
-  return [];
+  throw new Error('Echec de la récupération des rôles Discord');
 }

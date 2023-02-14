@@ -20,7 +20,6 @@ export default NextAuth({
   },
   callbacks: {
     async jwt({ token, account, profile }) {
-      // Persist the OAuth access_token and or the user id to the token right after signin
       if (account) {
         const roles = await checkUserRoles(
           account.access_token,
@@ -28,13 +27,17 @@ export default NextAuth({
         );
         token.roles = roles;
         token.id = profile.id;
+        token.discriminator = profile.discriminator;
+        token.locale = profile.locale;
       }
 
       return token;
     },
     async session({ session, token }) {
-      session.roles = token.roles;
+      session.user.roles = token.roles;
       session.user.id = token.id;
+      session.user.discriminator = token.discriminator;
+      session.user.locale = token.locale;
 
       return session;
     },

@@ -4,13 +4,13 @@ import Link from 'next/link';
 import { CgProfile } from 'react-icons/cg';
 import { FaDiscord } from 'react-icons/fa';
 
+import { DiscordAvatar } from '../components/auth/DiscordAvatar';
 import { SocialButtons } from '../components/SocialButtons';
+import { DiscordUser } from '../utils/Auth';
 
-const DiscordAvatar = ({ user }) => {
-  return <Image src={user?.image} alt={user?.name} width={32} height={32} />;
-};
 const Navbar = () => {
   const { data: session } = useSession();
+  const user = session?.user as DiscordUser;
   console.log('🚀 ~ file: Navbar.tsx:14 ~ Navbar ~ session', session);
   return (
     <div className="navbar fixed z-30 bg-base-100 shadow-xl" id="top">
@@ -87,7 +87,7 @@ const Navbar = () => {
             {session ? (
               <div className="avatar">
                 <div className="w-8 rounded-full">
-                  <DiscordAvatar user={session.user} />
+                  <DiscordAvatar user={user} />
                 </div>
               </div>
             ) : (
@@ -96,7 +96,7 @@ const Navbar = () => {
               </div>
             )}
           </label>
-          <ul className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow">
+          <ul className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 text-right shadow">
             {!session ? (
               <li>
                 <button
@@ -111,16 +111,25 @@ const Navbar = () => {
               </li>
             ) : (
               <>
-                <li>
-                  <a className="font-title text-lg hover:text-primary-300">
-                    Profil
-                  </a>
-                </li>
-                <li>
-                  <a className="font-title text-lg hover:text-primary-300">
-                    Préférences
-                  </a>
-                </li>
+                {/* <div className="card">
+                  <div className="flex flex-row items-center p-2 px-4">
+                    {session.user?.name}
+                    <span className="p-0 opacity-50">
+                      #{session.user?.discriminator}
+                    </span>
+                  </div>
+                </div> */}
+                <div className="mb-4 flex flex-col rounded-xl bg-stone-200 p-2 shadow-xl">
+                  <div className="flex justify-end text-right font-bold">
+                    {user.name}
+                    <span className="p-0 font-normal text-stone-400">
+                      #{user.discriminator}
+                    </span>
+                  </div>
+                  <div className="p-0 text-secondary-500/50">
+                    {user.roles[0]?.name}
+                  </div>
+                </div>
                 <li>
                   <button
                     className="font-title text-lg hover:text-primary-300"
@@ -129,6 +138,14 @@ const Navbar = () => {
                     Déconnexion
                   </button>
                 </li>
+                {/* <li>
+                  <button
+                    className="font-title text-lg hover:text-primary-300"
+                    onClick={() => signOut()}
+                  >
+                    Déconnexion
+                  </button>
+                </li> */}
               </>
             )}
           </ul>
