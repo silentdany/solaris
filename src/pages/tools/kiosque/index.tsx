@@ -26,6 +26,7 @@ const DownloadLink = ({ url, ext }) => (
     <a
       href={url}
       download
+      target={'_blank'}
       className="flex items-center hover:text-primary-500"
       rel="noreferrer"
     >
