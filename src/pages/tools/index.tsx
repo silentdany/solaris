@@ -40,7 +40,7 @@ const data = [
 
     url: '/tools/armada',
     color: 'border-stone-800',
-    image: '/assets/images/kiosk.webp',
+    image: '/assets/images/armada.webp',
     auth: 'staff',
   },
 ];

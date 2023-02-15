@@ -89,7 +89,7 @@ const Armada = () => {
 
   return (
     <Index>
-      <Page title="Armada" image="/assets/images/kiosk.webp">
+      <Page title="Armada" image="/assets/images/armada.webp">
         <div className="flex w-full flex-col items-center justify-center">
           <InnerSectionBlock bgColor={'from-primary-500/40'} fullscreen={true}>
             <div className="flex h-full w-full flex-col">
