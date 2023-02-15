@@ -31,6 +31,12 @@ export const AppConfig = {
   ],
 };
 
+export const joinData = {
+  title: 'Devenir membre Solaris',
+  text: 'Vous souhaitez rejoindre Solaris ?',
+  url: AppConfig.social[0]!.link,
+};
+
 export const position = [
   {
     title: 'Factions',

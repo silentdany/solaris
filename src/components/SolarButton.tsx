@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 type Props = {
-  url: string;
+  url: string | URL;
   ext?: boolean;
   small?: boolean;
   title: string;

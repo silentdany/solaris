@@ -16,18 +16,21 @@ export interface DiscordUser {
 
 interface DiscordRole {
   id: string;
+  level: number;
   name: string;
   slug: string;
 }
 
-const discordRoles = [
+export const discordRoles = [
   {
     id: '992464344564646089',
+    level: 1,
     name: 'Staff',
     slug: 'staff',
   },
   {
     id: '995944390876991589',
+    level: 2,
     name: 'Solar',
     slug: 'solar',
   },
@@ -48,7 +51,11 @@ export async function checkUserRoles(accessToken: string, guildId: string) {
     if (data.roles) {
       return discordRoles.map(
         (role) =>
-          data.roles.includes(role.id) && { name: role.name, slug: role.slug }
+          data.roles.includes(role.id) && {
+            level: role.level,
+            name: role.name,
+            slug: role.slug,
+          }
       );
     }
   }

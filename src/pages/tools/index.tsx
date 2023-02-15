@@ -6,7 +6,9 @@ import { BiChevronRight } from 'react-icons/bi';
 
 import Index from '..';
 import { SolarButton } from '../../components/SolarButton';
+import { useAccess } from '../../hooks/useAccess';
 import Page from '../../layout/Page';
+import { joinData } from '../../utils/AppConfig';
 
 const data = [
   {
@@ -29,8 +31,8 @@ const data = [
     text: (
       <>
         <p>
-          Visualisez de manière inédite de notre flotte de guerre et découvrez
-          la puissance économique de Solaris !
+          Visualisez de manière inédite notre flotte de guerre et découvrez la
+          puissance économique de Solaris !
         </p>
         <p className="text-stone-50/50">(Version bêta)</p>
       </>
@@ -39,21 +41,22 @@ const data = [
     url: '/tools/armada',
     color: 'border-stone-800',
     image: '/assets/images/kiosk.webp',
+    auth: 'staff',
   },
 ];
 
 const Tools = () => {
   const [slideIndex, setSlideIndex] = useState<number>(0);
+  const isStaff = useAccess('staff');
 
   const expandSlide = (index: number) => {
     setSlideIndex(index);
   };
-
   return (
     <Index>
       <Page title="Outils" image="/assets/images/tools.webp" screenHeight>
         <div className="flex h-full w-full max-w-6xl justify-center">
-          {data.map(({ title, text, url, color, image }, index) => (
+          {data.map(({ title, text, url, color, image, auth }, index) => (
             <div
               className={`group relative flex h-full items-center justify-center border-2 duration-300 ease-in-out ${color} ${
                 slideIndex === index ? 'w-full' : 'w-12 md:w-16 lg:w-32'
@@ -83,21 +86,39 @@ const Tools = () => {
                     className="glass flex w-2/3 flex-col items-center justify-center space-y-4 rounded-xl p-4 shadow hover:shadow-xl md:flex-row md:space-y-0 md:space-x-8 md:p-8"
                   >
                     <p className="text-xs text-stone-50 md:text-sm">{text}</p>
-                    <Link href={url} className="group">
-                      <SolarButton
-                        small
-                        url={url}
-                        title={title}
-                        item={
-                          <div className="flex items-center text-xs md:text-sm">
-                            Acceder
-                            <span className="ml-2 md:text-lg lg:text-xl">
-                              <BiChevronRight />
-                            </span>
-                          </div>
-                        }
-                      />
-                    </Link>
+                    {auth && !isStaff ? (
+                      <Link href={joinData.url} className="group">
+                        <SolarButton
+                          small
+                          url={joinData.url}
+                          title={joinData.title}
+                          item={
+                            <div className="flex w-full items-center text-xs md:text-sm">
+                              Réservé Membres
+                              <span className="ml-2 md:text-lg lg:text-xl">
+                                <BiChevronRight />
+                              </span>
+                            </div>
+                          }
+                        />
+                      </Link>
+                    ) : (
+                      <Link href={url} className="group">
+                        <SolarButton
+                          small
+                          url={url}
+                          title={title}
+                          item={
+                            <div className="flex items-center text-xs md:text-sm">
+                              Acceder
+                              <span className="ml-2 md:text-lg lg:text-xl">
+                                <BiChevronRight />
+                              </span>
+                            </div>
+                          }
+                        />
+                      </Link>
+                    )}
                   </motion.div>
                 </motion.div>
               ) : (

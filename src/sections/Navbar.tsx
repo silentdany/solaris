@@ -11,7 +11,6 @@ import { DiscordUser } from '../utils/Auth';
 const Navbar = () => {
   const { data: session } = useSession();
   const user = session?.user as DiscordUser;
-  console.log('🚀 ~ file: Navbar.tsx:14 ~ Navbar ~ session', session);
   return (
     <div className="navbar fixed z-30 bg-base-100 shadow-xl" id="top">
       <div className="navbar-start">
