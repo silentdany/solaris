@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import Link from 'next/link';
 
 type Props = {
@@ -5,7 +7,31 @@ type Props = {
   ext?: boolean;
   small?: boolean;
   title: string;
-  item: React.ReactNode;
+  item: ReactNode;
+};
+
+type CoreProps = {
+  small?: boolean;
+  item: ReactNode;
+  action?: any;
+};
+
+export const SolarButtonCore = (props: CoreProps) => {
+  const { small, item, action } = props;
+  return (
+    <button
+      className={`lg:px-18 group-solar-btn btn relative min-w-max overflow-hidden rounded-xl border-0 bg-white px-4 shadow-xl transition-all hover:bg-white md:px-12 ${
+        small ? 'h-8 w-32' : 'h-12 w-52 lg:h-16'
+      }`}
+      onClick={action}
+    >
+      <span className="-z-1 absolute top-0 -left-10 h-full w-0 -skew-x-[40deg] rounded bg-secondary-300 transition-all duration-500 ease-out group-solar-btn-hover:w-[150%]"></span>
+      <span className="-z-1 absolute top-0 -left-20 h-full w-0 -skew-x-[40deg] rounded bg-primary-300 transition-all duration-500 ease-out group-solar-btn-hover:w-[150%]"></span>
+      <span className="z-10 flex w-full items-center justify-center text-black transition-colors duration-300 ease-in-out group-solar-btn-hover:text-white">
+        {item}
+      </span>
+    </button>
+  );
 };
 
 export const SolarButton = (props: Props) => {
@@ -15,17 +41,7 @@ export const SolarButton = (props: Props) => {
     <div>
       <Link href={url} passHref>
         <a title={title} target={ext ? '_blank' : '_self'} rel="noreferrer">
-          <button
-            className={`lg:px-18 group-solar-btn btn relative min-w-max overflow-hidden rounded-xl border-0 bg-white px-4 shadow-xl transition-all hover:bg-white md:px-12 ${
-              small ? 'h-8 w-32' : 'h-12 w-52 lg:h-16'
-            }`}
-          >
-            <span className="-z-1 absolute top-0 -left-10 h-full w-0 -skew-x-[40deg] rounded bg-secondary-300 transition-all duration-500 ease-out group-solar-btn-hover:w-[150%]"></span>
-            <span className="-z-1 absolute top-0 -left-20 h-full w-0 -skew-x-[40deg] rounded bg-primary-300 transition-all duration-500 ease-out group-solar-btn-hover:w-[150%]"></span>
-            <span className="z-10 flex w-full items-center justify-center text-black transition-colors duration-300 ease-in-out group-solar-btn-hover:text-white">
-              {item}
-            </span>
-          </button>
+          <SolarButtonCore small={small} item={item} />
         </a>
       </Link>
     </div>
