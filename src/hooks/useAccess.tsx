@@ -17,17 +17,3 @@ export const useAccess = (accessLevel: string) => {
     ) || false
   );
 };
-
-export const getAccess = (accessLevel: string, user: DiscordUser | any) => {
-  const roles = discordRoles;
-  return (
-    // return true if user has accessLevel role and true for all higher roles by discordRole level
-    user?.roles?.some(
-      (role) =>
-        role.slug === accessLevel &&
-        roles
-          .filter((r) => r.level >= role.level)
-          .every((r) => user.roles.some((ur) => ur.slug === r.slug))
-    ) || false
-  );
-};

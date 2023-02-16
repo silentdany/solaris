@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import { getSession, GetSessionParams } from 'next-auth/react';
 import { BiDownArrow } from 'react-icons/bi';
 import { Pagination } from 'swiper';
 import 'swiper/css';
@@ -13,7 +12,6 @@ import { topHodlers } from '../../../../data/topHodlers';
 import { Loader } from '../../../components/Loader';
 import { CapitalStat } from '../../../components/tools/armada/CapitalStat';
 import SwiperContent from '../../../components/tools/armada/SwiperContent';
-import { getAccess } from '../../../hooks/useAccess';
 import useNFT from '../../../hooks/useNFT';
 import InnerSectionBlock from '../../../layout/InnerSectionBlock';
 import Page from '../../../layout/Page';
@@ -181,23 +179,3 @@ const Armada = () => {
 };
 
 export default Armada;
-
-export async function getServerSideProps(
-  context: GetSessionParams | undefined
-) {
-  const session = await getSession(context);
-  const isStaff = getAccess('staff', session?.user);
-
-  if (!isStaff) {
-    return {
-      redirect: {
-        destination: '/tools',
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: { session },
-  };
-}
