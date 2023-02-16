@@ -34,6 +34,12 @@ export const discordRoles = [
     name: 'Solar',
     slug: 'solar',
   },
+  {
+    id: '992464214738346147',
+    level: 3,
+    name: 'Atlassien',
+    slug: 'atlassien',
+  },
 ];
 
 export async function checkUserRoles(accessToken: string, guildId: string) {
@@ -49,7 +55,7 @@ export async function checkUserRoles(accessToken: string, guildId: string) {
   if (response.ok) {
     const data = await response.json();
     if (data.roles) {
-      return discordRoles.map(
+      const res = discordRoles.map(
         (role) =>
           data.roles.includes(role.id) && {
             level: role.level,
@@ -57,7 +63,14 @@ export async function checkUserRoles(accessToken: string, guildId: string) {
             slug: role.slug,
           }
       );
+      // remove false entries from res
+      return res.filter((role) => role);
     }
   }
+
+  if (response.status === 404) {
+    return [];
+  }
+
   throw new Error('Echec de la récupération des rôles Discord');
 }

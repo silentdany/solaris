@@ -126,7 +126,7 @@ const Navbar = () => {
                     </span>
                   </div>
                   <div className="p-0 text-secondary-500/50">
-                    {user.roles[0]?.name}
+                    {user.roles[0]?.name || 'Invité'}
                   </div>
                 </div>
                 <li>

@@ -94,7 +94,7 @@ const Tools = () => {
                           title={joinData.title}
                           item={
                             <div className="flex w-full items-center text-xs md:text-sm">
-                              Réservé Membres
+                              Réservé Staff
                               <span className="ml-2 md:text-lg lg:text-xl">
                                 <BiChevronRight />
                               </span>
