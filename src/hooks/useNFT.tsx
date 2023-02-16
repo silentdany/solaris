@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import useGuildMembers from './useGuildMembers';
 import { rarityOrder } from './useRarityOrder';
+import { shipSizeOrder } from './useShipSizeOrder';
 
 export interface NFT {
   data: {
@@ -53,7 +54,50 @@ export interface TradeSettings {
   saleTime?: number;
 }
 
-const useNFT = (pubKeys: string[], NFTtype: string) => {
+const hideSensibleData = (ships: NFT[], nftSize: string, nftRarity: string) => {
+  const getSizeOrder = (size: string) => {
+    return shipSizeOrder.find((item) => item.size === size)?.order;
+  };
+
+  const getRarityOrder = (rarity: string) => {
+    return rarityOrder.find((item) => item.rarity === rarity)?.order;
+  };
+
+  const filteredShips = ships.filter((ship: NFT) => {
+    const sizeOrderValue = getSizeOrder(ship.data.galaxyData.attributes.class);
+    const rarityOrderValue = getRarityOrder(
+      ship.data.galaxyData.attributes.rarity
+    );
+    const targetSizeOrderValue = getSizeOrder(nftSize)! - 1;
+    const targetRarityOrderValue = getRarityOrder(nftRarity)! - 1;
+
+    if (
+      sizeOrderValue &&
+      targetSizeOrderValue &&
+      sizeOrderValue > targetSizeOrderValue
+    ) {
+      return false;
+    }
+
+    if (
+      rarityOrderValue &&
+      targetRarityOrderValue &&
+      rarityOrderValue > targetRarityOrderValue
+    ) {
+      return false;
+    }
+
+    return true;
+  });
+
+  return filteredShips;
+};
+
+const useNFT = (
+  pubKeys: string[],
+  NFTtype: string,
+  userLevel: string | undefined
+) => {
   const { guildMembers, membersLoading, membersError } =
     useGuildMembers(pubKeys);
 
@@ -64,19 +108,19 @@ const useNFT = (pubKeys: string[], NFTtype: string) => {
 
   const getNFT = (members) => {
     const totalNFT = members?.reduce((acc, member) => {
-      const ships = member.nfts.filter(
+      const nfts = member.nfts.filter(
         (n) => n?.galaxyData?.attributes.itemType === NFTtype
       );
-      ships.forEach((ship) => {
-        const { mint } = ship.galaxyData;
+      nfts.forEach((item) => {
+        const { mint } = item.galaxyData;
         if (acc[mint]) {
-          acc[mint].quantity += ship.quantity;
-          acc[mint].value += ship.valuePerAsset * ship.quantity;
+          acc[mint].quantity += item.quantity;
+          acc[mint].value += item.valuePerAsset * item.quantity;
         } else {
           acc[mint] = {
-            data: ship,
-            quantity: ship.quantity,
-            value: ship.valuePerAsset * ship.quantity,
+            data: item,
+            quantity: item.quantity,
+            value: item.valuePerAsset * item.quantity,
           };
         }
       });
@@ -97,12 +141,18 @@ const useNFT = (pubKeys: string[], NFTtype: string) => {
       return rarityB.order - rarityA.order;
     });
 
-  const totalNFTValue = nft.reduce((acc, ship) => acc + ship.value, 0);
+  const totalNFTValue = nft.reduce((acc, item) => acc + item.value, 0);
 
   useEffect(() => {
     if (!membersLoading || !membersError) {
       const sortedNFT = sortNFT(getNFT(guildMembers));
-      setNFT(sortedNFT);
+      setNFT(hideSensibleData(sortedNFT, 'medium', 'epic'));
+      if (userLevel === 'solar') {
+        setNFT(hideSensibleData(sortedNFT, 'large', 'legendary'));
+      }
+      if (userLevel === 'staff') {
+        setNFT(sortedNFT);
+      }
       setNFTValue(totalNFTValue);
     }
   }, [guildMembers, membersError, membersLoading, pubKeys, totalNFTValue]);

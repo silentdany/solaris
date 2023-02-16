@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { useSession } from 'next-auth/react';
 import { BiDownArrow } from 'react-icons/bi';
 import { Pagination } from 'swiper';
 import 'swiper/css';
@@ -15,6 +16,7 @@ import SwiperContent from '../../../components/tools/armada/SwiperContent';
 import useNFT from '../../../hooks/useNFT';
 import InnerSectionBlock from '../../../layout/InnerSectionBlock';
 import Page from '../../../layout/Page';
+import { DiscordUser } from '../../../utils/Auth';
 import {
   getCapitalRepartition,
   getFleetRepartition,
@@ -24,27 +26,30 @@ import {
 
 const Armada = () => {
   const [loading, setLoading] = useState(true);
+  const { data: session } = useSession();
+  const user = session?.user as DiscordUser;
+  const userRole = user?.roles[0]?.slug;
 
   const {
     nft: ships,
     nftValue: shipsValue,
     nftLoading: shipsLoading,
-  } = useNFT(topHodlers, 'ship');
+  } = useNFT(topHodlers, 'ship', userRole);
   const {
     nft: structures,
     nftValue: structuresValue,
     nftLoading: structuresLoading,
-  } = useNFT(topHodlers, 'structure');
+  } = useNFT(topHodlers, 'structure', userRole);
   const {
     nft: collectibles,
     nftValue: collectiblesValue,
     nftLoading: collectiblesLoading,
-  } = useNFT(topHodlers, 'collectible');
+  } = useNFT(topHodlers, 'collectible', userRole);
   const {
     nft: access,
     nftValue: accessValue,
     nftLoading: accessLoading,
-  } = useNFT(topHodlers, 'access');
+  } = useNFT(topHodlers, 'access', userRole);
 
   const getTotalShipCount = () =>
     ships.reduce((acc, ship) => acc + ship.quantity, 0);

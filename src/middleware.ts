@@ -15,4 +15,4 @@ export default withAuth(
   }
 );
 
-export const config = { matcher: ['/tools/armada'] };
+export const config = { matcher: ['/admin'] };

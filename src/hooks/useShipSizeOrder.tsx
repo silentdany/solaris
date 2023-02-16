@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 import { Row } from 'react-table';
 
-const array = [
+export const shipSizeOrder = [
   {
     order: 1,
     size: 'xx-small',
@@ -37,8 +37,12 @@ const array = [
 ];
 
 export const useShipSizeOrder = (rowA: Row, rowB: Row, columnId: string) => {
-  const aSize = array.find((item) => item.size === rowA.original[columnId]);
-  const bSize = array.find((item) => item.size === rowB.original[columnId]);
+  const aSize = shipSizeOrder.find(
+    (item) => item.size === rowA.original[columnId]
+  );
+  const bSize = shipSizeOrder.find(
+    (item) => item.size === rowB.original[columnId]
+  );
   if (aSize && bSize) {
     if (aSize.order > bSize.order) {
       return 1;
