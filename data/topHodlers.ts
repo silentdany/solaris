@@ -11,4 +11,5 @@ export const topHodlers = [
   '8XcbFK5Ko4qJK9CvvJorKwhiNTFqNrkKTJWbfhsZn9Xj',
   '4TwmrnrJtmXpH8fYXapfomfKRLSJavnGJJL6ULrhum2E',
   '7VxYzWwAzpGAwz8XnztFu6ssZ2W4du2tMP2MSxqnNZoS',
+  '8YAgX8GDcFKGdpuunmwQdETXnhukAEHLEbUN2qxjucB4',
 ];
