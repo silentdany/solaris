@@ -8,11 +8,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import useMediaQuery from '../../../hooks/useMediaQuery';
 import { NFT } from '../../../hooks/useNFT';
 import { useShipSize } from '../../../hooks/useShipSize';
-
-const getValueWithSeparators = (x: number | string) => {
-  if (x === 0 || Number.isNaN(x)) return '??';
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-};
+import { getValueWithSeparators } from '../../../utils/global';
+import { DefinedAccessOnly } from '../../DefinedAccessOnly';
 
 const ShipSize = (shipSize: string) => (
   <div className="flex items-center justify-center">
@@ -110,7 +107,11 @@ const SwiperContent = ({ nfts }: any) => {
                     <div className="flex w-full items-center justify-end text-gray-400 md:text-2xl">
                       x
                       <span className="text-xl text-primary-300 md:text-4xl">
-                        {nft.quantity}
+                        <DefinedAccessOnly
+                          role="staff"
+                          comp={<span>{nft.quantity}</span>}
+                          tooltipLeft
+                        />
                       </span>
                     </div>
                     <NftAttributes data={data} />
@@ -196,12 +197,17 @@ const SwiperContent = ({ nfts }: any) => {
                         MSRP
                       </div>
                       <div className="flex w-full items-center justify-start text-stone-400 md:text-2xl">
-                        {data.tradeSettings.msrp
-                          ? getValueWithSeparators(
-                              +data.tradeSettings.msrp.value.toFixed(0) *
-                                nft.quantity
-                            )
-                          : '??'}
+                        <DefinedAccessOnly
+                          role="staff"
+                          comp={
+                            data.tradeSettings.msrp
+                              ? getValueWithSeparators(
+                                  +data.tradeSettings.msrp.value.toFixed(0) *
+                                    nft.quantity
+                                )
+                              : '??'
+                          }
+                        />
                       </div>
                       {!isTablet && !isMobile && (
                         <div className="flex w-full items-center justify-start text-xl text-stone-400 md:text-2xl">
@@ -216,11 +222,17 @@ const SwiperContent = ({ nfts }: any) => {
                         VWAP
                       </div>
                       <div className="flex w-full items-center justify-start text-stone-400 md:text-2xl">
-                        {data.tradeSettings.vwap
-                          ? getValueWithSeparators(
-                              +data.tradeSettings.vwap.toFixed(0) * nft.quantity
-                            )
-                          : '??'}
+                        <DefinedAccessOnly
+                          role="staff"
+                          comp={
+                            data.tradeSettings.vwap
+                              ? getValueWithSeparators(
+                                  +data.tradeSettings.vwap.toFixed(0) *
+                                    nft.quantity
+                                )
+                              : '??'
+                          }
+                        />
                       </div>
                       {!isTablet && !isMobile && (
                         <div className="flex w-full items-center justify-start text-xl text-stone-400 md:text-2xl">
@@ -236,9 +248,12 @@ const SwiperContent = ({ nfts }: any) => {
                       </div>
 
                       <div className="flex w-full items-center justify-start text-primary-300 md:text-2xl">
-                        {getValueWithSeparators(
-                          parseInt(nft.value.toFixed(0), 10)
-                        )}
+                        <DefinedAccessOnly
+                          role="staff"
+                          comp={getValueWithSeparators(
+                            parseInt(nft.value.toFixed(0), 10)
+                          )}
+                        />
                       </div>
                       {!isTablet && !isMobile && (
                         <div className="flex w-full items-center justify-start text-xl text-primary-300 md:text-2xl">

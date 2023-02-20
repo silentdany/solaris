@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import { useSession } from 'next-auth/react';
 import { BiDownArrow } from 'react-icons/bi';
 import { Pagination } from 'swiper';
 import 'swiper/css';
@@ -16,7 +15,6 @@ import SwiperContent from '../../../components/tools/armada/SwiperContent';
 import useNFT from '../../../hooks/useNFT';
 import InnerSectionBlock from '../../../layout/InnerSectionBlock';
 import Page from '../../../layout/Page';
-import { DiscordUser } from '../../../utils/Auth';
 import {
   getCapitalRepartition,
   getFleetRepartition,
@@ -25,10 +23,6 @@ import {
 } from '../../../utils/data/Armada';
 
 const Armada = () => {
-  const { data: session } = useSession();
-  const user = session?.user as DiscordUser;
-  const userRole = user?.roles[0]?.slug;
-
   const [loading, setLoading] = useState(true);
   const [pubKeys, setPubKeys] = useState<string[]>([]);
 
@@ -53,23 +47,31 @@ const Armada = () => {
   const {
     nft: ships,
     nftValue: shipsValue,
+    nftValueByMSRP: shipsValueByMSRP,
+    nftValueByVWAP: shipsValueByVWAP,
     nftLoading: shipsLoading,
-  } = useNFT(pubKeys, 'ship', userRole);
+  } = useNFT(pubKeys, 'ship');
   const {
     nft: structures,
     nftValue: structuresValue,
+    nftValueByMSRP: structuresValueByMSRP,
+    nftValueByVWAP: structuresValueByVWAP,
     nftLoading: structuresLoading,
-  } = useNFT(pubKeys, 'structure', userRole);
+  } = useNFT(pubKeys, 'structure');
   const {
     nft: collectibles,
     nftValue: collectiblesValue,
+    nftValueByMSRP: collectiblesValueByMSRP,
+    nftValueByVWAP: collectiblesValueByVWAP,
     nftLoading: collectiblesLoading,
-  } = useNFT(pubKeys, 'collectible', userRole);
+  } = useNFT(pubKeys, 'collectible');
   const {
     nft: access,
     nftValue: accessValue,
+    nftValueByMSRP: accessValueByMSRP,
+    nftValueByVWAP: accessValueByVWAP,
     nftLoading: accessLoading,
-  } = useNFT(pubKeys, 'access', userRole);
+  } = useNFT(pubKeys, 'access');
 
   const getTotalShipCount = () =>
     ships.reduce((acc, ship) => acc + ship.quantity, 0);
@@ -86,6 +88,18 @@ const Armada = () => {
   };
 
   const capital = [shipsValue, structuresValue, collectiblesValue, accessValue];
+  const capitalByMSRP = [
+    shipsValueByMSRP,
+    structuresValueByMSRP,
+    collectiblesValueByMSRP,
+    accessValueByMSRP,
+  ];
+  const capitalByVWAP = [
+    shipsValueByVWAP,
+    structuresValueByVWAP,
+    collectiblesValueByVWAP,
+    accessValueByVWAP,
+  ];
 
   const customBullet = ({ index, className }) =>
     `<div class="${className}">
@@ -171,7 +185,9 @@ const Armada = () => {
                           content={getResume(
                             capital,
                             pubKeys,
-                            getTotalShipCount
+                            getTotalShipCount,
+                            capitalByMSRP,
+                            capitalByVWAP
                           )}
                           index={0}
                         />

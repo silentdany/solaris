@@ -1,6 +1,9 @@
 import React from 'react';
 
 import { motion } from 'framer-motion';
+import { useSession } from 'next-auth/react';
+
+import { DiscordUser } from '../../../utils/Auth';
 
 interface CapitalStatProps {
   title: string;
@@ -11,8 +14,8 @@ interface CapitalStatProps {
 interface StatContentProps {
   icon: JSX.Element;
   title: string;
-  value: number | JSX.Element;
-  sub?: string;
+  value: number | string | JSX.Element;
+  sub?: string | boolean;
 }
 
 const StatContent = ({ icon, title, value, sub }: StatContentProps) => (
@@ -25,6 +28,9 @@ const StatContent = ({ icon, title, value, sub }: StatContentProps) => (
 );
 
 export const CapitalStat = ({ title, content, index }: CapitalStatProps) => {
+  const { data: session } = useSession();
+  const user = session?.user as DiscordUser;
+  const userRole = user?.roles[0]?.slug;
   return (
     <motion.div
       initial={{
@@ -65,7 +71,7 @@ export const CapitalStat = ({ title, content, index }: CapitalStatProps) => {
               icon={item.icon}
               title={item.title}
               value={item.value}
-              sub={item.sub}
+              sub={userRole === 'staff' && item.sub}
               key={item.title}
             />
           ))}

@@ -5,6 +5,9 @@ import { MdOutlineCollections } from 'react-icons/md';
 import { RiServiceFill, RiSpaceShipLine, RiStarHalfLine } from 'react-icons/ri';
 import { TbMilitaryRank } from 'react-icons/tb';
 
+import { DefinedAccessOnly } from '../../components/DefinedAccessOnly';
+import { getValueWithSeparators } from '../global';
+
 export const pages = ['Flotte', 'Structures', 'Collection', 'Badges'];
 
 const getPercentage = (value: number, values: number[]) => {
@@ -15,28 +18,52 @@ const getPercentage = (value: number, values: number[]) => {
 export const getResume = (
   capital: number[],
   pubKeys: string[],
-  getTotalShipCount: { (): number }
-) => [
-  {
-    icon: <BiUserCheck className="text-2xl text-secondary-200 md:text-4xl" />,
-    title: 'Solars incorporés',
-    value: pubKeys.length,
-  },
-  {
-    icon: (
-      <BiDollarCircle className="text-2xl text-secondary-200 md:text-4xl" />
-    ),
-    title: 'Capital Total',
-    value: +capital.reduce((total, val) => total + val, 0).toFixed(0),
-  },
-  {
-    icon: (
-      <RiSpaceShipLine className="text-2xl text-secondary-200 md:text-4xl" />
-    ),
-    title: 'Vaisseaux',
-    value: getTotalShipCount(),
-  },
-];
+  getTotalShipCount: { (): number },
+  capitalByMSRP: number[],
+  capitalByVWAP: number[]
+) => {
+  return [
+    {
+      icon: <BiUserCheck className="text-2xl text-secondary-200 md:text-4xl" />,
+      title: 'Solars incorporés',
+      value: pubKeys.length,
+    },
+    {
+      icon: (
+        <RiSpaceShipLine className="text-2xl text-secondary-200 md:text-4xl" />
+      ),
+      title: 'Vaisseaux',
+      value: getTotalShipCount(),
+    },
+    {
+      icon: (
+        <BiDollarCircle className="text-2xl text-secondary-200 md:text-4xl" />
+      ),
+      title: 'Capital Total',
+      value: getValueWithSeparators(
+        +capital.reduce((total, val) => total + val, 0).toFixed(0)
+      ),
+    },
+    {
+      icon: (
+        <BiDollarCircle className="text-2xl text-secondary-200 md:text-4xl" />
+      ),
+      title: 'Total (MSRP)',
+      value: getValueWithSeparators(
+        +capitalByMSRP.reduce((total, val) => total + val, 0).toFixed(0)
+      ),
+    },
+    {
+      icon: (
+        <BiDollarCircle className="text-2xl text-secondary-200 md:text-4xl" />
+      ),
+      title: 'Total (VWAP)',
+      value: getValueWithSeparators(
+        +capitalByVWAP.reduce((total, val) => total + val, 0).toFixed(0)
+      ),
+    },
+  ];
+};
 
 export const getCapitalRepartition = (
   capital: number[],
@@ -52,8 +79,11 @@ export const getCapitalRepartition = (
       ),
       title: 'Flotte',
       value: (
-        <span className="flex items-center">
-          {+shipsValue.toFixed(0)}
+        <span className="flex items-center justify-center">
+          <DefinedAccessOnly
+            role="staff"
+            comp={getValueWithSeparators(+shipsValue.toFixed(0))}
+          />
           <span className="opacity-20">$</span>
         </span>
       ),
@@ -65,8 +95,11 @@ export const getCapitalRepartition = (
       ),
       title: 'Structures',
       value: (
-        <span className="flex items-center">
-          {+structuresValue.toFixed(0)}
+        <span className="flex items-center justify-center">
+          <DefinedAccessOnly
+            role="staff"
+            comp={getValueWithSeparators(+structuresValue.toFixed(0))}
+          />
           <span className="opacity-20">$</span>
         </span>
       ),
@@ -78,8 +111,11 @@ export const getCapitalRepartition = (
       ),
       title: 'Collection',
       value: (
-        <span className="flex items-center">
-          {+collectiblesValue.toFixed(0)}
+        <span className="flex items-center justify-center">
+          <DefinedAccessOnly
+            role="staff"
+            comp={getValueWithSeparators(+collectiblesValue.toFixed(0))}
+          />
           <span className="opacity-20">$</span>
         </span>
       ),
@@ -93,8 +129,11 @@ export const getCapitalRepartition = (
       ),
       title: 'Badges',
       value: (
-        <span className="flex items-center">
-          {+accessValue.toFixed(0)}
+        <span className="flex items-center justify-center">
+          <DefinedAccessOnly
+            role="staff"
+            comp={getValueWithSeparators(+accessValue.toFixed(0))}
+          />
           <span className="opacity-20">$</span>
         </span>
       ),
@@ -113,7 +152,12 @@ export const getFleetRepartition = (
         <BiTargetLock className="text-2xl text-secondary-200 md:text-4xl" />
       ),
       title: 'Combat',
-      value: getShipCountBySpec(['fighter', 'bomber']),
+      value: (
+        <DefinedAccessOnly
+          role="staff"
+          comp={getShipCountBySpec(['fighter', 'bomber'])}
+        />
+      ),
       sub: `${(
         (getShipCountBySpec(['fighter', 'bomber']) / getTotalShipCount()) *
         100
@@ -122,7 +166,12 @@ export const getFleetRepartition = (
     {
       icon: <FiPackage className="text-2xl text-secondary-200 md:text-4xl" />,
       title: 'Transport',
-      value: getShipCountBySpec(['freight', 'transport']),
+      value: (
+        <DefinedAccessOnly
+          role="staff"
+          comp={getShipCountBySpec(['freight', 'transport'])}
+        />
+      ),
       sub: `${(
         (getShipCountBySpec(['freight', 'transport']) / getTotalShipCount()) *
         100
@@ -133,7 +182,12 @@ export const getFleetRepartition = (
         <RiServiceFill className="text-2xl text-secondary-200 md:text-4xl" />
       ),
       title: 'Service',
-      value: getShipCountBySpec(['rescue', 'repair', 'refuel/repair']),
+      value: (
+        <DefinedAccessOnly
+          role="staff"
+          comp={getShipCountBySpec(['rescue', 'repair', 'refuel/repair'])}
+        />
+      ),
       sub: `${(
         (getShipCountBySpec(['rescue', 'repair', 'refuel/repair']) /
           getTotalShipCount()) *
@@ -145,12 +199,17 @@ export const getFleetRepartition = (
         <RiStarHalfLine className="text-2xl text-secondary-200 md:text-4xl" />
       ),
       title: 'Spé',
-      value: getShipCountBySpec([
-        'multi-role',
-        'bounty hunter',
-        'racer',
-        'data runner',
-      ]),
+      value: (
+        <DefinedAccessOnly
+          role="staff"
+          comp={getShipCountBySpec([
+            'multi-role',
+            'bounty hunter',
+            'racer',
+            'data runner',
+          ])}
+        />
+      ),
       sub: `${(
         (getShipCountBySpec([
           'multi-role',
