@@ -5,8 +5,6 @@ import { MdOutlineCollections } from 'react-icons/md';
 import { RiServiceFill, RiSpaceShipLine, RiStarHalfLine } from 'react-icons/ri';
 import { TbMilitaryRank } from 'react-icons/tb';
 
-import { topHodlers } from '../../../data/topHodlers';
-
 export const pages = ['Flotte', 'Structures', 'Collection', 'Badges'];
 
 const getPercentage = (value: number, values: number[]) => {
@@ -16,12 +14,13 @@ const getPercentage = (value: number, values: number[]) => {
 
 export const getResume = (
   capital: number[],
+  pubKeys: string[],
   getTotalShipCount: { (): number }
 ) => [
   {
     icon: <BiUserCheck className="text-2xl text-secondary-200 md:text-4xl" />,
     title: 'Solars incorporés',
-    value: topHodlers.length,
+    value: pubKeys.length,
   },
   {
     icon: (

@@ -9,7 +9,7 @@ import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Index from '../..';
-import { topHodlers } from '../../../../data/topHodlers';
+import { supabase } from '../../../../lib/initSupabase';
 import { Loader } from '../../../components/Loader';
 import { CapitalStat } from '../../../components/tools/armada/CapitalStat';
 import SwiperContent from '../../../components/tools/armada/SwiperContent';
@@ -25,31 +25,51 @@ import {
 } from '../../../utils/data/Armada';
 
 const Armada = () => {
-  const [loading, setLoading] = useState(true);
   const { data: session } = useSession();
   const user = session?.user as DiscordUser;
   const userRole = user?.roles[0]?.slug;
+
+  const [loading, setLoading] = useState(true);
+  const [pubKeys, setPubKeys] = useState<string[]>([]);
+
+  const fetchPubKeys = async () => {
+    const { data: memberKeys, error } = await supabase
+      .from('member_keys')
+      .select('*')
+      .order('created_at', { ascending: false });
+    if (error) {
+      console.log('error', error);
+    }
+    if (memberKeys) {
+      const membersPubKeys = memberKeys.map((key) => {
+        return key.pubkey;
+      });
+      setPubKeys(membersPubKeys);
+    } else {
+      setPubKeys([]);
+    }
+  };
 
   const {
     nft: ships,
     nftValue: shipsValue,
     nftLoading: shipsLoading,
-  } = useNFT(topHodlers, 'ship', userRole);
+  } = useNFT(pubKeys, 'ship', userRole);
   const {
     nft: structures,
     nftValue: structuresValue,
     nftLoading: structuresLoading,
-  } = useNFT(topHodlers, 'structure', userRole);
+  } = useNFT(pubKeys, 'structure', userRole);
   const {
     nft: collectibles,
     nftValue: collectiblesValue,
     nftLoading: collectiblesLoading,
-  } = useNFT(topHodlers, 'collectible', userRole);
+  } = useNFT(pubKeys, 'collectible', userRole);
   const {
     nft: access,
     nftValue: accessValue,
     nftLoading: accessLoading,
-  } = useNFT(topHodlers, 'access', userRole);
+  } = useNFT(pubKeys, 'access', userRole);
 
   const getTotalShipCount = () =>
     ships.reduce((acc, ship) => acc + ship.quantity, 0);
@@ -80,6 +100,7 @@ const Armada = () => {
   };
 
   useEffect(() => {
+    fetchPubKeys();
     if (
       !shipsLoading &&
       !structuresLoading &&
@@ -147,7 +168,11 @@ const Armada = () => {
                       >
                         <CapitalStat
                           title="Résumé"
-                          content={getResume(capital, getTotalShipCount)}
+                          content={getResume(
+                            capital,
+                            pubKeys,
+                            getTotalShipCount
+                          )}
                           index={0}
                         />
                         <CapitalStat
