@@ -23,10 +23,10 @@ export const DefinedAccessOnly = ({
   }
   return (
     <div
-      className={`tooltip tooltip-warning ${
+      className={`tooltip tooltip-warning capitalize ${
         tooltipLeft ? 'tooltip-left' : 'tooltip-right'
       }`}
-      data-tip={`Réservé ${role}`}
+      data-tip={role}
     >
       <BiXCircle className="text-warning" />
     </div>
