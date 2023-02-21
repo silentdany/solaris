@@ -1,3 +1,4 @@
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,6 +12,13 @@ import { DiscordUser } from '../utils/Auth';
 const Navbar = () => {
   const { data: session } = useSession();
   const user = session?.user as DiscordUser;
+
+  // const { publicKey } = useWallet();
+  // console.log(
+  //   '🚀 ~ file: Navbar.tsx:19 ~ Navbar ~ publicKey:',
+  //   publicKey?.toBase58()
+  // );
+
   return (
     <div className="navbar fixed z-30 bg-base-100 shadow-xl" id="top">
       <div className="navbar-start">
@@ -95,7 +103,7 @@ const Navbar = () => {
               </div>
             )}
           </label>
-          <ul className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 text-right shadow">
+          <ul className="dropdown-content menu rounded-box menu-compact mt-3 w-52 space-y-4 bg-base-100 p-2 text-right shadow">
             {!session ? (
               <li>
                 <button
@@ -129,6 +137,7 @@ const Navbar = () => {
                     {user.roles[0]?.name || 'Invité'}
                   </div>
                 </div>
+                <WalletMultiButton className="!flex !h-10 !w-full !items-center !justify-center !rounded-xl !bg-primary-500 hover:!bg-secondary-500" />
                 <li>
                   <button
                     className="font-title text-lg hover:text-primary-300"
