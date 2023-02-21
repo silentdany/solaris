@@ -20,13 +20,15 @@ export const getResume = (
   pubKeys: string[],
   getTotalShipCount: { (): number },
   capitalByMSRP: number[],
-  capitalByVWAP: number[]
+  capitalByVWAP: number[],
+  fetchOrigin: string
 ) => {
+  const isGuild = fetchOrigin === 'guild';
   return [
     {
       icon: <BiUserCheck className="text-2xl text-secondary-200 md:text-4xl" />,
-      title: 'Solars incorporés',
-      value: pubKeys.length,
+      title: isGuild ? 'Solars incorporés' : 'Utilisateur',
+      value: isGuild ? pubKeys.length : 1,
     },
     {
       icon: (

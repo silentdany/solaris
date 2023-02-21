@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { useWallet } from '@solana/wallet-adapter-react';
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { BiDownArrow } from 'react-icons/bi';
 import { Pagination } from 'swiper';
 import 'swiper/css';
@@ -21,10 +23,30 @@ import {
   getResume,
   pages,
 } from '../../../utils/data/Armada';
+import { debounce } from '../../../utils/global';
 
 const Armada = () => {
+  const { publicKey } = useWallet();
+
   const [loading, setLoading] = useState(true);
   const [pubKeys, setPubKeys] = useState<string[]>([]);
+
+  const [fetchOrigin, setFetchOrigin] = useState<string[]>([]);
+  const [fetchOriginSelect, setFetchOriginSelect] = useState('guild');
+
+  const [pubKeyInput, setPubKeyInput] = useState<string>('');
+  const [pubKeyInputError, setPubKeyInputError] = useState<boolean>(false);
+
+  const handlePubKeyInputSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (pubKeyInput) {
+      setFetchOrigin([pubKeyInput]);
+      setPubKeyInputError(false);
+    }
+    if (pubKeyInput.length < 32 || pubKeyInput.length > 44 || !pubKeyInput) {
+      setPubKeyInputError(true);
+    }
+  };
 
   const fetchPubKeys = async () => {
     const { data: memberKeys, error } = await supabase
@@ -39,6 +61,7 @@ const Armada = () => {
         return key.pubkey;
       });
       setPubKeys(membersPubKeys);
+      setFetchOrigin(membersPubKeys);
     } else {
       setPubKeys([]);
     }
@@ -50,28 +73,28 @@ const Armada = () => {
     nftValueByMSRP: shipsValueByMSRP,
     nftValueByVWAP: shipsValueByVWAP,
     nftLoading: shipsLoading,
-  } = useNFT(pubKeys, 'ship');
+  } = useNFT(fetchOrigin, 'ship');
   const {
     nft: structures,
     nftValue: structuresValue,
     nftValueByMSRP: structuresValueByMSRP,
     nftValueByVWAP: structuresValueByVWAP,
     nftLoading: structuresLoading,
-  } = useNFT(pubKeys, 'structure');
+  } = useNFT(fetchOrigin, 'structure');
   const {
     nft: collectibles,
     nftValue: collectiblesValue,
     nftValueByMSRP: collectiblesValueByMSRP,
     nftValueByVWAP: collectiblesValueByVWAP,
     nftLoading: collectiblesLoading,
-  } = useNFT(pubKeys, 'collectible');
+  } = useNFT(fetchOrigin, 'collectible');
   const {
     nft: access,
     nftValue: accessValue,
     nftValueByMSRP: accessValueByMSRP,
     nftValueByVWAP: accessValueByVWAP,
     nftLoading: accessLoading,
-  } = useNFT(pubKeys, 'access');
+  } = useNFT(fetchOrigin, 'access');
 
   const getTotalShipCount = () =>
     ships.reduce((acc, ship) => acc + ship.quantity, 0);
@@ -115,6 +138,7 @@ const Armada = () => {
 
   useEffect(() => {
     fetchPubKeys();
+    setFetchOrigin(pubKeys);
     if (
       !shipsLoading &&
       !structuresLoading &&
@@ -125,12 +149,92 @@ const Armada = () => {
     }
   }, [collectiblesLoading, shipsLoading, structuresLoading, accessLoading]);
 
+  useEffect(() => {
+    if (!publicKey) {
+      setFetchOrigin(pubKeys);
+      setFetchOriginSelect('guild');
+    }
+  }, [publicKey]);
+
   return (
     <Index>
       <Page title="Armada" image="/assets/images/armada.webp">
         <div className="flex w-full flex-col items-center justify-center">
           <InnerSectionBlock bgColor={'from-primary-500/40'} fullscreen={true}>
             <div className="flex h-full w-full flex-col">
+              <div className="flex h-8 w-full cursor-pointer place-items-center bg-stone-700 font-title md:h-10 md:text-xl">
+                <div
+                  className={`flex h-full w-1/3 items-center justify-center border-b-4 duration-100 ease-in-out hover:border-secondary-500 ${
+                    fetchOriginSelect === 'guild'
+                      ? 'border-primary-500 text-stone-300'
+                      : 'border-stone-700 text-stone-300/50'
+                  }`}
+                  onClick={() => {
+                    setFetchOrigin(pubKeys);
+                    setFetchOriginSelect('guild');
+                    setPubKeyInputError(false);
+                  }}
+                >
+                  Guilde
+                </div>
+                <div
+                  className={`flex h-full w-1/3 items-center justify-center border-b-4 duration-100 ease-in-out hover:border-secondary-500 ${
+                    fetchOriginSelect === 'own'
+                      ? 'border-primary-500 text-stone-300'
+                      : 'border-stone-700 text-stone-300/50'
+                  }`}
+                >
+                  {publicKey ? (
+                    <div
+                      className="w-full"
+                      onClick={() => {
+                        setFetchOrigin([publicKey.toBase58()]);
+                        setFetchOriginSelect('own');
+                        setPubKeyInputError(false);
+                      }}
+                    >
+                      Personnel
+                    </div>
+                  ) : (
+                    <WalletMultiButton className="!flex !h-7 !w-full !items-center !justify-center !rounded-none !p-0 !text-sm !leading-normal hover:!bg-primary-500/40 md:!h-9 md:!text-base" />
+                  )}
+                </div>
+                <div
+                  className={`flex h-full w-1/3 items-center justify-center border-b-4 duration-100 ease-in-out ${
+                    pubKeyInputError
+                      ? 'border-error focus-within:border-error hover:border-error'
+                      : 'focus-within:border-secondary-500 hover:border-secondary-500'
+                  } ${
+                    fetchOriginSelect === 'pubkey'
+                      ? 'border-primary-500 text-stone-300'
+                      : 'border-stone-700 text-stone-300/50'
+                  } `}
+                >
+                  <form
+                    className="group-search-box relative h-full w-full"
+                    onSubmit={handlePubKeyInputSubmit}
+                  >
+                    <input
+                      onChange={debounce((e) => {
+                        setPubKeyInput(e.target.value);
+                        setFetchOriginSelect('pubkey');
+                      }, 500)}
+                      autoFocus
+                      placeholder="Clé publique"
+                      className="h-full w-full bg-stone-700 px-4 text-center text-sm placeholder:text-stone-300/75 focus:bg-primary-500/10 focus:outline-none"
+                    />
+
+                    {pubKeyInputError && (
+                      <div
+                        className={`tooltip tooltip-bottom tooltip-error absolute -bottom-1 left-0 h-1 w-full`}
+                        data-tip="Mauvais format"
+                      />
+                    )}
+                    <input type="submit" className="hidden" />
+                  </form>
+                </div>
+              </div>
+
               <div className="min-h-[60vh]">
                 {loading ? (
                   <div className="flex h-full w-full items-center justify-center">
@@ -166,11 +270,15 @@ const Armada = () => {
                       >
                         <BiDownArrow className="animate-bounce-slow text-xl text-primary-700/50 duration-200 ease-in-out group-hover:text-primary-700 md:text-4xl" />
                         <h2 className="text-lg md:text-2xl">
-                          <span className="font-hero">
-                            Sol
-                            <span className="text-primary-500">a</span>
-                            ris
-                          </span>
+                          {fetchOriginSelect === 'guild' && (
+                            <span className="font-hero">
+                              Sol
+                              <span className="text-primary-500">a</span>
+                              ris
+                            </span>
+                          )}
+                          {fetchOriginSelect === 'own' && 'Personnel'}
+                          {fetchOriginSelect === 'pubkey' && 'Clé publique'}
                           <span className="mx-4 text-primary-500">|</span>
                           Capital
                         </h2>
@@ -187,7 +295,8 @@ const Armada = () => {
                             pubKeys,
                             getTotalShipCount,
                             capitalByMSRP,
-                            capitalByVWAP
+                            capitalByVWAP,
+                            fetchOriginSelect
                           )}
                           index={0}
                         />
