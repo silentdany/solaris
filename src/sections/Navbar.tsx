@@ -1,5 +1,6 @@
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { CgProfile } from 'react-icons/cg';
@@ -10,14 +11,14 @@ import { SocialButtons } from '../components/SocialButtons';
 import { DiscordUser } from '../utils/Auth';
 
 const Navbar = () => {
+  const WalletMultiButtonDynamic = dynamic(
+    async () =>
+      (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
+    { ssr: false }
+  );
+
   const { data: session } = useSession();
   const user = session?.user as DiscordUser;
-
-  // const { publicKey } = useWallet();
-  // console.log(
-  //   '🚀 ~ file: Navbar.tsx:19 ~ Navbar ~ publicKey:',
-  //   publicKey?.toBase58()
-  // );
 
   return (
     <div className="navbar fixed z-30 bg-base-100 shadow-xl" id="top">
@@ -103,30 +104,25 @@ const Navbar = () => {
               </div>
             )}
           </label>
-          <ul className="dropdown-content menu rounded-box menu-compact mt-3 w-52 space-y-4 bg-base-100 p-2 text-right shadow">
+          <ul className="dropdown-content menu rounded-box menu-compact w-52 space-y-4 bg-base-100 p-2 text-right shadow">
             {!session ? (
-              <li>
-                <button
-                  className="flex items-center font-title text-lg hover:text-primary-300"
-                  onClick={() => signIn('discord')}
-                >
-                  Connexion
-                  <span className="ml-1 text-2xl">
-                    <FaDiscord />
-                  </span>
-                </button>
-              </li>
+              <>
+                <WalletMultiButtonDynamic className="!flex !h-10 !w-full !items-center !justify-center !rounded-xl !bg-primary-500 hover:!bg-secondary-500" />
+                <li>
+                  <button
+                    className="flex items-center font-title text-lg hover:text-primary-300"
+                    onClick={() => signIn('discord')}
+                  >
+                    Connexion
+                    <span className="ml-1 text-2xl">
+                      <FaDiscord />
+                    </span>
+                  </button>
+                </li>
+              </>
             ) : (
               <>
-                {/* <div className="card">
-                  <div className="flex flex-row items-center p-2 px-4">
-                    {session.user?.name}
-                    <span className="p-0 opacity-50">
-                      #{session.user?.discriminator}
-                    </span>
-                  </div>
-                </div> */}
-                <div className="mb-4 flex flex-col rounded-xl bg-stone-200 p-2 shadow-xl">
+                <div className="flex flex-col rounded-xl bg-stone-200 p-2 shadow-xl">
                   <div className="flex justify-end text-right font-bold">
                     {user.name}
                     <span className="p-0 font-normal text-stone-400">
@@ -146,14 +142,6 @@ const Navbar = () => {
                     Déconnexion
                   </button>
                 </li>
-                {/* <li>
-                  <button
-                    className="font-title text-lg hover:text-primary-300"
-                    onClick={() => signOut()}
-                  >
-                    Déconnexion
-                  </button>
-                </li> */}
               </>
             )}
           </ul>

@@ -1,6 +1,9 @@
+import { useContext } from 'react';
+
 import { useSession } from 'next-auth/react';
 import { BiXCircle } from 'react-icons/bi';
 
+import { FetchOriginContext } from '../contexts';
 import { DiscordUser } from '../utils/Auth';
 
 interface DefinedAccessOnlyProps {
@@ -18,7 +21,9 @@ export const DefinedAccessOnly = ({
   const user = session?.user as DiscordUser;
   const userRole = user?.roles[0]?.slug;
 
-  if (userRole === role) {
+  const fetchOrigin = useContext(FetchOriginContext);
+
+  if (userRole === role || fetchOrigin !== 'guild') {
     return <>{comp}</>;
   }
   return (
