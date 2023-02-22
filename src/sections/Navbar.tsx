@@ -91,7 +91,7 @@ const Navbar = () => {
 
   useEffect(() => {
     fetchPubKeys();
-  }, []);
+  }, [walletConnected]);
 
   useEffect(() => {
     if (publicKey) {
