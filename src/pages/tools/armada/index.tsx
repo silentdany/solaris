@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 import { useWallet } from '@solana/wallet-adapter-react';
-import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import { BiDownArrow } from 'react-icons/bi';
 import { Pagination } from 'swiper';
@@ -262,12 +261,7 @@ const Armada = () => {
                       <Loader />
                     </div>
                   ) : (
-                    <motion.div
-                      className="h-full w-full"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.75 }}
-                    >
+                    <div className="h-full w-full">
                       <Swiper
                         spaceBetween={50}
                         pagination={pagination}
@@ -348,7 +342,7 @@ const Armada = () => {
                         </div>
                       </div>
                       <div className="h-10 w-full bg-primary-500"></div>
-                    </motion.div>
+                    </div>
                   )}
                 </div>
               </div>

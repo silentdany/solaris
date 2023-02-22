@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react';
+
+import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import dynamic from 'next/dynamic';
@@ -6,8 +9,10 @@ import Link from 'next/link';
 import { CgProfile } from 'react-icons/cg';
 import { FaDiscord } from 'react-icons/fa';
 
+import { supabase } from '../../lib/initSupabase';
 import { DiscordAvatar } from '../components/auth/DiscordAvatar';
 import { SocialButtons } from '../components/SocialButtons';
+import useMediaQuery from '../hooks/useMediaQuery';
 import { DiscordUser } from '../utils/Auth';
 
 const Navbar = () => {
@@ -19,6 +24,82 @@ const Navbar = () => {
 
   const { data: session } = useSession();
   const user = session?.user as DiscordUser;
+
+  const { publicKey } = useWallet();
+
+  const [walletConnected, setWalletConnected] = useState(false);
+  const [participateArmada, setParticipateArmada] = useState(false);
+
+  const isMobile = useMediaQuery('(max-width: 767px)');
+
+  const handleIncorportateTooltip = (
+    mediaQuery: boolean,
+    walletStatus: boolean
+  ) => {
+    if (!walletStatus) {
+      return 'Connectez votre wallet';
+    }
+    if (mediaQuery) {
+      return 'Intégrer Armada';
+    }
+    return "Intégrer sa flotte à l'Armada de guilde";
+  };
+
+  const fetchPubKeys = async () => {
+    const { data: memberKeys, error } = await supabase
+      .from('member_keys')
+      .select('*')
+      .order('created_at', { ascending: false });
+    if (error) {
+      console.log('error', error);
+    }
+    if (memberKeys) {
+      const key = memberKeys.find((k) => k.pubkey === publicKey?.toBase58());
+      if (key) {
+        setParticipateArmada(true);
+      }
+    }
+  };
+
+  const handleIncorporate = async () => {
+    if (publicKey) {
+      if (!participateArmada) {
+        const { status, error } = await supabase
+          .from('member_keys')
+          .insert([{ pubkey: publicKey.toBase58() }]);
+        if (error) {
+          console.log('error', error);
+        }
+        if (status === 201) {
+          setParticipateArmada(true);
+        }
+      }
+      if (participateArmada) {
+        const { status, error } = await supabase
+          .from('member_keys')
+          .delete()
+          .eq('pubkey', publicKey.toBase58());
+        if (error) {
+          console.log('error', error);
+        }
+        if (status === 204) {
+          setParticipateArmada(false);
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    fetchPubKeys();
+  }, []);
+
+  useEffect(() => {
+    if (publicKey) {
+      setWalletConnected(true);
+    } else {
+      setWalletConnected(false);
+    }
+  }, [publicKey]);
 
   return (
     <div className="navbar fixed z-30 bg-base-100 shadow-xl" id="top">
@@ -122,7 +203,7 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <div className="flex flex-col rounded-xl bg-stone-200 p-2 shadow-xl">
+                <div className="flex flex-col space-y-2 rounded-xl bg-stone-200 p-2 shadow-xl">
                   <div className="flex justify-end text-right font-bold">
                     {user.name}
                     <span className="p-0 font-normal text-stone-400">
@@ -132,8 +213,31 @@ const Navbar = () => {
                   <div className="p-0 text-secondary-500/50">
                     {user.roles[0]?.name || 'Invité'}
                   </div>
+                  <div className="divider my-1"></div>
+                  <WalletMultiButton className="!flex !h-10 !w-full !items-center !justify-center !rounded-xl !bg-primary-500 hover:!bg-secondary-500" />
+                  <div
+                    className="tooltip tooltip-left"
+                    data-tip={handleIncorportateTooltip(
+                      isMobile,
+                      walletConnected
+                    )}
+                  >
+                    <div
+                      className={`flex items-center justify-end p-0 ${
+                        walletConnected && 'text-opacity-50'
+                      }`}
+                    >
+                      Incorporation
+                      <input
+                        type="checkbox"
+                        className="toggle toggle-primary toggle-xs ml-2"
+                        disabled={!walletConnected}
+                        checked={participateArmada}
+                        onChange={() => handleIncorporate()}
+                      />
+                    </div>
+                  </div>
                 </div>
-                <WalletMultiButton className="!flex !h-10 !w-full !items-center !justify-center !rounded-xl !bg-primary-500 hover:!bg-secondary-500" />
                 <li>
                   <button
                     className="font-title text-lg hover:text-primary-300"
