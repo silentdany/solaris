@@ -30,7 +30,7 @@ const Index = ({ children }) => (
       overlay
       overlayClasses="fixed top-0 left-0 w-screen h-screen bg-stone-50/75 z-50"
     >
-      Ce site utilise des cookies pouyr améliorer l&apos;expérience utilisateur.
+      Ce site utilise des cookies pour améliorer l&apos;expérience utilisateur.
     </CookieConsent>
   </>
 );
