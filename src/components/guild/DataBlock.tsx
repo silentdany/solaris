@@ -11,12 +11,12 @@ export const DataBlock = ({ data }) => (
       <>
         <motion.div
           className="group relative flex flex-col items-center justify-center"
-          key={item.title}
           initial={{
             opacity: 0,
           }}
           whileInView={{ opacity: 1 }}
           viewport={{ amount: 0.7, once: true }}
+          key={index}
         >
           <div className="glass z-10 mx-10 flex h-16 w-16 items-center justify-center rounded-full bg-stone-600/40 ring ring-primary-500/50 ring-offset-2 ring-offset-base-100/40 duration-300 ease-in-out group-hover:bg-stone-600/30 group-hover:ring group-hover:ring-primary-500/50 group-hover:ring-offset-2 group-hover:ring-offset-base-100/40 md:text-5xl  lg:h-24 lg:w-24">
             <item.icon className="text-5xl text-accent lg:text-6xl" />
