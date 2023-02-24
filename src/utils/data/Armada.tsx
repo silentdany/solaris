@@ -157,12 +157,7 @@ export const getFleetRepartition = (
       value: (
         <DefinedAccessOnly
           role="staff"
-          comp={getShipCountBySpec([
-            'fighter',
-            'bomber',
-            'bounty hunter',
-            'racer',
-          ])}
+          comp={getShipCountBySpec(['fighter', 'bomber', 'bounty hunter'])}
         />
       ),
       sub: `${(
