@@ -1,6 +1,6 @@
 import Index from '..';
 import { DividerTriangle } from '../../components/DividerTriangle';
-import { DataBlock } from '../../components/guild/AttributesBlock';
+import { DataBlock } from '../../components/guild/DataBlock';
 import { DNABlock } from '../../components/guild/DNABlock';
 import { ParallaxBlock } from '../../components/guild/ParallaxBlock';
 import { ProfilesBlock } from '../../components/guild/ProfilesBlock';

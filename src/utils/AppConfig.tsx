@@ -39,7 +39,7 @@ export const position = [
   },
   {
     title: 'Secteurs ',
-    value: 'Multi-activité',
+    value: 'Services',
     icon: BiNetworkChart,
   },
   {
@@ -52,12 +52,12 @@ export const position = [
 export const datas = [
   {
     title: 'Actifs',
-    value: '> 100k $',
+    value: '> 170k $',
     icon: FaDollarSign,
   },
   {
     title: 'Membres',
-    value: '> 300',
+    value: '38',
     icon: AiOutlineUsergroupAdd,
   },
   // {

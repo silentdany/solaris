@@ -52,9 +52,9 @@ export const DNABlock = ({ data }) =>
         >
           <div className="space-y-4">
             {item.text.map((line, i) => (
-              <p key={i}>
+              <div key={i}>
                 <ReactMarkdown>{line}</ReactMarkdown>
-              </p>
+              </div>
             ))}
           </div>
         </motion.div>

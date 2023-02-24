@@ -21,6 +21,8 @@ const Hero = () => {
             style: {
               backgroundSize: isDesktop ? 'contain' : 'auto',
               backgroundPosition: isDesktop ? 'center' : 'right',
+              backgroundRepeat: 'no-repeat',
+              backgroundColor: 'white',
             },
           },
           {
@@ -29,6 +31,7 @@ const Hero = () => {
             style: {
               backgroundSize: isDesktop ? 'contain' : 'auto',
               backgroundPosition: isDesktop ? 'center' : 'right',
+              backgroundRepeat: 'no-repeat',
             },
           },
           {
@@ -48,6 +51,7 @@ const Hero = () => {
             style: {
               backgroundSize: isDesktop ? 'contain' : 'auto',
               backgroundPosition: isDesktop ? 'center' : 'right',
+              backgroundRepeat: 'no-repeat',
             },
           },
           {
@@ -56,6 +60,7 @@ const Hero = () => {
             style: {
               backgroundSize: isDesktop ? 'contain' : 'auto',
               backgroundPosition: isDesktop ? 'center' : 'right',
+              backgroundRepeat: 'no-repeat',
             },
           },
           {
@@ -111,7 +116,7 @@ const Hero = () => {
               />
             </div>
             <Link href="#start">
-              <a className="btn glass btn-circle animate-bounce-slow text-primary-500 transition">
+              <a className="btn btn-circle glass animate-bounce-slow text-primary-500 transition">
                 <HiChevronDoubleDown className="text-lg" />
               </a>
             </Link>
