@@ -5,7 +5,7 @@ import { AppConfig } from '../utils/AppConfig';
 const Content = ({ network }) => (
   <Link href={network.link}>
     <a title={network.title} target="_blank">
-      <div className="btn btn-ghost btn-circle font-title text-2xl hover:text-primary-300 md:text-xl">
+      <div className="btn-ghost btn-circle btn font-title text-2xl hover:text-primary-300 md:text-xl">
         {network.icon}
       </div>
     </a>

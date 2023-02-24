@@ -5,7 +5,7 @@ import { BiDownArrow } from 'react-icons/bi';
 
 import { DividerTriangle } from '../DividerTriangle';
 
-const ReactMarkdown = dynamic(() => import('react-markdown'), {
+const ReactMarkdown = dynamic<any>(() => import('react-markdown'), {
   ssr: false,
 });
 

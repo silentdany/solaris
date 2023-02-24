@@ -17,6 +17,6 @@
     @apply glass shadow-none before:absolute before:-left-2 before:top-0 before:z-10 before:h-full before:w-1/4 before:-skew-x-6 before:border-l-4 before:border-primary-300 before:bg-gradient-to-r before:from-primary-50/50 hover:shadow-none;
   }
   .sol-btn {
-  @apply flex items-center rounded-xl bg-stone-700 p-3 text-xl text-stone-50 transition-all duration-200 hover:bg-stone-600 hover:text-primary-300;
+    @apply flex items-center rounded-xl bg-stone-700 p-3 text-xl text-stone-50 transition-all duration-200 hover:bg-stone-600 hover:text-primary-300;
   }
 }

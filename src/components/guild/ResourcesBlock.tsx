@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/future/image';
 import { BiDownArrow } from 'react-icons/bi';
 
-const ReactMarkdown = dynamic(() => import('react-markdown'), {
+const ReactMarkdown = dynamic<any>(() => import('react-markdown'), {
   ssr: false,
 });
 

@@ -36,7 +36,9 @@ const Footer = () => (
     </ul>
     <p>
       © Copyright 2022 <span className="text-primary-300">|</span>{' '}
-      {AppConfig.title}
+      <Link href="/design" passHref>
+        <a title="Solaris Design System">{AppConfig.title}</a>
+      </Link>
     </p>
   </section>
 );

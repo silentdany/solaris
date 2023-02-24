@@ -52,21 +52,6 @@ const Guild = () => {
             <InnerSectionBlock bgColor={'from-primary-500/40'} topBorder>
               <div className="md:max-w-md lg:max-w-6xl">
                 <ProjectBlock data={project} />
-                <DividerTriangle data={null} index={1} />
-                <div className="flex flex-col py-16">
-                  <p className="mb-2 border-b-[1px] border-primary-300 font-title text-2xl md:text-3xl lg:text-4xl">
-                    <span className="font-hero">
-                      Sol<span className="text-primary-500">a</span>ris
-                    </span>{' '}
-                    est une aventure alliant plaisir{' '}
-                    <strong className="text-primary-500">et</strong>{' '}
-                    performance.
-                  </p>
-                  <p className="lg:text-xl">
-                    Sa volonté est de rayonner à travers l’univers de Star Atlas
-                    et au-delà !
-                  </p>
-                </div>
               </div>
             </InnerSectionBlock>
             <ParallaxBlock

@@ -1,6 +1,7 @@
-import { NextSeo } from 'next-seo';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+// eslint-disable-next-line import/order
+import { NextSeo } from 'next-seo';
 
 import { AppConfig } from '../utils/AppConfig';
 
