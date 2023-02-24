@@ -12,6 +12,7 @@ import { FaDiscord } from 'react-icons/fa';
 import { supabase } from '../../lib/initSupabase';
 import { DiscordAvatar } from '../components/auth/DiscordAvatar';
 import { SocialButtons } from '../components/SocialButtons';
+import { useAccess } from '../hooks/useAccess';
 import useMediaQuery from '../hooks/useMediaQuery';
 import { DiscordUser } from '../utils/Auth';
 
@@ -24,6 +25,7 @@ const Navbar = () => {
 
   const { data: session } = useSession();
   const user = session?.user as DiscordUser;
+  const isSolar = useAccess('solar');
 
   const { publicKey } = useWallet();
 
@@ -189,6 +191,22 @@ const Navbar = () => {
             {!session ? (
               <>
                 <WalletMultiButtonDynamic className="!flex !h-10 !w-full !items-center !justify-center !rounded-xl !bg-primary-500 hover:!bg-secondary-500" />
+                {!isSolar && participateArmada && (
+                  <div
+                    className={`flex items-center justify-end p-0 ${
+                      walletConnected && 'text-opacity-50'
+                    }`}
+                  >
+                    Incorporation
+                    <input
+                      type="checkbox"
+                      className="toggle toggle-primary toggle-xs ml-2"
+                      disabled={!walletConnected}
+                      checked={participateArmada}
+                      onChange={() => handleIncorporate()}
+                    />
+                  </div>
+                )}
                 <li>
                   <button
                     className="flex items-center font-title text-lg hover:text-primary-300"
@@ -222,20 +240,22 @@ const Navbar = () => {
                       walletConnected
                     )}
                   >
-                    <div
-                      className={`flex items-center justify-end p-0 ${
-                        walletConnected && 'text-opacity-50'
-                      }`}
-                    >
-                      Incorporation
-                      <input
-                        type="checkbox"
-                        className="toggle toggle-primary toggle-xs ml-2"
-                        disabled={!walletConnected}
-                        checked={participateArmada}
-                        onChange={() => handleIncorporate()}
-                      />
-                    </div>
+                    {(isSolar || participateArmada) && (
+                      <div
+                        className={`flex items-center justify-end p-0 ${
+                          walletConnected && 'text-opacity-50'
+                        }`}
+                      >
+                        Incorporation
+                        <input
+                          type="checkbox"
+                          className="toggle toggle-primary toggle-xs ml-2"
+                          disabled={!walletConnected}
+                          checked={participateArmada}
+                          onChange={() => handleIncorporate()}
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
                 <li>
