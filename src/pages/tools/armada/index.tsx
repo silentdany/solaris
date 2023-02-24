@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { useWallet } from '@solana/wallet-adapter-react';
 import dynamic from 'next/dynamic';
@@ -14,7 +14,10 @@ import { supabase } from '../../../../lib/initSupabase';
 import { Loader } from '../../../components/Loader';
 import { CapitalStat } from '../../../components/tools/armada/CapitalStat';
 import SwiperContent from '../../../components/tools/armada/SwiperContent';
-import { FetchOriginContext } from '../../../contexts';
+import {
+  FetchOriginContext,
+  ParticipateArmadaContext,
+} from '../../../contexts';
 import useNFT from '../../../hooks/useNFT';
 import InnerSectionBlock from '../../../layout/InnerSectionBlock';
 import Page from '../../../layout/Page';
@@ -33,6 +36,8 @@ const Armada = () => {
       (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
     { ssr: false }
   );
+
+  const { participateArmada } = useContext(ParticipateArmadaContext);
 
   const [loading, setLoading] = useState(true);
   const [pubKeys, setPubKeys] = useState<string[]>([]);
@@ -144,7 +149,7 @@ const Armada = () => {
 
   useEffect(() => {
     fetchPubKeys();
-  }, []);
+  }, [participateArmada]);
 
   useEffect(() => {
     if (
@@ -161,6 +166,7 @@ const Armada = () => {
     structuresLoading,
     accessLoading,
     fetchOrigin,
+    participateArmada,
   ]);
 
   useEffect(() => {
@@ -168,7 +174,7 @@ const Armada = () => {
       setFetchOrigin(pubKeys);
       setFetchOriginSelect('guild');
     }
-  }, [publicKey]);
+  }, [publicKey, participateArmada]);
 
   return (
     <Index>

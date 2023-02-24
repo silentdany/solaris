@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
@@ -12,6 +12,7 @@ import { FaDiscord } from 'react-icons/fa';
 import { supabase } from '../../lib/initSupabase';
 import { DiscordAvatar } from '../components/auth/DiscordAvatar';
 import { SocialButtons } from '../components/SocialButtons';
+import { ParticipateArmadaContext } from '../contexts';
 import { useAccess } from '../hooks/useAccess';
 import useMediaQuery from '../hooks/useMediaQuery';
 import { DiscordUser } from '../utils/Auth';
@@ -23,6 +24,10 @@ const Navbar = () => {
     { ssr: false }
   );
 
+  const { participateArmada, setParticipateArmada } = useContext(
+    ParticipateArmadaContext
+  );
+
   const { data: session } = useSession();
   const user = session?.user as DiscordUser;
   const isSolar = useAccess('solar');
@@ -30,7 +35,6 @@ const Navbar = () => {
   const { publicKey } = useWallet();
 
   const [walletConnected, setWalletConnected] = useState(false);
-  const [participateArmada, setParticipateArmada] = useState(false);
 
   const isMobile = useMediaQuery('(max-width: 767px)');
 

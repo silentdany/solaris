@@ -18,6 +18,7 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 
 import '../styles/global.css';
 import './_app.css';
+import { ParticipateArmadaProvider } from '../contexts';
 
 require('@solana/wallet-adapter-react-ui/styles.css');
 
@@ -40,7 +41,9 @@ const MyApp = ({ Component, pageProps }: AppProps<{ session: Session }>) => {
         <WalletModalProvider>
           <SessionProvider session={pageProps.session}>
             <ParallaxProvider>
-              <Component {...pageProps} />
+              <ParticipateArmadaProvider>
+                <Component {...pageProps} />
+              </ParticipateArmadaProvider>
             </ParallaxProvider>
           </SessionProvider>
         </WalletModalProvider>
