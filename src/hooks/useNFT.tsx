@@ -170,7 +170,15 @@ const useNFT = (
       setNFTValueByMSRP(totalNFTValueByMSRP);
       setNFTValueByVWAP(totalNFTValueByVWAP);
     }
-  }, [guildMembers, membersError, membersLoading, pubKeys, totalNFTValue]);
+  }, [
+    guildMembers,
+    membersError,
+    membersLoading,
+    pubKeys,
+    totalNFTValue,
+    totalNFTValueByMSRP,
+    totalNFTValueByVWAP,
+  ]);
 
   useEffect(() => {
     if (nft.length !== 0) {
