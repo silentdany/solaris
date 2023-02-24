@@ -2,7 +2,7 @@ import { BiUserCheck, BiDollarCircle, BiTargetLock } from 'react-icons/bi';
 import { FiPackage } from 'react-icons/fi';
 import { HiOutlineOfficeBuilding } from 'react-icons/hi';
 import { MdOutlineCollections } from 'react-icons/md';
-import { RiServiceFill, RiSpaceShipLine, RiStarHalfLine } from 'react-icons/ri';
+import { RiServiceLine, RiSpaceShipLine, RiFlagLine } from 'react-icons/ri';
 import { TbMilitaryRank } from 'react-icons/tb';
 
 import { DefinedAccessOnly } from '../../components/DefinedAccessOnly';
@@ -157,11 +157,17 @@ export const getFleetRepartition = (
       value: (
         <DefinedAccessOnly
           role="staff"
-          comp={getShipCountBySpec(['fighter', 'bomber'])}
+          comp={getShipCountBySpec([
+            'fighter',
+            'bomber',
+            'bounty hunter',
+            'racer',
+          ])}
         />
       ),
       sub: `${(
-        (getShipCountBySpec(['fighter', 'bomber']) / getTotalShipCount()) *
+        (getShipCountBySpec(['fighter', 'bomber', 'bounty hunter']) /
+          getTotalShipCount()) *
         100
       ).toFixed(0)}% de la flotte`,
     },
@@ -181,45 +187,41 @@ export const getFleetRepartition = (
     },
     {
       icon: (
-        <RiServiceFill className="text-2xl text-secondary-200 md:text-4xl" />
+        <RiServiceLine className="text-2xl text-secondary-200 md:text-4xl" />
       ),
-      title: 'Service',
-      value: (
-        <DefinedAccessOnly
-          role="staff"
-          comp={getShipCountBySpec(['rescue', 'repair', 'refuel/repair'])}
-        />
-      ),
-      sub: `${(
-        (getShipCountBySpec(['rescue', 'repair', 'refuel/repair']) /
-          getTotalShipCount()) *
-        100
-      ).toFixed(0)}% de la flotte`,
-    },
-    {
-      icon: (
-        <RiStarHalfLine className="text-2xl text-secondary-200 md:text-4xl" />
-      ),
-      title: 'Spé',
+      title: 'Support',
       value: (
         <DefinedAccessOnly
           role="staff"
           comp={getShipCountBySpec([
+            'rescue',
+            'repair',
+            'refuel/repair',
             'multi-role',
-            'bounty hunter',
-            'racer',
             'data runner',
           ])}
         />
       ),
       sub: `${(
         (getShipCountBySpec([
+          'rescue',
+          'repair',
+          'refuel/repair',
           'multi-role',
-          'bounty hunter',
-          'racer',
           'data runner',
         ]) /
           getTotalShipCount()) *
+        100
+      ).toFixed(0)}% de la flotte`,
+    },
+    {
+      icon: <RiFlagLine className="text-2xl text-secondary-200 md:text-4xl" />,
+      title: 'Course',
+      value: (
+        <DefinedAccessOnly role="staff" comp={getShipCountBySpec(['racer'])} />
+      ),
+      sub: `${(
+        (getShipCountBySpec(['racer']) / getTotalShipCount()) *
         100
       ).toFixed(0)}% de la flotte`,
     },
