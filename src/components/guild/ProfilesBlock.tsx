@@ -31,7 +31,7 @@ export const ProfilesBlock = ({ data, isMobile }) =>
             className="scale-105 duration-300 ease-in-out group-hover:scale-110"
           />
         </figure>
-        <div className="card-body">
+        <div className="card-body overflow-hidden">
           <div className="relative">
             <h3 className="flex pb-8 font-title text-3xl font-bold">
               {item.type}
