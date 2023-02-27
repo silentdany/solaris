@@ -118,10 +118,9 @@ const SwiperContent = ({ nfts }: any) => {
                   </div>
                 </div>
                 <div
-                  className={`card relative z-10 w-1/3 shadow-lg duration-300 ease-in-out ${
+                  className={`card relative z-10 w-1/3 rounded-xl shadow-lg duration-300 ease-in-out ${
                     isActive && 'scale-110'
-                  }
-                                ${!isActive && 'opacity-30'} ${
+                  } ${!isActive && 'opacity-30'} ${
                     isActive &&
                     data.attributes.rarity === 'common' &&
                     'shadow-common'
@@ -150,7 +149,7 @@ const SwiperContent = ({ nfts }: any) => {
                   <Image
                     src={data.image}
                     alt={data.name}
-                    className="inset-0 w-full bg-stone-800 object-cover duration-300 ease-in-out"
+                    className="inset-0 w-full rounded-xl bg-stone-800 object-cover duration-300 ease-in-out"
                     priority={isActive}
                     fill
                     sizes="(min-width: 1024px) 1024px, 100vw"
