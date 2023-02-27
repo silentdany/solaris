@@ -5,7 +5,7 @@ import Image from 'next/future/image';
 import { dna } from '../../utils/AppConfig';
 import { DividerTriangle } from '../DividerTriangle';
 
-const ReactMarkdown = dynamic(() => import('react-markdown'), {
+const ReactMarkdown = dynamic<any>(() => import('react-markdown'), {
   ssr: false,
 });
 
@@ -13,7 +13,7 @@ export const DNABlock = ({ data }) =>
   data.map((item, index) => (
     <>
       <div
-        className="group card glass shadow-sm duration-300 ease-in-out hover:shadow-xl md:card-side md:h-80"
+        className="group card glass shadow-sm duration-300 ease-in-out md:card-side hover:shadow-xl md:h-80"
         key={index}
       >
         <div

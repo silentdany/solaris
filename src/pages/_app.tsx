@@ -11,9 +11,9 @@ import {
   PhantomWalletAdapter,
 } from '@solana/wallet-adapter-wallets';
 import { clusterApiUrl } from '@solana/web3.js';
+import { AppProps } from 'next/app';
 import { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
-import { AppProps } from 'next/app';
 import { ParallaxProvider } from 'react-scroll-parallax';
 
 import '../styles/global.css';
@@ -24,7 +24,7 @@ require('@solana/wallet-adapter-react-ui/styles.css');
 
 const MyApp = ({ Component, pageProps }: AppProps<{ session: Session }>) => {
   // Can be set to 'devnet', 'testnet', or 'mainnet-beta'
-  const network = WalletAdapterNetwork.Devnet;
+  const network = WalletAdapterNetwork.Mainnet;
 
   // You can also provide a custom RPC endpoint
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);

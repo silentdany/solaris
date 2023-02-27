@@ -2,10 +2,10 @@ import { useContext, useEffect, useState } from 'react';
 
 import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
-import { signIn, signOut, useSession } from 'next-auth/react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import { CgProfile } from 'react-icons/cg';
 import { FaDiscord } from 'react-icons/fa';
 
@@ -111,7 +111,7 @@ const Navbar = () => {
     <div className="navbar fixed z-30 bg-base-100 shadow-xl" id="top">
       <div className="navbar-start">
         <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost btn-circle">
+          <label tabIndex={0} className="btn-ghost btn-circle btn">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -178,7 +178,7 @@ const Navbar = () => {
         </ul>
         <div className="mx-4 hidden md:block">|</div>
         <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle">
+          <label tabIndex={0} className="btn-ghost btn-circle btn">
             {session ? (
               <div className="avatar">
                 <div className="w-8 rounded-full">
@@ -204,7 +204,7 @@ const Navbar = () => {
                     Incorporation
                     <input
                       type="checkbox"
-                      className="toggle toggle-primary toggle-xs ml-2"
+                      className="toggle-primary toggle toggle-xs ml-2"
                       disabled={!walletConnected}
                       checked={participateArmada}
                       onChange={() => handleIncorporate()}
@@ -253,7 +253,7 @@ const Navbar = () => {
                         Incorporation
                         <input
                           type="checkbox"
-                          className="toggle toggle-primary toggle-xs ml-2"
+                          className="toggle-primary toggle toggle-xs ml-2"
                           disabled={!walletConnected}
                           checked={participateArmada}
                           onChange={() => handleIncorporate()}

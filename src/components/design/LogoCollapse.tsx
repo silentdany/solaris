@@ -30,7 +30,7 @@ export const LogoCollapse = ({ logos, variant }) => {
             <a
               href={logoType.main.url}
               download
-              className="btn btn-ghost btn-circle absolute bottom-0 right-0 z-50 text-xl text-white hover:text-primary-500"
+              className="btn-ghost btn-circle btn absolute bottom-0 right-0 z-50 text-xl text-white hover:text-primary-500"
             >
               <BiDownload />
             </a>
@@ -50,7 +50,7 @@ export const LogoCollapse = ({ logos, variant }) => {
               <a
                 href={logo.url}
                 download
-                className="btn btn-ghost btn-circle absolute bottom-0 right-0 z-50 text-xl text-white hover:text-primary-500"
+                className="btn-ghost btn-circle btn absolute bottom-0 right-0 z-50 text-xl text-white hover:text-primary-500"
               >
                 <BiDownload />
               </a>

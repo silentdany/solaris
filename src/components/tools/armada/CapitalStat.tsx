@@ -57,7 +57,7 @@ export const CapitalStat = ({ title, content, index }: CapitalStatProps) => {
         className={`flex ${index % 2 !== 0 ? 'justify-start' : 'justify-end'}`}
       >
         <div
-          className={`stats stats-vertical relative !overflow-visible bg-stone-300 shadow duration-300 ease-in-out hover:shadow-xl lg:stats-horizontal ${
+          className={`stats stats-vertical relative !overflow-visible bg-stone-300 shadow duration-300 ease-in-out lg:stats-horizontal hover:shadow-xl ${
             index % 2 !== 0 && 'lg:self-end'
           }`}
         >

@@ -5,7 +5,7 @@ import Image from 'next/future/image';
 import { project } from '../../utils/AppConfig';
 import { DividerTriangle } from '../DividerTriangle';
 
-const ReactMarkdown = dynamic(() => import('react-markdown'), {
+const ReactMarkdown = dynamic<any>(() => import('react-markdown'), {
   ssr: false,
 });
 

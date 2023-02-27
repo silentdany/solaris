@@ -1,8 +1,8 @@
 import type { GetServerSidePropsContext } from 'next';
-import { getServerSession } from 'next-auth/next';
-import { getProviders, signIn } from 'next-auth/react';
 import Image from 'next/future/image';
 import Link from 'next/link';
+import { getServerSession } from 'next-auth/next';
+import { getProviders, signIn } from 'next-auth/react';
 import { FaDiscord } from 'react-icons/fa';
 
 import { SolarButtonCore } from '../../components/SolarButton';
