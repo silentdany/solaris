@@ -7,16 +7,17 @@ import { RarityBadge } from '../../../components/tools/ships/RarityBadge';
 import { Table } from '../../../components/tools/ships/Table';
 import TableFilter from '../../../components/tools/ships/TableFilter';
 import { useBreakWord } from '../../../hooks/useBreakWords';
-import { useRarityOrder } from '../../../hooks/useRarityOrder';
-import useShips from '../../../hooks/useShips';
+import useFetchNFTs from '../../../hooks/useFetchNFTs';
+import { useTableRarityOrder } from '../../../hooks/useRarityOrder';
 import { useShipSize } from '../../../hooks/useShipSize';
 import { useShipSizeOrder } from '../../../hooks/useShipSizeOrder';
 import InnerSectionBlock from '../../../layout/InnerSectionBlock';
 import Page from '../../../layout/Page';
 
 const ShipsList = () => {
-  const { ships, isLoading, isError } = useShips();
+  const { NFTs, NFTsLoading, NFTsError } = useFetchNFTs();
 
+  const ships = NFTs?.filter((ship) => ship.attributes.category === 'ship');
   const data = useMemo(
     () =>
       ships?.map((ship) => ({
@@ -43,13 +44,13 @@ const ShipsList = () => {
         Cell: (tableProps) => (
           <div className="flex h-full flex-col justify-center text-right">
             <a
-              className="group glass absolute left-1 bottom-1 flex h-6 w-6 items-center justify-center rounded-full lg:bottom-2 lg:left-2 lg:h-12 lg:w-12"
+              className="group glass absolute left-1 bottom-1 flex h-8 w-8 items-center justify-center rounded-full lg:bottom-2 lg:left-2 lg:h-12 lg:w-12"
               {...tableProps.row.getToggleRowExpandedProps()}
             >
               {tableProps.row.isExpanded ? (
-                <BiDownArrow className="w-full text-xs text-primary-300 duration-100 ease-in-out group-hover:text-primary-500" />
+                <BiDownArrow className="w-full text-sm text-primary-300 duration-100 ease-in-out group-hover:text-primary-500" />
               ) : (
-                <BiDownArrow className="w-full -rotate-90 text-xs text-primary-300 duration-100 ease-in-out group-hover:text-primary-500" />
+                <BiDownArrow className="w-full -rotate-90 text-sm text-primary-300 duration-100 ease-in-out group-hover:text-primary-500" />
               )}
             </a>
             <div className="flex h-full flex-col p-2 lg:p-0">
@@ -88,7 +89,7 @@ const ShipsList = () => {
       {
         Header: 'Rareté',
         accessor: 'rarity',
-        sortType: useRarityOrder,
+        sortType: useTableRarityOrder,
         Cell: (tableProps) => <RarityBadge rarity={tableProps.value} />,
       },
     ],
@@ -99,10 +100,10 @@ const ShipsList = () => {
     <Index>
       <Page title="Dock" image="/assets/images/dock.webp">
         <InnerSectionBlock bgColor={'from-primary-500/40'}>
-          {isError && (
+          {NFTsError && (
             <div className="font-title text-2xl">Erreur de chargement</div>
           )}
-          {!isLoading && (
+          {!NFTsLoading && (
             <div className="flex flex-col space-y-8">
               <Table columns={columns} data={data} header={TableFilter} />
             </div>

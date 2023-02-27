@@ -11,26 +11,34 @@ import Page from '../../layout/Page';
 const data = [
   {
     title: 'Kiosque',
-    text: 'Découvrez les infographies de la guilde préparées spécialement pour vous dans différents formats téléchargeables.',
+    text: 'Découvrez les documents et autres supports préparés ou selectionnés spécialement pour vous dans différents formats téléchargeables.',
     url: '/tools/kiosque',
     color: 'border-stone-600',
     image: '/assets/images/kiosk.webp',
   },
   {
     title: 'Dock',
+    text: 'Découvrez toutes les données des vaisseaux du jeu condensées en une application simple et intuitive.',
+
+    url: '/tools/dock',
+    color: 'border-stone-700',
+    image: '/assets/images/dock.webp',
+  },
+  {
+    title: 'Armada',
     text: (
       <>
         <p>
-          Découvrez toutes les données des vaisseaux du jeu condensées en une
-          application simple et intuitive.
+          Visualisez de manière inédite notre flotte de guerre et découvrez la
+          puissance économique de Solaris !
         </p>
         <p className="text-stone-50/50">(Version bêta)</p>
       </>
     ),
 
-    url: '/tools/dock',
-    color: 'border-stone-700',
-    image: '/assets/images/dock.webp',
+    url: '/tools/armada',
+    color: 'border-stone-800',
+    image: '/assets/images/armada.webp',
   },
 ];
 
@@ -40,7 +48,6 @@ const Tools = () => {
   const expandSlide = (index: number) => {
     setSlideIndex(index);
   };
-
   return (
     <Index>
       <Page title="Outils" image="/assets/images/tools.webp" screenHeight>
@@ -75,6 +82,7 @@ const Tools = () => {
                     className="glass flex w-2/3 flex-col items-center justify-center space-y-4 rounded-xl p-4 shadow hover:shadow-xl md:flex-row md:space-y-0 md:space-x-8 md:p-8"
                   >
                     <p className="text-xs text-stone-50 md:text-sm">{text}</p>
+
                     <Link href={url} className="group">
                       <SolarButton
                         small

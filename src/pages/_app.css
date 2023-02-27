@@ -24,3 +24,26 @@ body {
 .swiperGallery .swiper-slide-thumb-active {
   opacity: 1;
 }
+
+.swiper-wrapper {
+  height: 63vh!important;
+}
+
+.swiper-pagination-bullet {
+  width: unset!important;
+  height: unset!important;
+  background: unset!important;
+  border-radius: unset!important;
+  opacity: unset!important;
+  margin: unset!important;
+  @apply w-full flex-1 ease-in-out duration-100 bg-stone-700 font-title p-1 mx-4 md:text-xl text-stone-300/50 border-b-4 border-transparent hover:border-secondary-500;
+  }
+
+.swiper-pagination-bullet-active {
+  @apply border-primary-500 text-stone-300;
+}
+
+.swiper-pagination {
+  position: unset!important;
+  @apply bg-stone-800 flex
+}

@@ -16,9 +16,16 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@solana/wallet-adapter-base": "^0.9.21",
+    "@solana/wallet-adapter-react": "^0.15.29",
+    "@solana/wallet-adapter-react-ui": "^0.9.28",
+    "@solana/wallet-adapter-wallets": "^0.19.12",
+    "@solana/web3.js": "^1.73.2",
+    "@supabase/supabase-js": "^2.8.0",
     "daisyui": "^2.29.0",
     "framer-motion": "^7.3.6",
     "next": "^12.3.1",
+    "next-auth": "^4.19.2",
     "next-seo": "^5.5.0",
     "next-sitemap": "^3.1.30",
     "react": "^18.2.0",

@@ -49,7 +49,7 @@ const Tools = () => {
               </h2>
               {Infographics.map((info: Info, index) => (
                 <div
-                  className="flex w-full flex-col items-start justify-center"
+                  className="flex w-full scroll-mt-16 flex-col items-start justify-center"
                   key={info.title}
                   id={info.anchor}
                 >
@@ -132,7 +132,7 @@ const Tools = () => {
                 <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-3">
                   {Core.map((core, coreIndex) => (
                     <div
-                      className="group card glass flex max-h-96 flex-col space-y-4 hover:shadow-xl"
+                      className="group card glass flex max-h-96 scroll-mt-48 flex-col space-y-4 hover:shadow-xl"
                       key={`${core.title}-${coreIndex}`}
                       id={core.anchor}
                     >

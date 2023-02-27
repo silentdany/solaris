@@ -1,5 +1,5 @@
 /* eslint-disable consistent-return */
-export const useShipSize = (size) => {
+export const useShipSize = (size: string) => {
   switch (size) {
     case 'xx-small':
       return 'xxs';

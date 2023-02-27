@@ -30,7 +30,7 @@ const Guild = () => {
             <InnerSectionBlock bgColor={'from-primary-500/40'} topBorder>
               <div className="flex w-full flex-col">
                 <DataBlock data={position} />
-                <DividerTriangle data={null} index={1} />
+                <DividerTriangle index={1} />
                 <DataBlock data={datas} />
               </div>
             </InnerSectionBlock>
