@@ -5,6 +5,7 @@ import { BiDollarCircle } from 'react-icons/bi';
 import { EffectCoverflow, Mousewheel } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import EmptySwiperContent from './EmptySwiperContent';
 import useMediaQuery from '../../../hooks/useMediaQuery';
 import { NFT } from '../../../hooks/useNFT';
 import { useShipSize } from '../../../hooks/useShipSize';
@@ -32,8 +33,11 @@ const NftAttributes = ({ data }: any) => (
 const SwiperContent = ({ nfts }: any) => {
   const isMobile = useMediaQuery('(max-width: 767px)');
   const isTablet = useMediaQuery('(max-width: 1023px)');
+
+  if (nfts.length === undefined) return <EmptySwiperContent />;
   return (
     <Swiper
+      key={Math.random()}
       effect={'coverflow'}
       loop={true}
       mousewheel={true}
