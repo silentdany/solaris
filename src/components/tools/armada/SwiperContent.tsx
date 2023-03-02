@@ -34,7 +34,7 @@ const SwiperContent = ({ nfts }: any) => {
   const isMobile = useMediaQuery('(max-width: 767px)');
   const isTablet = useMediaQuery('(max-width: 1023px)');
 
-  if (nfts.length === undefined) return <EmptySwiperContent />;
+  if (nfts === undefined) return <EmptySwiperContent />;
   return (
     <Swiper
       key={Math.random()}

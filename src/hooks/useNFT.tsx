@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useQuery } from 'react-query';
 
 import useGuildMembers from './useGuildMembers';
 import { rarityOrder } from './useRarityOrder';
@@ -97,96 +97,78 @@ const useNFT = (
   NFTtype: string
   // userLevel: string | undefined
 ) => {
-  const { guildMembers, membersLoading, membersError } =
-    useGuildMembers(pubKeys);
+  const { guildMembers, isLoading } = useGuildMembers(pubKeys);
 
-  const [nft, setNFT] = useState<NFT[]>([]);
-  const [nftLoading, setNFTLoading] = useState(true);
+  const { data: nftData, isLoading: isNFTLoading } = useQuery(
+    ['nftData', pubKeys, NFTtype],
+    async () => {
+      const members = await guildMembers;
+      const totalNFT = members?.reduce((acc, member) => {
+        const nfts = member.nfts.filter(
+          (n) => n?.galaxyData?.attributes.itemType === NFTtype
+        );
+        nfts.forEach((item) => {
+          const { mint } = item.galaxyData;
+          if (acc[mint]) {
+            acc[mint].quantity += item.quantity;
+            acc[mint].value += item.valuePerAsset * item.quantity;
+          } else {
+            acc[mint] = {
+              data: item,
+              quantity: item.quantity,
+              value: item.valuePerAsset * item.quantity,
+            };
+          }
+        });
+        return acc;
+      }, {});
+      const sortedNFT = totalNFT
+        ? Object.values(totalNFT).sort((a: any, b: any) => {
+            const rarityA: any = rarityOrder.find(
+              (item) => item.rarity === a.data.galaxyData.attributes.rarity
+            );
+            const rarityB: any = rarityOrder.find(
+              (item) => item.rarity === b.data.galaxyData.attributes.rarity
+            );
+            return rarityB.order - rarityA.order;
+          })
+        : [];
+      return sortedNFT;
+    },
+    {
+      enabled: !!guildMembers,
+    }
+  );
 
-  const [nftValue, setNFTValue] = useState(0);
-  const [nftValueByMSRP, setNFTValueByMSRP] = useState(0);
-  const [nftValueByVWAP, setNFTValueByVWAP] = useState(0);
-
-  const getNFT = (members) => {
-    const totalNFT = members?.reduce((acc, member) => {
-      const nfts = member.nfts.filter(
-        (n) => n?.galaxyData?.attributes.itemType === NFTtype
-      );
-      nfts.forEach((item) => {
-        const { mint } = item.galaxyData;
-        if (acc[mint]) {
-          acc[mint].quantity += item.quantity;
-          acc[mint].value += item.valuePerAsset * item.quantity;
-        } else {
-          acc[mint] = {
-            data: item,
-            quantity: item.quantity,
-            value: item.valuePerAsset * item.quantity,
-          };
+  const getTotalNFTValue = (data: any[], key: string | null) => {
+    return data.reduce((acc, item) => {
+      const { msrp } = item.data.galaxyData.tradeSettings;
+      const { vwap } = item.data.galaxyData.tradeSettings;
+      let value = 0;
+      if (key === 'msrp') {
+        if (msrp) {
+          value = msrp.value;
         }
-      });
-      return acc;
-    }, {});
-    return Object.values(totalNFT);
+      } else if (key === 'vwap') {
+        value = vwap;
+      } else {
+        value = item.value;
+      }
+      return acc + (value ?? 0);
+    }, 0);
   };
 
-  const sortNFT = (f: any[]) =>
-    f.sort((a, b) => {
-      const rarityA: any = rarityOrder.find(
-        (item) => item.rarity === a.data.galaxyData.attributes.rarity
-      );
+  const totalNFTValue = nftData ? getTotalNFTValue(nftData, null) : 0;
+  const totalNFTValueByMSRP = nftData ? getTotalNFTValue(nftData, 'msrp') : 0;
+  const totalNFTValueByVWAP = nftData ? getTotalNFTValue(nftData, 'vwap') : 0;
 
-      const rarityB: any = rarityOrder.find(
-        (item) => item.rarity === b.data.galaxyData.attributes.rarity
-      );
-      return rarityB.order - rarityA.order;
-    });
-
-  const totalNFTValue = nft.reduce((acc, item) => acc + item.value, 0);
-  const totalNFTValueByMSRP = nft.reduce(
-    (acc, item) =>
-      (item.data.galaxyData.tradeSettings.msrp &&
-        acc + item.data.galaxyData.tradeSettings.msrp.value) ??
-      0,
-    0
-  );
-  const totalNFTValueByVWAP = nft.reduce(
-    (acc, item) => acc + item.data.galaxyData.tradeSettings.vwap,
-    0
-  );
-
-  useEffect(() => {
-    if (!membersLoading || !membersError) {
-      const sortedNFT = sortNFT(getNFT(guildMembers));
-      // setNFT(hideSensibleData(sortedNFT, 'medium', 'epic'));
-      // if (userLevel === 'solar') {
-      //   setNFT(hideSensibleData(sortedNFT, 'large', 'legendary'));
-      // }
-      // if (userLevel === 'staff') {
-      //   setNFT(sortedNFT);
-      // }
-      setNFT(sortedNFT);
-      setNFTValue(totalNFTValue);
-      setNFTValueByMSRP(totalNFTValueByMSRP);
-      setNFTValueByVWAP(totalNFTValueByVWAP);
-    }
-  }, [
-    guildMembers,
-    membersError,
-    membersLoading,
-    pubKeys,
+  return {
+    nftData,
+    isLoading: isLoading || isNFTLoading,
     totalNFTValue,
     totalNFTValueByMSRP,
     totalNFTValueByVWAP,
-  ]);
-
-  useEffect(() => {
-    if (nft.length !== 0) {
-      setNFTLoading(false);
-    }
-  }, [nft]);
-
-  return { nft, nftValue, nftLoading, nftValueByMSRP, nftValueByVWAP };
+  };
 };
 
 export default useNFT;

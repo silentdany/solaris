@@ -1,17 +1,13 @@
-import useSWR from 'swr';
+import axios from 'axios';
+import { useQuery } from 'react-query';
 
 const galaxyUrl = 'https://galaxy.staratlas.com/nfts';
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-const useNFTs = () => {
-  const { data, error } = useSWR(galaxyUrl, fetcher);
-  const NFTs = data;
-
-  return {
-    NFTs,
-    NFTsLoading: !error && !data,
-    NFTsError: error,
-  };
+const useFetchNFTs = () => {
+  return useQuery('nfts', async () => {
+    const { data } = await axios(galaxyUrl);
+    return data;
+  });
 };
 
-export default useNFTs;
+export default useFetchNFTs;

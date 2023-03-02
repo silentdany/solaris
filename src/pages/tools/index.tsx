@@ -57,7 +57,9 @@ const Tools = () => {
               className={`group relative flex h-full items-center justify-center border-2 duration-300 ease-in-out ${color} ${
                 slideIndex === index ? 'w-full' : 'w-12 md:w-16 lg:w-32'
               }`}
-              style={{ background: `url(${image}) no-repeat center/cover` }}
+              style={{
+                background: `url(${image}) no-repeat center/cover`,
+              }}
               key={title}
               onClick={() => expandSlide(index)}
             >
@@ -70,7 +72,7 @@ const Tools = () => {
                   transition={{ duration: 0.75 }}
                   className="flex h-full flex-col items-center justify-around"
                 >
-                  <h2 className="flex items-center font-title text-4xl font-semibold text-stone-50 md:text-5xl">
+                  <h2 className="flex items-center font-title text-4xl font-semibold text-primary-500 md:text-5xl ">
                     {title}
                   </h2>
                   <motion.div
@@ -79,7 +81,7 @@ const Tools = () => {
                     }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.75 }}
-                    className="glass flex w-2/3 flex-col items-center justify-center space-y-4 rounded-xl p-4 shadow hover:shadow-xl md:flex-row md:space-y-0 md:space-x-8 md:p-8"
+                    className="glass flex w-2/3 flex-col items-center justify-center space-y-4 rounded-xl bg-stone-800/60 p-4 shadow hover:bg-stone-800/60 hover:shadow-xl md:flex-row md:space-y-0 md:space-x-8 md:p-8"
                   >
                     <p className="text-xs text-stone-50 md:text-sm">{text}</p>
 

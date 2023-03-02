@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
 
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+
 import { useWallet } from '@solana/wallet-adapter-react';
 import dynamic from 'next/dynamic';
 import { BiDownArrow } from 'react-icons/bi';
 import { Pagination } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Index from '../..';
@@ -79,38 +80,39 @@ const Armada = () => {
   };
 
   const {
-    nft: ships,
-    nftValue: shipsValue,
-    nftValueByMSRP: shipsValueByMSRP,
-    nftValueByVWAP: shipsValueByVWAP,
-    nftLoading: shipsLoading,
+    nftData: ships,
+    isLoading: shipsLoading,
+    totalNFTValue: shipsNFTValue,
+    totalNFTValueByMSRP: shipsNFTValueByMSRP,
+    totalNFTValueByVWAP: shipsNFTValueByVWAP,
   } = useNFT(fetchOrigin, 'ship');
   const {
-    nft: structures,
-    nftValue: structuresValue,
-    nftValueByMSRP: structuresValueByMSRP,
-    nftValueByVWAP: structuresValueByVWAP,
-    nftLoading: structuresLoading,
+    nftData: structures,
+    isLoading: structuresLoading,
+    totalNFTValue: structuresNFTValue,
+    totalNFTValueByMSRP: structuresNFTValueByMSRP,
+    totalNFTValueByVWAP: structuresNFTValueByVWAP,
   } = useNFT(fetchOrigin, 'structure');
   const {
-    nft: collectibles,
-    nftValue: collectiblesValue,
-    nftValueByMSRP: collectiblesValueByMSRP,
-    nftValueByVWAP: collectiblesValueByVWAP,
-    nftLoading: collectiblesLoading,
+    nftData: collectibles,
+    isLoading: collectiblesLoading,
+    totalNFTValue: collectiblesNFTValue,
+    totalNFTValueByMSRP: collectiblesNFTValueByMSRP,
+    totalNFTValueByVWAP: collectiblesNFTValueByVWAP,
   } = useNFT(fetchOrigin, 'collectible');
   const {
-    nft: access,
-    nftValue: accessValue,
-    nftValueByMSRP: accessValueByMSRP,
-    nftValueByVWAP: accessValueByVWAP,
-    nftLoading: accessLoading,
+    nftData: access,
+    isLoading: accessLoading,
+    totalNFTValue: accessNFTValue,
+    totalNFTValueByMSRP: accessNFTValueByMSRP,
+    totalNFTValueByVWAP: accessNFTValueByVWAP,
   } = useNFT(fetchOrigin, 'access');
 
-  const getTotalShipCount = () =>
-    ships.reduce((acc, ship) => acc + ship.quantity, 0);
+  const getTotalShipCount: any = () =>
+    ships ? ships.reduce((acc, ship: any) => acc + ship.quantity, 0) : 0;
 
-  const getShipCountBySpec = (spec: Array<string>) => {
+  const getShipCountBySpec: any = (spec: Array<string>) => {
+    if (!ships) return 0;
     const filteredShips = ships.filter((ship: any) =>
       spec.includes(ship.data.galaxyData.attributes.spec)
     );
@@ -121,18 +123,23 @@ const Armada = () => {
     return total;
   };
 
-  const capital = [shipsValue, structuresValue, collectiblesValue, accessValue];
+  const capital: number[] = [
+    shipsNFTValue,
+    structuresNFTValue,
+    collectiblesNFTValue,
+    accessNFTValue,
+  ];
   const capitalByMSRP = [
-    shipsValueByMSRP,
-    structuresValueByMSRP,
-    collectiblesValueByMSRP,
-    accessValueByMSRP,
+    shipsNFTValueByMSRP,
+    structuresNFTValueByMSRP,
+    collectiblesNFTValueByMSRP,
+    accessNFTValueByMSRP,
   ];
   const capitalByVWAP = [
-    shipsValueByVWAP,
-    structuresValueByVWAP,
-    collectiblesValueByVWAP,
-    accessValueByVWAP,
+    shipsNFTValueByVWAP,
+    structuresNFTValueByVWAP,
+    collectiblesNFTValueByVWAP,
+    accessNFTValueByVWAP,
   ];
 
   const customBullet = ({ index, className }) =>
@@ -152,6 +159,16 @@ const Armada = () => {
   }, [participateArmada]);
 
   useEffect(() => {
+    if (
+      [
+        shipsLoading,
+        structuresLoading,
+        collectiblesLoading,
+        accessLoading,
+      ].includes(true)
+    ) {
+      setLoading(true);
+    }
     if (
       !shipsLoading &&
       !structuresLoading &&
@@ -330,10 +347,10 @@ const Armada = () => {
                             title="Répartition capitaux"
                             content={getCapitalRepartition(
                               capital,
-                              shipsValue,
-                              structuresValue,
-                              collectiblesValue,
-                              accessValue
+                              shipsNFTValue,
+                              structuresNFTValue,
+                              collectiblesNFTValue,
+                              accessNFTValue
                             )}
                             index={1}
                           />

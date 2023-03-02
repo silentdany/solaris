@@ -14,6 +14,7 @@ import { clusterApiUrl } from '@solana/web3.js';
 import { AppProps } from 'next/app';
 import { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { ParallaxProvider } from 'react-scroll-parallax';
 
 import '../styles/global.css';
@@ -35,16 +36,20 @@ const MyApp = ({ Component, pageProps }: AppProps<{ session: Session }>) => {
     [network]
   );
 
+  const queryClient = new QueryClient();
+
   return (
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
           <SessionProvider session={pageProps.session}>
-            <ParallaxProvider>
-              <ParticipateArmadaProvider>
-                <Component {...pageProps} />
-              </ParticipateArmadaProvider>
-            </ParallaxProvider>
+            <QueryClientProvider client={queryClient}>
+              <ParallaxProvider>
+                <ParticipateArmadaProvider>
+                  <Component {...pageProps} />
+                </ParticipateArmadaProvider>
+              </ParallaxProvider>
+            </QueryClientProvider>
           </SessionProvider>
         </WalletModalProvider>
       </WalletProvider>

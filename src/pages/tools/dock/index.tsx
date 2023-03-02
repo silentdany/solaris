@@ -15,7 +15,11 @@ import InnerSectionBlock from '../../../layout/InnerSectionBlock';
 import Page from '../../../layout/Page';
 
 const ShipsList = () => {
-  const { NFTs, NFTsLoading, NFTsError } = useFetchNFTs();
+  const {
+    data: NFTs,
+    isLoading: NFTsLoading,
+    isError: NFTsError,
+  } = useFetchNFTs();
 
   const ships = NFTs?.filter((ship) => ship.attributes.category === 'ship');
   const data = useMemo(
