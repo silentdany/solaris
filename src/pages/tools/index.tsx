@@ -12,6 +12,8 @@ const data = [
   {
     title: 'Kiosque',
     text: 'Découvrez les documents et autres supports préparés ou selectionnés spécialement pour vous dans différents formats téléchargeables.',
+    accentText:
+      'Infographies, traductions des tomes CORE et bien plus à venir.',
     url: '/tools/kiosque',
     color: 'border-stone-600',
     image: '/assets/images/kiosk.webp',
@@ -19,22 +21,17 @@ const data = [
   {
     title: 'Dock',
     text: 'Découvrez toutes les données des vaisseaux du jeu condensées en une application simple et intuitive.',
-
+    accentText:
+      'Consultez tous les modules, les visuels et bientôt les données de marché.',
     url: '/tools/dock',
     color: 'border-stone-700',
     image: '/assets/images/dock.webp',
   },
   {
     title: 'Armada',
-    text: (
-      <>
-        <p>
-          Visualisez de manière inédite notre flotte de guerre et découvrez la
-          puissance économique de Solaris !
-        </p>
-        <p className="text-stone-50/50">(Version bêta)</p>
-      </>
-    ),
+    text: 'Visualisez de manière inédite notre flotte de guerre et découvrez la puissance économique de Solaris !',
+    accentText:
+      "Profitez-en pour admirer votre flotte ou n'importe laquelle via votre wallet ou une clé publique.",
 
     url: '/tools/armada',
     color: 'border-stone-800',
@@ -52,7 +49,7 @@ const Tools = () => {
     <Index>
       <Page title="Outils" image="/assets/images/tools.webp" screenHeight>
         <div className="flex h-full w-full max-w-6xl justify-center">
-          {data.map(({ title, text, url, color, image }, index) => (
+          {data.map(({ title, text, accentText, url, color, image }, index) => (
             <div
               className={`group relative flex h-full items-center justify-center border-2 duration-300 ease-in-out ${color} ${
                 slideIndex === index ? 'w-full' : 'w-12 md:w-16 lg:w-32'
@@ -81,10 +78,14 @@ const Tools = () => {
                     }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.75 }}
-                    className="glass flex w-2/3 flex-col items-center justify-center space-y-4 rounded-xl bg-stone-800/60 p-4 shadow hover:bg-stone-800/60 hover:shadow-xl md:flex-row md:space-y-0 md:space-x-8 md:p-8"
+                    className="glass flex w-2/3 flex-col items-center justify-center space-y-4 rounded-xl bg-stone-800/60 p-4 shadow hover:bg-stone-800/60 hover:shadow-xl md:space-x-8 md:p-8 lg:flex-row"
                   >
-                    <p className="text-xs text-stone-50 md:text-sm">{text}</p>
-
+                    <div className="flex flex-col space-y-2">
+                      <p className="text-xs text-stone-50 md:text-sm">{text}</p>
+                      <h3 className="text-xs text-primary-300 md:text-sm">
+                        {accentText}
+                      </h3>
+                    </div>
                     <Link href={url} className="group">
                       <SolarButton
                         small

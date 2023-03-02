@@ -40,4 +40,11 @@ export const Core = [
     image: 'https://storage.googleapis.com/nft-assets/items/CORE4-SA.jpg',
     pdf: 'https://drive.google.com/file/d/1QsHUoz_IAy6ETbvgfnETd03dzNUVMGU5/view?usp=share_link',
   },
+  {
+    title: 'Voice of Iris',
+    anchor: 'voice-iris',
+    image:
+      'https://storage.googleapis.com/nft-assets/ReBirth/poster-1/discovery-of-iris.jpg',
+    pdf: 'https://drive.google.com/file/d/1gGcQ6FIBcdn1Dki8daLKJKX_Y2HBJNPB/view?usp=share_link',
+  },
 ];
