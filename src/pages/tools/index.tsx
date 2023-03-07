@@ -51,7 +51,7 @@ const Tools = () => {
         <div className="flex h-full w-full max-w-6xl justify-center">
           {data.map(({ title, text, accentText, url, color, image }, index) => (
             <div
-              className={`group relative flex h-full items-center justify-center border-2 duration-300 ease-in-out ${color} ${
+              className={`group relative flex h-full items-center justify-center border-2 duration-300 ease-in-out hover:border-primary-500 ${color} ${
                 slideIndex === index ? 'w-full' : 'w-12 md:w-16 lg:w-32'
               }`}
               style={{
@@ -104,9 +104,9 @@ const Tools = () => {
                   </motion.div>
                 </motion.div>
               ) : (
-                <div className="absolute top-0 left-0 h-full w-full cursor-pointer bg-stone-900 opacity-75">
+                <div className="absolute top-0 left-0 h-full w-full cursor-pointer bg-stone-900 opacity-75 duration-300 ease-in-out hover:opacity-60">
                   <h2
-                    className="flex h-full w-full items-center justify-center font-title text-2xl font-semibold uppercase tracking-[-0.35em] text-stone-50 md:text-3xl"
+                    className="flex h-full w-full items-center justify-center font-title text-2xl font-semibold uppercase tracking-[-0.35em] text-stone-50 duration-300 ease-in-out hover:text-primary-300 md:text-3xl"
                     style={{
                       writingMode: 'vertical-rl',
                       textOrientation: 'upright',
