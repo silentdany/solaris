@@ -2,16 +2,22 @@ export const Core = [
   {
     title: 'Personnages',
     anchor: 'core-characters',
-    image:
-      'https://storage.googleapis.com/nft-assets/items/CORE1ME-695e093e30dc.jpg',
+    image: 'https://storage.googleapis.com/nft-assets/items/CORE5-ME.jpg',
     pdf: 'https://drive.google.com/file/d/1vqZQVQTZwLlNIwg3FrjXpBJurslfI6aF/view?usp=share_link',
   },
   {
     title: 'Teaser',
     anchor: 'core-teaser',
     image:
-      'https://storage.googleapis.com/nft-assets/items/CORE2ME-e09314fd62c.jpg',
+      'https://storage.googleapis.com/nft-assets/items/CORE1ME-695e093e30dc.jpg',
     pdf: 'https://drive.google.com/file/d/1mUydNkim7u0go5qk71SBSTN1H3aMr3w6/view?usp=share_link',
+  },
+  {
+    title: 'Voice of Iris',
+    anchor: 'voice-iris',
+    image:
+      'https://storage.googleapis.com/nft-assets/items/CORE2ME-e09314fd62c.jpg',
+    pdf: 'https://drive.google.com/file/d/1gGcQ6FIBcdn1Dki8daLKJKX_Y2HBJNPB/view?usp=share_link',
   },
   {
     title: 'Episode 1',
@@ -41,10 +47,9 @@ export const Core = [
     pdf: 'https://drive.google.com/file/d/1QsHUoz_IAy6ETbvgfnETd03dzNUVMGU5/view?usp=share_link',
   },
   {
-    title: 'Voice of Iris',
-    anchor: 'voice-iris',
-    image:
-      'https://storage.googleapis.com/nft-assets/ReBirth/poster-1/discovery-of-iris.jpg',
-    pdf: 'https://drive.google.com/file/d/1gGcQ6FIBcdn1Dki8daLKJKX_Y2HBJNPB/view?usp=share_link',
+    title: 'Episode 5',
+    anchor: 'core-episode-5',
+    image: 'https://storage.googleapis.com/nft-assets/items/CORE5-SA.jpg',
+    pdf: 'https://drive.google.com/file/d/1JeLydV6kWfV3Ds6YpQwcynB8UayxYht5/view?usp=share_link',
   },
 ];
