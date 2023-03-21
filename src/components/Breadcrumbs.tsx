@@ -30,7 +30,7 @@ export const Breadcrumbs = () => {
     >
       <ul>
         <li>
-          <Link href="/guild">
+          <Link href="/">
             <a>Accueil</a>
           </Link>
         </li>

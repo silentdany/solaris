@@ -12,7 +12,7 @@ export default function SignIn() {
   return (
     <div className="relative flex h-screen w-screen flex-col items-center justify-center space-y-12 overflow-hidden bg-primary-500/50 bg-gradient-to-b to-transparent p-8">
       <div className="absolute left-0 z-0 h-full w-full bg-hero-diagonal-lines"></div>
-      <Link href="/guild" passHref>
+      <Link href="/" passHref>
         <a title="Retour au site" className="z-10">
           <Image
             src="/assets/images/solaris_title_logo_color_white.webp"

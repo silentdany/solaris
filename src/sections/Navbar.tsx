@@ -161,7 +161,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-center">
-        <Link href="/guild" passHref={true}>
+        <Link href="/" passHref={true}>
           <a title="Accueil" className="relative flex flex-col items-center">
             <Image
               src="/assets/images/solaris_title_logo_color_black.webp"

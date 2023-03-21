@@ -14,23 +14,6 @@ module.exports = withBundleAnalyzer({
   images: {
     domains: ['storage.googleapis.com', 'cdn.discordapp.com'],
   },
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/guild',
-        permanent: true,
-      },
-    ];
-  },
-  async rewrites() {
-    return [
-      {
-        source: '/',
-        destination: '/guild',
-      },
-    ];
-  },
   env: {
     WEBSITE_URL: process.env.WEBSITE_URL,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,

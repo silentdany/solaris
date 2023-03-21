@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import Index from '..';
 import { DividerTriangle } from '../../components/DividerTriangle';
 import { DataBlock } from '../../components/guild/DataBlock';
@@ -19,10 +20,11 @@ import {
   resources,
 } from '../../utils/AppConfig';
 
-const Guild = () => {
+export const GuildContent = () => {
   const isMobile = useMediaQuery('(max-width: 767px)');
+
   return (
-    <Index>
+    <>
       <Hero />
       <div id="start">
         <Section title="Données" number="01" bgColor="bg-stone-50" uppercase>
@@ -80,6 +82,14 @@ const Guild = () => {
           </div>
         </Section>
       </div>
+    </>
+  );
+};
+
+const Guild = () => {
+  return (
+    <Index>
+      <GuildContent />
     </Index>
   );
 };
