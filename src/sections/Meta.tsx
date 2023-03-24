@@ -52,6 +52,7 @@ const Meta = (props: IMetaProps) => {
         title={props.title}
         description={props.description}
         canonical={props.canonical}
+        themeColor="#d0a341"
         openGraph={{
           type: 'website',
           locale: AppConfig.locale,
