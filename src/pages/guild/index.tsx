@@ -11,6 +11,7 @@ import useMediaQuery from '../../hooks/useMediaQuery';
 import InnerSectionBlock from '../../layout/InnerSectionBlock';
 import Section from '../../layout/Section';
 import { Hero } from '../../sections/Hero';
+import { Meta } from '../../sections/Meta';
 import {
   position,
   datas,
@@ -18,6 +19,7 @@ import {
   profiles,
   dna,
   resources,
+  AppConfig,
 } from '../../utils/AppConfig';
 
 export const GuildContent = () => {
@@ -25,6 +27,11 @@ export const GuildContent = () => {
 
   return (
     <>
+      <Meta
+        title={`${AppConfig.site_name} Guilde française sur Star Atlas`}
+        description={AppConfig.description}
+        canonical={AppConfig.url}
+      />
       <Hero />
       <div id="start">
         <Section title="Données" number="01" bgColor="bg-stone-50" uppercase>

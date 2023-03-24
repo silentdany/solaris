@@ -13,6 +13,8 @@ import { useShipSize } from '../../../hooks/useShipSize';
 import { useShipSizeOrder } from '../../../hooks/useShipSizeOrder';
 import InnerSectionBlock from '../../../layout/InnerSectionBlock';
 import Page from '../../../layout/Page';
+import { Meta } from '../../../sections/Meta';
+import { AppConfig } from '../../../utils/AppConfig';
 
 const ShipsList = () => {
   const {
@@ -101,20 +103,29 @@ const ShipsList = () => {
   );
 
   return (
-    <Index>
-      <Page title="Dock" image="/assets/images/dock.webp">
-        <InnerSectionBlock bgColor={'from-primary-500/40'}>
-          {NFTsError && (
-            <div className="font-title text-2xl">Erreur de chargement</div>
-          )}
-          {!NFTsLoading && (
-            <div className="flex flex-col space-y-8">
-              <Table columns={columns} data={data} header={TableFilter} />
-            </div>
-          )}
-        </InnerSectionBlock>
-      </Page>
-    </Index>
+    <>
+      <Meta
+        title={`${AppConfig.site_name} Dock`}
+        description={
+          'Découvrez toutes les données des vaisseaux du jeu condensées en une application simple et intuitive.'
+        }
+        canonical={`${AppConfig.url}/tools/dock`}
+      />
+      <Index>
+        <Page title="Dock" image="/assets/images/dock.webp">
+          <InnerSectionBlock bgColor={'from-primary-500/40'}>
+            {NFTsError && (
+              <div className="font-title text-2xl">Erreur de chargement</div>
+            )}
+            {!NFTsLoading && (
+              <div className="flex flex-col space-y-8">
+                <Table columns={columns} data={data} header={TableFilter} />
+              </div>
+            )}
+          </InnerSectionBlock>
+        </Page>
+      </Index>
+    </>
   );
 };
 

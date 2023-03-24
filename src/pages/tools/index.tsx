@@ -7,6 +7,8 @@ import { BiChevronRight } from 'react-icons/bi';
 import Index from '..';
 import { SolarButton } from '../../components/SolarButton';
 import Page from '../../layout/Page';
+import { Meta } from '../../sections/Meta';
+import { AppConfig } from '../../utils/AppConfig';
 
 const data = [
   {
@@ -46,81 +48,94 @@ const Tools = () => {
     setSlideIndex(index);
   };
   return (
-    <Index>
-      <Page title="Outils" image="/assets/images/tools.webp" screenHeight>
-        <div className="flex h-full w-full max-w-6xl justify-center">
-          {data.map(({ title, text, accentText, url, color, image }, index) => (
-            <div
-              className={`group relative flex h-full items-center justify-center border-2 duration-300 ease-in-out hover:border-primary-500 ${color} ${
-                slideIndex === index ? 'w-full' : 'w-12 md:w-16 lg:w-32'
-              }`}
-              style={{
-                background: `url(${image}) no-repeat center/cover`,
-              }}
-              key={title}
-              onClick={() => expandSlide(index)}
-            >
-              {slideIndex === index ? (
-                <motion.div
-                  initial={{
-                    opacity: 0,
+    <>
+      <Meta
+        title={`${AppConfig.site_name} Outils`}
+        description={
+          'Découvrez les outils de gestion et de visualisation pour Star Atlas, développés par Solaris.'
+        }
+        canonical={`${AppConfig.url}/tools`}
+      />
+      <Index>
+        <Page title="Outils" image="/assets/images/tools.webp" screenHeight>
+          <div className="flex h-full w-full max-w-6xl justify-center">
+            {data.map(
+              ({ title, text, accentText, url, color, image }, index) => (
+                <div
+                  className={`group relative flex h-full items-center justify-center border-2 duration-300 ease-in-out hover:border-primary-500 ${color} ${
+                    slideIndex === index ? 'w-full' : 'w-12 md:w-16 lg:w-32'
+                  }`}
+                  style={{
+                    background: `url(${image}) no-repeat center/cover`,
                   }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.75 }}
-                  className="flex h-full flex-col items-center justify-around"
+                  key={title}
+                  onClick={() => expandSlide(index)}
                 >
-                  <h2 className="flex items-center font-title text-4xl font-semibold text-primary-500 md:text-5xl ">
-                    {title}
-                  </h2>
-                  <motion.div
-                    initial={{
-                      opacity: 0,
-                    }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.75 }}
-                    className="glass flex w-2/3 flex-col items-center justify-center space-y-4 rounded-xl bg-stone-800/60 p-4 shadow hover:bg-stone-800/60 hover:shadow-xl md:space-x-8 md:p-8 lg:flex-row"
-                  >
-                    <div className="flex flex-col space-y-2">
-                      <p className="text-xs text-stone-50 md:text-sm">{text}</p>
-                      <h3 className="text-xs text-primary-300 md:text-sm">
-                        {accentText}
-                      </h3>
+                  {slideIndex === index ? (
+                    <motion.div
+                      initial={{
+                        opacity: 0,
+                      }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.75 }}
+                      className="flex h-full flex-col items-center justify-around"
+                    >
+                      <h2 className="flex items-center font-title text-4xl font-semibold text-primary-500 md:text-5xl ">
+                        {title}
+                      </h2>
+                      <motion.div
+                        initial={{
+                          opacity: 0,
+                        }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.75 }}
+                        className="glass flex w-2/3 flex-col items-center justify-center space-y-4 rounded-xl bg-stone-800/60 p-4 shadow hover:bg-stone-800/60 hover:shadow-xl md:space-x-8 md:p-8 lg:flex-row"
+                      >
+                        <div className="flex flex-col space-y-2">
+                          <p className="text-xs text-stone-50 md:text-sm">
+                            {text}
+                          </p>
+                          <h3 className="text-xs text-primary-300 md:text-sm">
+                            {accentText}
+                          </h3>
+                        </div>
+                        <Link href={url} className="group">
+                          <SolarButton
+                            small
+                            url={url}
+                            title={title}
+                            item={
+                              <div className="flex items-center text-xs md:text-sm">
+                                Acceder
+                                <span className="ml-2 md:text-lg lg:text-xl">
+                                  <BiChevronRight />
+                                </span>
+                              </div>
+                            }
+                          />
+                        </Link>
+                      </motion.div>
+                    </motion.div>
+                  ) : (
+                    <div className="absolute top-0 left-0 h-full w-full cursor-pointer bg-stone-900 opacity-75 duration-300 ease-in-out hover:opacity-60">
+                      <h2
+                        className="flex h-full w-full items-center justify-center font-title text-2xl font-semibold uppercase tracking-[-0.35em] text-stone-50 duration-300 ease-in-out hover:text-primary-300 md:text-3xl"
+                        style={{
+                          writingMode: 'vertical-rl',
+                          textOrientation: 'upright',
+                        }}
+                      >
+                        {title}
+                      </h2>
                     </div>
-                    <Link href={url} className="group">
-                      <SolarButton
-                        small
-                        url={url}
-                        title={title}
-                        item={
-                          <div className="flex items-center text-xs md:text-sm">
-                            Acceder
-                            <span className="ml-2 md:text-lg lg:text-xl">
-                              <BiChevronRight />
-                            </span>
-                          </div>
-                        }
-                      />
-                    </Link>
-                  </motion.div>
-                </motion.div>
-              ) : (
-                <div className="absolute top-0 left-0 h-full w-full cursor-pointer bg-stone-900 opacity-75 duration-300 ease-in-out hover:opacity-60">
-                  <h2
-                    className="flex h-full w-full items-center justify-center font-title text-2xl font-semibold uppercase tracking-[-0.35em] text-stone-50 duration-300 ease-in-out hover:text-primary-300 md:text-3xl"
-                    style={{
-                      writingMode: 'vertical-rl',
-                      textOrientation: 'upright',
-                    }}
-                  >
-                    {title}
-                  </h2>
+                  )}
                 </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </Page>
-    </Index>
+              )
+            )}
+          </div>
+        </Page>
+      </Index>
+    </>
   );
 };
 

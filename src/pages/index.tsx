@@ -5,9 +5,7 @@ import CookieConsent from 'react-cookie-consent';
 // eslint-disable-next-line import/no-cycle
 import { GuildContent } from './guild';
 import { Footer } from '../sections/Footer';
-import { Meta } from '../sections/Meta';
 import { Navbar } from '../sections/Navbar';
-import { AppConfig } from '../utils/AppConfig';
 
 const Index = ({ children }) => {
   const [childrenState, setChildrenState] = useState(<GuildContent />);
@@ -21,11 +19,6 @@ const Index = ({ children }) => {
     <>
       <div className="text-stone-600 antialiased">
         <div id="page-wrap" className="w-full">
-          <Meta
-            title={AppConfig.site_name}
-            description={AppConfig.description}
-            canonical={AppConfig.url}
-          />
           <Navbar />
           {childrenState}
           <Footer />

@@ -5,7 +5,7 @@ import { ImEarth } from 'react-icons/im';
 import { IoIosPeople } from 'react-icons/io';
 
 export const AppConfig = {
-  site_name: 'Solaris by QTT | Guilde française sur Star Atlas',
+  site_name: 'Solaris by QTT |',
   title: 'Solaris',
   destructuredTitle: ['Solaris', 'QTT'],
   url: 'solaris-qtt.com/',
