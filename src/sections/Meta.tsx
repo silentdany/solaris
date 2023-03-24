@@ -58,7 +58,33 @@ const Meta = (props: IMetaProps) => {
           url: props.canonical,
           title: props.title,
           description: props.description,
-          site_name: AppConfig.site_name,
+          siteName: `${AppConfig.site_name} Guilde française sur Star Atlas`,
+          images: [
+            {
+              url: `${router.basePath}/assets/logos/ban_720p.webp`,
+              width: 1280,
+              height: 720,
+              alt: 'Solaris by QTT',
+            },
+            {
+              url: `${router.basePath}/assets/promo/armada.webp`,
+              width: 707,
+              height: 1000,
+              alt: 'Armada tool by Solaris',
+            },
+            {
+              url: `${router.basePath}/assets/promo/dock.webp`,
+              width: 707,
+              height: 1000,
+              alt: 'Dock tool by Solaris',
+            },
+            {
+              url: `${router.basePath}/assets/promo/kiosk.webp`,
+              width: 707,
+              height: 1000,
+              alt: 'Kiosk tool by Solaris',
+            },
+          ],
         }}
         twitter={{
           handle: '@SOLARIS_byQtt',
