@@ -8,7 +8,7 @@ export const AppConfig = {
   site_name: 'Solaris by QTT |',
   title: 'Solaris',
   destructuredTitle: ['Solaris', 'QTT'],
-  url: 'solaris-qtt.com/',
+  url: 'solaris-qtt.com',
   description:
     'Solaris, la branche spatiale de la communauté P2E francophone QTT, est une guilde/DAC spécialisée dans le service sur Star Atlas.',
   locale: 'fr_FR',

@@ -13,7 +13,6 @@ type IMetaProps = {
 
 const Meta = (props: IMetaProps) => {
   const router = useRouter();
-  console.log(props.canonical);
   return (
     <>
       <Head>
@@ -56,10 +55,7 @@ const Meta = (props: IMetaProps) => {
         openGraph={{
           type: 'website',
           locale: AppConfig.locale,
-          url:
-            props.canonical === 'solaris-qtt.com/'
-              ? AppConfig.url
-              : props.canonical,
+          url: props.canonical !== 'solaris-qtt.com/' ? props.canonical : '',
           title: props.title,
           description: props.description,
           siteName: AppConfig.title,
