@@ -55,7 +55,7 @@ const Meta = (props: IMetaProps) => {
         openGraph={{
           type: 'website',
           locale: AppConfig.locale,
-          url: props.canonical !== 'solaris-qtt.com/' ? props.canonical : '',
+          url: props.canonical !== 'solaris-qtt.com' ? props.canonical : '',
           title: props.title,
           description: props.description,
           siteName: AppConfig.title,
