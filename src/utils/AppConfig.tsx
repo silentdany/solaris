@@ -10,7 +10,7 @@ export const AppConfig = {
   destructuredTitle: ['Solaris', 'QTT'],
   url: 'solaris-qtt.com/',
   description:
-    'Solaris, la branche spatiale de QTT, communauté P2E francophone !',
+    'Solaris, la branche spatiale de la communauté P2E francophone QTT, est une guilde/DAC spécialisée dans le service sur Star Atlas.',
   locale: 'fr_FR',
   social: [
     {
@@ -135,7 +135,7 @@ export const profiles = [
     picture: '/assets/images/gamer.webp',
     list: [
       'Accès en français aux informations du jeu',
-      'Une stratégie de guilde multi-faction au gameplay varié',
+      'Une stratégie de guilde/DAC multi-faction au gameplay varié',
       "Joueurs de tous âges/niveaux menés par des leaders d'expérience",
       'Pionniers de Star Atlas en France et fondateurs de communautés (600 à 5000 membres)',
       "Développement d'outils optimisés et performants",
@@ -158,7 +158,7 @@ export const resources = [
   {
     type: 'skills',
     picture: '/assets/images/workshop.webp',
-    text: '### De *réelles* compétences professionnelles au service de la guilde',
+    text: '### De *réelles* compétences professionnelles au service de la guilde/DAC',
     list: [
       'Développement technologique',
       'Ressources humaines',
@@ -180,7 +180,7 @@ export const resources = [
       '*avec un nouveau projet*',
     ],
     list: [
-      'Elaboration de la structure de guilde',
+      'Elaboration de la structure de guilde/DAC',
       'Réalisation d’animations et de Lives',
       'Recrutement de 700+ membres',
       'Développement de projets UE5',

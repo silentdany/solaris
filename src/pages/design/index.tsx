@@ -142,7 +142,7 @@ const DesignPage = () => {
       <Meta
         title={`${AppConfig.site_name} Charte graphique`}
         description={
-          "Charte graphique et éléments graphique de l'univers Solaris, guilde française Star Atlas"
+          "Charte graphique et éléments graphique de l'univers Solaris, guilde/DAC française Star Atlas"
         }
         canonical={`${AppConfig.url}/design`}
       />
