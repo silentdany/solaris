@@ -59,7 +59,7 @@ const Meta = (props: IMetaProps) => {
           url: props.canonical,
           title: props.title,
           description: props.description,
-          siteName: `${AppConfig.site_name} Guilde française sur Star Atlas`,
+          siteName: AppConfig.title,
           images: [
             {
               url: `${router.basePath}/assets/logos/ban_720p.webp`,
