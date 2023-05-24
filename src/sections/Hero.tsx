@@ -115,7 +115,7 @@ const Hero = () => {
                 }
               />
             </div>
-            <Link href="#start">
+            <Link href="#start" scroll={false}>
               <a className="glass btn-circle btn animate-bounce-slow text-primary-500 transition">
                 <HiChevronDoubleDown className="text-lg" />
               </a>
