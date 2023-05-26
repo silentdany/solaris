@@ -43,6 +43,7 @@ export const ResourcesBlock = ({ data }) => (
               alt={mainItem.text}
               className="absolute rounded-xl object-cover duration-300 ease-in-out group-hover:object-halfbottom group-hover:shadow-xl"
               fill
+              sizes="(min-width: 768px) 50vw, 100vw"
             />
           </div>
           <ul className="grid grid-cols-1 gap-y-4 md:grid-cols-2 lg:flex lg:flex-col lg:space-y-4">

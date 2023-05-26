@@ -140,7 +140,7 @@ const DesignPage = () => {
   return (
     <>
       <Meta
-        title={`${AppConfig.site_name} Charte graphique`}
+        title="Charte graphique"
         description={
           "Charte graphique et éléments graphique de l'univers Solaris, guilde/DAC française Star Atlas"
         }

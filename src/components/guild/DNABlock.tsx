@@ -28,6 +28,7 @@ export const DNABlock = ({ data }) =>
             alt={item.title}
             className="object-cover opacity-60 duration-300 ease-in-out group-hover:scale-105 group-hover:opacity-80"
             fill
+            sizes="(min-width: 768px) 33vw, 100vw"
           />
           <h3
             className={`absolute bottom-0 text-4xl font-black uppercase text-primary-300 mix-blend-color-dodge duration-300 ease-in-out group-hover:mix-blend-normal ${

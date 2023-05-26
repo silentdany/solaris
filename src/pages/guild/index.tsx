@@ -28,7 +28,7 @@ export const GuildContent = () => {
   return (
     <>
       <Meta
-        title={`${AppConfig.site_name} Guilde/DAC française sur Star Atlas`}
+        title="Guilde/DAC française sur Star Atlas"
         description={AppConfig.description}
         canonical={AppConfig.url}
       />

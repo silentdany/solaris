@@ -105,7 +105,7 @@ const ShipsList = () => {
   return (
     <>
       <Meta
-        title={`${AppConfig.site_name} Dock`}
+        title="Dock"
         description={
           'Découvrez toutes les données des vaisseaux du jeu condensées en une application simple et intuitive.'
         }

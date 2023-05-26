@@ -50,7 +50,7 @@ const Tools = () => {
   return (
     <>
       <Meta
-        title={`${AppConfig.site_name} Outils`}
+        title="Outils"
         description={
           'Découvrez les outils de gestion et de visualisation pour Star Atlas, développés par Solaris.'
         }

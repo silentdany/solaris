@@ -49,6 +49,8 @@ const Meta = (props: IMetaProps) => {
       </Head>
       <NextSeo
         title={props.title}
+        titleTemplate="%s | Solaris by QTT"
+        defaultTitle={AppConfig.title}
         description={props.description}
         canonical={props.canonical}
         themeColor="#d0a341"

@@ -198,7 +198,7 @@ const Armada = () => {
   return (
     <>
       <Meta
-        title={`${AppConfig.site_name} Armada`}
+        title="Armada"
         description={
           'Visualisez de manière inédite notre flotte de guerre et découvrez la puissance économique de Solaris !'
         }

@@ -43,7 +43,7 @@ const Tools = () => {
   return (
     <>
       <Meta
-        title={`${AppConfig.site_name} Kiosque`}
+        title="Kiosque"
         description={
           'Découvrez les documents et autres supports préparés ou selectionnés spécialement pour vous dans différents formats téléchargeables.'
         }

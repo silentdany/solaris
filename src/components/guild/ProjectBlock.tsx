@@ -36,6 +36,7 @@ export const ProjectBlock = ({ data }) => (
                 alt=""
                 className="absolute object-cover duration-300 ease-in-out group-hover:scale-105 lg:-top-1/3"
                 fill
+                sizes="(min-width: 768px) 33vw, 100vw"
               />
             </div>
           </div>

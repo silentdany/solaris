@@ -5,8 +5,8 @@ import { ImEarth } from 'react-icons/im';
 import { IoIosPeople } from 'react-icons/io';
 
 export const AppConfig = {
-  site_name: 'Solaris by QTT |',
-  title: 'Solaris',
+  site_name: 'Solaris',
+  title: 'Solaris by QTT',
   destructuredTitle: ['Solaris', 'QTT'],
   url: 'solaris-qtt.com',
   description:

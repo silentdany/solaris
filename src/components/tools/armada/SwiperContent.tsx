@@ -156,7 +156,7 @@ const SwiperContent = ({ nfts }: any) => {
                     className="inset-0 w-full rounded-xl bg-stone-800 object-cover duration-300 ease-in-out"
                     priority={isActive}
                     fill
-                    sizes="(min-width: 1024px) 1024px, 100vw"
+                    sizes="50vw"
                   />
                 </div>
                 <div
