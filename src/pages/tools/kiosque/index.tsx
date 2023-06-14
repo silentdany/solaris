@@ -11,6 +11,7 @@ import Page from '../../../layout/Page';
 import { Meta } from '../../../sections/Meta';
 import { AppConfig } from '../../../utils/AppConfig';
 import { Core } from '../../../utils/data/Core';
+import { CustomTools } from '../../../utils/data/CustomTools';
 import { Infographics } from '../../../utils/data/Infographics';
 
 interface Info {
@@ -54,6 +55,61 @@ const Tools = () => {
           <div className="flex w-full flex-col items-center justify-center">
             <InnerSectionBlock bgColor={'from-primary-500/40'}>
               <div className="flex w-full flex-col items-center space-y-24">
+                <h2 className="font-title text-3xl font-bold text-secondary-500 md:text-4xl lg:text-5xl">
+                  Outils
+                </h2>
+                <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-3">
+                  {CustomTools.map((info) => (
+                    <div
+                      className="flex w-full scroll-mt-16 flex-col items-start justify-center"
+                      key={info.title}
+                      id={info.anchor}
+                    >
+                      <div className="group card glass flex flex-col space-y-4 hover:shadow-xl">
+                        <PortalWithState closeOnOutsideClick closeOnEsc>
+                          {({ openPortal, closePortal, portal }) => (
+                            <React.Fragment>
+                              <figure
+                                className="h-2/5 overflow-hidden hover:cursor-pointer"
+                                onClick={openPortal}
+                              >
+                                <Image
+                                  src={info.image}
+                                  alt={info.title}
+                                  className="object-cover object-top duration-300 ease-in-out group-hover:scale-105"
+                                  width={400}
+                                  height={300}
+                                />
+                              </figure>
+                              {portal(
+                                <Modal
+                                  item={
+                                    <Image
+                                      src={info.image}
+                                      alt={info.title}
+                                      width={1000}
+                                      height={600}
+                                      className="flex justify-center rounded-xl bg-stone-900/50 object-cover shadow-xl"
+                                      placeholder="blur"
+                                      blurDataURL={info.image}
+                                    />
+                                  }
+                                  closePortal={closePortal}
+                                />
+                              )}
+                            </React.Fragment>
+                          )}
+                        </PortalWithState>
+                        <div className="card-body flex flex-col space-y-2 text-sm">
+                          {info.title && (
+                            <h4 className="card-title text-lg">{info.title}</h4>
+                          )}
+                          <DownloadLink url={info.url} ext="xls" />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
                 <h2 className="font-title text-3xl font-bold text-secondary-500 md:text-4xl lg:text-5xl">
                   Infographies
                 </h2>
