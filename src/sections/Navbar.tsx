@@ -228,9 +228,11 @@ const Navbar = () => {
                 <div className="flex flex-col space-y-2 rounded-xl bg-stone-200 p-2 shadow-xl">
                   <div className="flex justify-end text-right font-bold">
                     {user.name}
-                    <span className="p-0 font-normal text-stone-400">
-                      #{user.discriminator}
-                    </span>
+                    {user.discriminator !== '0' && (
+                      <span className="p-0 font-normal text-stone-400">
+                        #{user.discriminator}
+                      </span>
+                    )}
                   </div>
                   <div className="p-0 text-secondary-500/50">
                     {user.roles[0]?.name || 'Invité'}
