@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Image from 'next/future/image';
-import { BiDownArrow, BiDownload } from 'react-icons/bi';
+import { BiDownArrow, BiDownload, BiLinkExternal } from 'react-icons/bi';
 import { PortalWithState } from 'react-portal';
 
 import Index from '../..';
@@ -23,22 +23,33 @@ interface Info {
   jpg: Array<string>;
 }
 
-const DownloadLink = ({ url, ext }) => (
-  <div className="flex items-center duration-200 ease-in-out hover:translate-x-1">
-    <BiDownArrow className="mr-4 -rotate-90" />
-    <a
-      href={url}
-      download
-      target={'_blank'}
-      className="flex items-center hover:text-primary-500"
-      rel="noreferrer"
-    >
-      Télécharger version
-      <em className="mx-1 uppercase">{ext}</em>
-      <BiDownload className="ml-2" />
-    </a>
-  </div>
-);
+const DownloadLink = ({ url, ext }) => {
+  return (
+    <div className="flex items-center duration-200 ease-in-out hover:translate-x-1">
+      <BiDownArrow className="mr-4 -rotate-90" />
+      <a
+        href={url}
+        download={ext !== 'link'}
+        target={ext !== 'link' ? '_blank' : '_self'}
+        className="flex items-center hover:text-primary-500"
+        rel="noreferrer"
+      >
+        {ext === 'link' ? (
+          <>
+            Accéder
+            <BiLinkExternal className="ml-2" />
+          </>
+        ) : (
+          <>
+            Télécharger version
+            <em className="mx-1 uppercase">{ext}</em>
+            <BiDownload className="ml-2" />
+          </>
+        )}
+      </a>
+    </div>
+  );
+};
 
 const Tools = () => {
   return (
@@ -104,7 +115,7 @@ const Tools = () => {
                           {info.title && (
                             <h4 className="card-title text-lg">{info.title}</h4>
                           )}
-                          <DownloadLink url={info.url} ext="xls" />
+                          <DownloadLink url={info.url} ext="link" />
                         </div>
                       </div>
                     </div>
