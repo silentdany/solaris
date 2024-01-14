@@ -58,12 +58,12 @@ export const position = [
 export const datas = [
   {
     title: 'Actifs',
-    value: '> 170k $',
+    value: '> 280k $',
     icon: FaDollarSign,
   },
   {
     title: 'Membres',
-    value: '40',
+    value: '60',
     icon: AiOutlineUsergroupAdd,
   },
   // {
