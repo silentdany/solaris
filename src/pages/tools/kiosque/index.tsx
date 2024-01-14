@@ -81,7 +81,7 @@ const Tools = () => {
                           {({ openPortal, closePortal, portal }) => (
                             <React.Fragment>
                               <figure
-                                className="h-2/5 overflow-hidden hover:cursor-pointer"
+                                className="min-h-2/5 overflow-hidden hover:cursor-pointer"
                                 onClick={openPortal}
                               >
                                 <Image
