@@ -58,4 +58,16 @@ export const Core = [
     image: 'https://storage.googleapis.com/nft-assets/items/CORE6-SA.png',
     pdf: 'https://drive.google.com/file/d/1xuSwQV8KRD87YJUU6VfdmSj4DwNqFO3m/view?usp=drive_link',
   },
+  {
+    title: 'Episode 7',
+    anchor: 'core-episode-7',
+    image: 'https://storage.googleapis.com/nft-assets/items/CORE7-SA.jpg',
+    pdf: 'https://drive.google.com/file/d/1KEs2gK2Xt1T0qjYrp_SVziulhp2k0fM7/view?usp=drive_link',
+  },
+  {
+    title: 'Episode 8',
+    anchor: 'core-episode-8',
+    image: 'https://storage.googleapis.com/nft-assets/items/CORE8SA.jpg',
+    pdf: 'https://drive.google.com/file/d/1zxW6AKFtWrdSaq1Bnlzw25NCZocKBdVH/view?usp=drive_link',
+  },
 ];
